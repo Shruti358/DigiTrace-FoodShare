@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={"darkMode":"class","theme":{"extend":{"colors":{"inverse-surface":"#213145","error":"#ba1a1a","surface-container-lowest":"#ffffff","on-primary":"#ffffff","primary":"#006948","on-error":"#ffffff","background":"#f8f9ff","on-secondary-container":"#5c647a","tertiary-fixed-dim":"#93ccff","primary-fixed-dim":"#68dba9","secondary-fixed":"#dae2fd","on-primary-fixed-variant":"#005137","primary-fixed":"#85f8c4","on-tertiary-fixed-variant":"#004b73","on-secondary-fixed":"#131b2e","surface-container-low":"#eff4ff","inverse-primary":"#68dba9","primary-container":"#00855d","surface":"#f8f9ff","on-surface-variant":"#3d4a42","on-primary-fixed":"#002114","secondary-fixed-dim":"#bec6e0","on-secondary":"#ffffff","on-tertiary-container":"#fdfcff","surface-container":"#e5eeff","secondary-container":"#dae2fd","surface-dim":"#cbdbf5","surface-container-high":"#dce9ff","on-tertiary":"#ffffff","surface-tint":"#006c4a","on-surface":"#0b1c30","secondary":"#565e74","tertiary-container":"#007bb9","tertiary":"#006194","tertiary-fixed":"#cce5ff","on-secondary-fixed-variant":"#3f465c","on-error-container":"#93000a","inverse-on-surface":"#eaf1ff","on-background":"#0b1c30","outline":"#6d7a72","surface-variant":"#d3e4fe","on-primary-container":"#f5fff7","error-container":"#ffdad6","outline-variant":"#bccac0","surface-bright":"#f8f9ff","surface-container-highest":"#d3e4fe","on-tertiary-fixed":"#001d31"},"borderRadius":{"DEFAULT":"0.25rem","lg":"0.5rem","xl":"0.75rem","full":"9999px"},"spacing":{"gutter":"1.5rem","space-xs":"0.25rem","space-lg":"1.5rem","space-md":"1rem","space-xl":"2rem","margin":"2rem","margin-mobile":"1rem","gutter-mobile":"1rem","space-sm":"0.5rem","space-2xl":"3rem"},"fontFamily":{"label-lg":["Inter"],"headline-md":["Inter"],"headline-sm":["Inter"],"label-sm":["Inter"],"headline-lg":["Inter"],"body-md":["Inter"],"body-lg":["Inter"],"display-lg-mobile":["Inter"],"display-lg":["Inter"],"label-md":["Inter"],"body-sm":["Inter"],"data-metric":["Inter"]},"fontSize":{"label-lg":["14px",{"lineHeight":"20px","letterSpacing":"0em","fontWeight":"500"}],"headline-md":["20px",{"lineHeight":"28px","letterSpacing":"-0.01em","fontWeight":"600"}],"headline-sm":["16px",{"lineHeight":"24px","letterSpacing":"-0.005em","fontWeight":"600"}],"label-sm":["11px",{"lineHeight":"14px","letterSpacing":"0.03em","fontWeight":"600"}],"headline-lg":["24px",{"lineHeight":"32px","letterSpacing":"-0.015em","fontWeight":"600"}],"body-md":["14px",{"lineHeight":"20px","letterSpacing":"0em","fontWeight":"400"}],"body-lg":["16px",{"lineHeight":"24px","letterSpacing":"0em","fontWeight":"400"}],"display-lg-mobile":["26px",{"lineHeight":"32px","letterSpacing":"-0.015em","fontWeight":"600"}],"display-lg":["32px",{"lineHeight":"40px","letterSpacing":"-0.02em","fontWeight":"600"}],"label-md":["12px",{"lineHeight":"16px","letterSpacing":"0.01em","fontWeight":"500"}],"body-sm":["12px",{"lineHeight":"16px","letterSpacing":"0em","fontWeight":"400"}],"data-metric":["28px",{"lineHeight":"34px","letterSpacing":"-0.02em","fontWeight":"600"}]}}}}</script></head><body class="bg-surface font-body-md text-body-md text-on-surface"><aside class="fixed left-0 top-0 h-full w-64 bg-surface-container-lowest shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-50 flex flex-col justify-between hidden md:flex"><div class="flex flex-col"><div class="h-16 px-space-lg flex items-center gap-space-sm bg-surface-container-lowest"><img alt="Brand logo. - Primary color: #059669
+- Font: inter
+- Mode: light
+- Roundness: rounded-md
+" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1UDzmwdrJKw-H-CjGIfdCd2O20-KyRNBWaegCW0_3pycRrZgT1pr-AVBleqy9TCrth-flUiOEZxrATL75MNgoLWybEt-bGV_0IWVSZxBfw4j6jYck3JGXzTQXetstaMqqKzEsUcyDlCKd1PgAzD_ZOf7SpX15kNM49TVT5Ibum4eOwtKOhtqXn3t2BetEeljh3Mv8ttYXiExOTK21hCwaieOt9sL7IKLM5Ds8dVKwGeBhIv5wqJNOwpR1o"/><div class="flex flex-col"><span class="font-headline-sm text-headline-sm text-on-surface leading-tight">DigiTrace</span><span class="font-label-sm text-label-sm text-on-surface-variant leading-none">Food Waste Mgmt</span></div></div><nav class="flex flex-col gap-space-xs px-space-md mt-space-md" data-active-classes="bg-primary-container text-on-primary-container font-label-lg text-label-lg rounded-lg shadow-sm"><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="dashboard" href="#"><span class="material-symbols-outlined text-[20px]">grid_view</span><span>Dashboard</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="food-records" href="#"><span class="material-symbols-outlined text-[20px]">inventory_2</span><span>Food Records</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="waste-tracking" href="#"><span class="material-symbols-outlined text-[20px]">delete_sweep</span><span>Waste Tracking</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="surplus" href="#"><span class="material-symbols-outlined text-[20px]">volunteer_activism</span><span>Surplus</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="analytics" href="#"><span class="material-symbols-outlined text-[20px]">monitoring</span><span>Analytics</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="reports" href="#"><span class="material-symbols-outlined text-[20px]">description</span><span>Reports</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="settings" href="#"><span class="material-symbols-outlined text-[20px]">settings</span><span>Settings</span></a></nav></div><div class="p-space-md bg-surface-container-lowest"><div class="flex items-center gap-space-sm p-space-sm rounded-lg bg-surface-container-low"><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center shrink-0"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div><div class="flex flex-col min-w-0 flex-1"><span class="font-label-md text-label-md text-on-surface truncate">Shruti Sharma</span><span class="font-label-sm text-label-sm text-on-surface-variant truncate">Kitchen Ops Lead</span></div><a class="p-space-xs text-on-surface-variant hover:text-error hover:bg-surface-container-high rounded transition-colors shrink-0" data-path="logout" href="#" title="Log out"><span class="material-symbols-outlined text-[20px]">logout</span></a></div></div></aside><div class="md:pl-64"><header class="fixed top-0 left-0 md:left-64 right-0 h-16 bg-surface-container-lowest/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-40 flex items-center justify-between px-space-lg"><div class="flex items-center gap-space-md"><button class="md:hidden p-space-xs text-on-surface-variant hover:text-on-surface"><span class="material-symbols-outlined text-[24px]">menu</span></button><nav class="hidden sm:flex items-center gap-space-xs font-label-md text-label-md text-on-surface-variant"><span class="hover:text-on-surface cursor-pointer">Operational Floor</span><span class="material-symbols-outlined text-[14px]">chevron_right</span><span class="text-on-surface font-label-lg text-label-lg">DigiTrace System</span></nav><div class="inline-flex items-center gap-space-xs px-space-sm py-space-xs rounded-full bg-surface-container-low text-primary font-label-sm text-label-sm"><span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span><span>Live Scale Ingestion</span></div></div><div class="flex items-center gap-space-md"><div class="relative hidden lg:flex items-center"><span class="material-symbols-outlined absolute left-space-sm text-on-surface-variant text-[18px]">search</span><input class="h-9 pl-9 pr-14 rounded-lg bg-surface-container-low text-on-surface placeholder:text-on-surface-variant font-body-sm text-body-sm focus:outline-none focus:ring-1 focus:ring-primary w-64" placeholder="Search food lots, audits, logs..." type="text"/><kbd class="absolute right-space-sm px-1.5 py-0.5 rounded bg-surface-container-highest text-on-surface-variant font-label-sm text-label-sm">⌘K</kbd></div><button class="relative p-space-xs text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low rounded-lg transition-colors" title="Notifications"><span class="material-symbols-outlined text-[22px]">notifications</span><span class="absolute top-1 right-1 w-2 h-2 rounded-full bg-error ring-2 ring-surface-container-lowest"></span></button><div class="flex items-center gap-space-sm pl-space-xs"><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div><span class="hidden xl:block font-label-md text-label-md text-on-surface">Shruti S.</span></div></div></header><main class="relative pt-16 w-full px-gutter bg-surface min-h-screen"><div class="flex flex-col w-full pb-space-2xl">
+<!-- Ensure Sidebar Navigation Highlights 'Food Records' -->
+<script>
+    (function activateNav() {
+      const links = document.querySelectorAll('aside nav a');
+      links.forEach(link => {
+        if (link.getAttribute('data-path') === 'food-records') {
+          link.className = 'flex items-center gap-space-sm px-space-md py-space-sm rounded-lg bg-primary-container text-on-primary-container font-label-lg text-label-lg shadow-sm';
+        } else if (link.getAttribute('data-path')) {
+          link.className = 'flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors font-label-lg text-label-lg';
+        }
+      });
+    })();
+  </script>
+<!-- TOP BAR: BREADCRUMB, AUDIT SYNC, AND DEV STATE SWITCHER -->
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-md mb-space-lg">
+<div class="flex flex-wrap items-center gap-space-sm font-label-md text-label-md text-on-surface-variant">
+<span class="hover:text-on-surface cursor-pointer">Operational Floor</span>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="text-on-surface font-label-lg text-label-lg">Food Records Ledger</span>
+<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-surface-container text-primary font-label-sm text-label-sm ml-space-xs">
+<span class="w-1.5 h-1.5 rounded-full bg-primary animate-ping"></span>
+        Scale Station #04 Synchronized
+      </span>
+</div>
+<!-- UI State Simulation Switcher (Dev / Presentation tool) -->
+<div class="flex items-center bg-surface-container-low p-1 rounded-lg self-start lg:self-auto overflow-x-auto max-w-full">
+<span class="font-label-sm text-label-sm text-on-surface-variant px-2 select-none uppercase tracking-wider">View Mode:</span>
+<button class="px-space-sm py-1 rounded text-primary-container bg-surface-container-lowest font-label-sm text-label-sm shadow-sm transition-all whitespace-nowrap" id="btn-state-default" onclick="setUiState('default')">Default Table</button>
+<button class="px-space-sm py-1 rounded text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm transition-all whitespace-nowrap" id="btn-state-empty" onclick="setUiState('empty')">Empty State</button>
+<button class="px-space-sm py-1 rounded text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm transition-all whitespace-nowrap" id="btn-state-skeleton" onclick="setUiState('skeleton')">Loading Skeleton</button>
+<button class="px-space-sm py-1 rounded text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm transition-all whitespace-nowrap" id="btn-state-error" onclick="setUiState('error')">Network Error</button>
+<button class="px-space-sm py-1 rounded text-error hover:bg-error-container/40 font-label-sm text-label-sm transition-all whitespace-nowrap flex items-center gap-1" onclick="openDeleteModal('REC-2024-890', 'Roasted Poultry Loaf', 68.0)">
+<span class="material-symbols-outlined text-[14px]">delete</span>
+        Delete Modal
+      </button>
+</div>
+</div>
+<!-- PAGE HEADER & PRIMARY ACTIONS -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-space-md mb-space-lg">
+<div>
+<div class="flex items-center gap-space-sm">
+<h1 class="font-display-lg text-display-lg text-on-surface tracking-tight">Food Records</h1>
+<span class="px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm">Active Ledger</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mt-0.5">View, filter, and audit verified commercial kitchen prep and residue records.</p>
+</div>
+<!-- Action Toolbar Buttons -->
+<div class="flex items-center gap-space-sm flex-wrap">
+<button class="inline-flex items-center gap-space-xs px-3.5 h-10 rounded-lg bg-surface-container-lowest text-on-surface font-label-lg text-label-lg shadow-sm hover:bg-surface-container transition-colors" onclick="exportCsv()">
+<span class="material-symbols-outlined text-[18px]">download</span>
+<span>Export CSV</span>
+</button>
+<button class="inline-flex items-center gap-space-xs px-3.5 h-10 rounded-lg bg-surface-container-lowest text-on-surface font-label-lg text-label-lg shadow-sm hover:bg-surface-container transition-colors" onclick="batchAuditPrompt()">
+<span class="material-symbols-outlined text-[18px]">rule</span>
+<span>Batch Audit</span>
+</button>
+<button class="inline-flex items-center gap-space-xs px-4 h-10 rounded-lg bg-primary text-on-primary font-label-lg text-label-lg shadow-sm hover:bg-primary-container transition-colors" onclick="alert('Opening Add Food Record Flow...')">
+<span class="material-symbols-outlined text-[20px]">add</span>
+<span>Add Food Record</span>
+</button>
+</div>
+</div>
+<!-- ERROR NOTIFICATION BANNER (Toggleable State) -->
+<div class="hidden mb-space-lg p-space-md bg-error-container text-on-error-container rounded-lg shadow-sm flex items-start justify-between gap-space-md animate-fade-in" id="ui-error-banner">
+<div class="flex items-start gap-space-sm">
+<span class="material-symbols-outlined text-error text-[24px] mt-0.5">error_outline</span>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-error">Scale Ledger Ingestion Out of Sync</h3>
+<p class="font-body-md text-body-md mt-1">DigiTrace failed to handshake with Floor Terminal Scale Bridge #04. Data shown below reflects cached local storage from 14 minutes ago.</p>
+</div>
+</div>
+<div class="flex items-center gap-space-sm shrink-0">
+<button class="px-space-md h-9 rounded-lg bg-error text-on-error font-label-md text-label-md hover:opacity-90 shadow-sm transition-opacity" onclick="setUiState('default')">Retry Connection</button>
+<button class="p-1 rounded text-error hover:bg-surface-container-lowest/20" onclick="document.getElementById('ui-error-banner').classList.add('hidden')">
+<span class="material-symbols-outlined text-[18px]">close</span>
+</button>
+</div>
+</div>
+<!-- STAT SUMMARY CARDS -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-md mb-space-lg" id="kpi-container">
+<!-- Card 1: Total Records -->
+<div class="p-space-md bg-surface-container-lowest rounded-lg shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface-variant">Total Records Logged</span>
+<div class="w-8 h-8 rounded-lg bg-surface-container-low flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[18px]">receipt_long</span>
+</div>
+</div>
+<div class="mt-space-md flex items-baseline justify-between">
+<span class="font-data-metric text-data-metric text-on-surface">1,248</span>
+<span class="inline-flex items-center gap-0.5 font-label-sm text-label-sm text-primary bg-primary-fixed/30 px-1.5 py-0.5 rounded">
+<span class="material-symbols-outlined text-[12px]">trending_up</span>
+          +14 today
+        </span>
+</div>
+<div class="mt-2 text-on-surface-variant font-body-sm text-body-sm flex items-center gap-1">
+<span>Audited batch cycle:</span>
+<span class="text-on-surface font-label-sm text-label-sm">Shift A (Floor)</span>
+</div>
+</div>
+<!-- Card 2: Net Prep Mass -->
+<div class="p-space-md bg-surface-container-lowest rounded-lg shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface-variant">Net Prep Mass (Today)</span>
+<div class="w-8 h-8 rounded-lg bg-surface-container-low flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined text-[18px]">scale</span>
+</div>
+</div>
+<div class="mt-space-md flex items-baseline justify-between">
+<span class="font-data-metric text-data-metric text-on-surface">412.5 <span class="font-headline-sm text-headline-sm text-on-surface-variant font-normal">kg</span></span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">3 Kitchen Bays</span>
+</div>
+<div class="w-full bg-surface-container-high h-1.5 rounded-full mt-3 overflow-hidden">
+<div class="bg-tertiary h-full rounded-full" style="width: 76%;"></div>
+</div>
+</div>
+<!-- Card 3: Diverted Surplus -->
+<div class="p-space-md bg-surface-container-lowest rounded-lg shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface-variant">Diverted Surplus</span>
+<div class="w-8 h-8 rounded-lg bg-surface-container-low flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[18px]">volunteer_activism</span>
+</div>
+</div>
+<div class="mt-space-md flex items-baseline justify-between">
+<span class="font-data-metric text-data-metric text-primary">68.2 <span class="font-headline-sm text-headline-sm text-primary font-normal">kg</span></span>
+<span class="inline-flex items-center font-label-sm text-label-sm text-primary bg-primary-fixed/40 px-1.5 py-0.5 rounded">
+          16.5% Yield
+        </span>
+</div>
+<div class="mt-2 text-on-surface-variant font-body-sm text-body-sm flex items-center gap-1">
+<span class="text-primary font-label-sm text-label-sm">42.0 kg</span>
+<span>transferred to Food Bank</span>
+</div>
+</div>
+<!-- Card 4: Unavoidable Waste -->
+<div class="p-space-md bg-surface-container-lowest rounded-lg shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface-variant">Unavoidable Residue</span>
+<div class="w-8 h-8 rounded-lg bg-surface-container-low flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[18px]">compost</span>
+</div>
+</div>
+<div class="mt-space-md flex items-baseline justify-between">
+<span class="font-data-metric text-data-metric text-on-surface">24.1 <span class="font-headline-sm text-headline-sm text-on-surface-variant font-normal">kg</span></span>
+<span class="inline-flex items-center font-label-sm text-label-sm text-primary bg-primary-fixed/30 px-1.5 py-0.5 rounded">
+          5.8% (Under Target)
+        </span>
+</div>
+<div class="mt-2 text-on-surface-variant font-body-sm text-body-sm">
+<span>Compost diversion target:</span>
+<span class="text-on-surface font-label-sm text-label-sm"> &lt; 8.0%</span>
+</div>
+</div>
+</div>
+<!-- SKELETON KPI CARDS (Displayed in loading state) -->
+<div class="hidden grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-md mb-space-lg animate-pulse" id="kpi-skeleton">
+<div class="p-space-md bg-surface-container-lowest rounded-lg shadow-sm h-32 flex flex-col justify-between">
+<div class="h-4 bg-surface-container-high rounded w-1/2"></div>
+<div class="h-8 bg-surface-container-high rounded w-3/4"></div>
+<div class="h-3 bg-surface-container-high rounded w-2/3"></div>
+</div>
+<div class="p-space-md bg-surface-container-lowest rounded-lg shadow-sm h-32 flex flex-col justify-between">
+<div class="h-4 bg-surface-container-high rounded w-1/2"></div>
+<div class="h-8 bg-surface-container-high rounded w-3/4"></div>
+<div class="h-3 bg-surface-container-high rounded w-2/3"></div>
+</div>
+<div class="p-space-md bg-surface-container-lowest rounded-lg shadow-sm h-32 flex flex-col justify-between">
+<div class="h-4 bg-surface-container-high rounded w-1/2"></div>
+<div class="h-8 bg-surface-container-high rounded w-3/4"></div>
+<div class="h-3 bg-surface-container-high rounded w-2/3"></div>
+</div>
+<div class="p-space-md bg-surface-container-lowest rounded-lg shadow-sm h-32 flex flex-col justify-between">
+<div class="h-4 bg-surface-container-high rounded w-1/2"></div>
+<div class="h-8 bg-surface-container-high rounded w-3/4"></div>
+<div class="h-3 bg-surface-container-high rounded w-2/3"></div>
+</div>
+</div>
+<!-- FILTER & SEARCH CONTROL TOOLBAR -->
+<div class="bg-surface-container-lowest rounded-lg shadow-sm p-space-md mb-space-md">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-space-sm items-center">
+<!-- Search Input -->
+<div class="lg:col-span-4 relative">
+<span class="material-symbols-outlined absolute left-3 top-2.5 text-on-surface-variant text-[18px]">search</span>
+<input class="w-full h-10 pl-9 pr-8 rounded-lg bg-surface-container-low text-on-surface placeholder:text-on-surface-variant font-body-md text-body-md focus:outline-none focus:ring-1 focus:ring-primary shadow-none" id="table-search-input" onkeyup="handleFilterSearch(event)" placeholder="Search by Record ID, item, or category..." type="text"/>
+<button class="absolute right-2.5 top-2.5 text-on-surface-variant hover:text-on-surface hidden" id="search-clear-btn" onclick="clearSearchInput()">
+<span class="material-symbols-outlined text-[16px]">close</span>
+</button>
+</div>
+<!-- Date Range Selector -->
+<div class="lg:col-span-2 relative">
+<button class="w-full h-10 px-space-sm rounded-lg bg-surface-container-low text-on-surface font-body-sm text-body-sm flex items-center justify-between hover:bg-surface-container transition-colors">
+<div class="flex items-center gap-1.5 truncate">
+<span class="material-symbols-outlined text-on-surface-variant text-[16px]">calendar_today</span>
+<span class="truncate">Oct 18 - Oct 25, 2024</span>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant text-[16px]">expand_more</span>
+</button>
+</div>
+<!-- Meal Type Filter Dropdown -->
+<div class="lg:col-span-2">
+<div class="relative">
+<select class="w-full h-10 px-3 pr-8 rounded-lg bg-surface-container-low text-on-surface font-body-sm text-body-sm appearance-none focus:outline-none focus:ring-1 focus:ring-primary cursor-pointer" id="meal-filter" onchange="applyFilters()">
+<option value="all">All Meals</option>
+<option value="breakfast">Breakfast</option>
+<option value="lunch">Lunch</option>
+<option value="dinner">Dinner</option>
+<option value="event">Event / Catering</option>
+</select>
+<span class="material-symbols-outlined absolute right-2.5 top-2.5 text-on-surface-variant text-[18px] pointer-events-none">expand_more</span>
+</div>
+</div>
+<!-- Status Filter Dropdown -->
+<div class="lg:col-span-2">
+<div class="relative">
+<select class="w-full h-10 px-3 pr-8 rounded-lg bg-surface-container-low text-on-surface font-body-sm text-body-sm appearance-none focus:outline-none focus:ring-1 focus:ring-primary cursor-pointer" id="status-filter" onchange="applyFilters()">
+<option value="all">All Statuses</option>
+<option value="recorded">Recorded</option>
+<option value="in_progress">In Progress</option>
+<option value="completed">Completed</option>
+</select>
+<span class="material-symbols-outlined absolute right-2.5 top-2.5 text-on-surface-variant text-[18px] pointer-events-none">expand_more</span>
+</div>
+</div>
+<!-- Category Filter Dropdown -->
+<div class="lg:col-span-2">
+<div class="relative">
+<select class="w-full h-10 px-3 pr-8 rounded-lg bg-surface-container-low text-on-surface font-body-sm text-body-sm appearance-none focus:outline-none focus:ring-1 focus:ring-primary cursor-pointer" id="category-filter" onchange="applyFilters()">
+<option value="all">All Categories</option>
+<option value="proteins">Cooked Proteins</option>
+<option value="bakery">Bakery &amp; Grains</option>
+<option value="produce">Produce &amp; Salad</option>
+<option value="dairy">Dairy &amp; Cold Prep</option>
+</select>
+<span class="material-symbols-outlined absolute right-2.5 top-2.5 text-on-surface-variant text-[18px] pointer-events-none">expand_more</span>
+</div>
+</div>
+</div>
+<!-- Active Filter Chips Row -->
+<div class="flex items-center justify-between flex-wrap gap-space-sm pt-space-sm mt-space-sm bg-surface-container-lowest">
+<div class="flex items-center gap-space-xs flex-wrap font-label-sm text-label-sm text-on-surface-variant">
+<span class="font-label-sm text-label-sm text-on-surface uppercase tracking-wider mr-1">Active:</span>
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-surface-container text-on-surface">
+<span>Range: Oct 18 - 25, 2024</span>
+<button class="hover:text-error transition-colors" title="Remove filter"><span class="material-symbols-outlined text-[13px]">close</span></button>
+</span>
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-surface-container text-on-surface">
+<span>Facility: Central Bay #1</span>
+<button class="hover:text-error transition-colors" title="Remove filter"><span class="material-symbols-outlined text-[13px]">close</span></button>
+</span>
+<button class="text-primary hover:underline font-label-sm text-label-sm ml-2" onclick="resetAllFilters()">Clear all</button>
+</div>
+<button class="inline-flex items-center gap-1 text-on-surface-variant hover:text-on-surface font-label-md text-label-md transition-colors ml-auto" onclick="resetAllFilters()">
+<span class="material-symbols-outlined text-[16px]">restart_alt</span>
+<span>Reset Filters</span>
+</button>
+</div>
+</div>
+<!-- TABLE CONTAINER (DEFAULT STATE) -->
+<div class="bg-surface-container-lowest rounded-lg shadow-sm overflow-hidden flex flex-col" id="table-view">
+<!-- Horizontal Scroll Table wrapper -->
+<div class="overflow-x-auto w-full">
+<table class="w-full text-left border-collapse min-w-[1040px]">
+<thead>
+<tr class="bg-surface-container-low text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider">
+<th class="py-3 px-4 w-10 text-center">
+<input class="rounded w-4 h-4 text-primary focus:ring-primary accent-primary cursor-pointer" onchange="toggleSelectAll(this)" type="checkbox"/>
+</th>
+<th class="py-3 px-4">Record ID</th>
+<th class="py-3 px-4">Date &amp; Timestamp</th>
+<th class="py-3 px-4">Meal</th>
+<th class="py-3 px-4">Item &amp; Category</th>
+<th class="py-3 px-4 text-right">Prepared</th>
+<th class="py-3 px-4 text-right">Consumed</th>
+<th class="py-3 px-4 text-right">Surplus</th>
+<th class="py-3 px-4 text-right">Residue</th>
+<th class="py-3 px-4 text-center">Audit Status</th>
+<th class="py-3 px-4 text-right pr-6">Actions</th>
+</tr>
+</thead>
+<tbody class="font-body-md text-body-md text-on-surface divide-y divide-surface-container-low" id="records-tbody">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container-low/60 transition-colors group">
+<td class="py-3 px-4 text-center">
+<input class="record-check rounded w-4 h-4 text-primary focus:ring-primary accent-primary cursor-pointer" type="checkbox"/>
+</td>
+<td class="py-3 px-4">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-primary text-[16px]">qr_code_2</span>
+<span class="font-label-md text-label-md font-mono text-on-surface font-semibold">#REC-2024-892</span>
+</div>
+</td>
+<td class="py-3 px-4 text-on-surface-variant font-body-sm text-body-sm">
+<div>Oct 25, 2024</div>
+<div class="text-[11px] text-on-surface-variant/70">12:45 PM</div>
+</td>
+<td class="py-3 px-4">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-tertiary bg-tertiary-fixed/30 font-label-sm text-label-sm">Lunch</span>
+</td>
+<td class="py-3 px-4">
+<div class="font-label-md text-label-md text-on-surface font-medium">Roast Herb Chicken Breasts</div>
+<div class="text-[11px] text-on-surface-variant">Cooked Proteins · Bay 02</div>
+</td>
+<td class="py-3 px-4 text-right font-label-md text-label-md tabular-nums font-semibold">45.0 kg</td>
+<td class="py-3 px-4 text-right font-body-md text-body-md tabular-nums text-on-surface-variant">34.5 kg</td>
+<td class="py-3 px-4 text-right font-label-md text-label-md tabular-nums text-primary font-semibold">8.0 kg</td>
+<td class="py-3 px-4 text-right font-body-md text-body-md tabular-nums text-error">2.5 kg</td>
+<td class="py-3 px-4 text-center">
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-primary-fixed/40 text-primary font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[13px]">check_circle</span>
+                Completed
+              </span>
+</td>
+<td class="py-3 px-4 text-right pr-6">
+<div class="flex items-center justify-end gap-1">
+<button class="p-1 rounded text-on-surface-variant hover:text-primary hover:bg-surface-container transition-colors" title="View Record"><span class="material-symbols-outlined text-[18px]">visibility</span></button>
+<button class="p-1 rounded text-on-surface-variant hover:text-tertiary hover:bg-surface-container transition-colors" title="Edit Record"><span class="material-symbols-outlined text-[18px]">edit</span></button>
+<button class="p-1 rounded text-on-surface-variant hover:text-error hover:bg-error-container/40 transition-colors" onclick="openDeleteModal('REC-2024-892', 'Roast Herb Chicken Breasts', 45.0)" title="Delete"><span class="material-symbols-outlined text-[18px]">delete</span></button>
+</div>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container-low/60 transition-colors group">
+<td class="py-3 px-4 text-center">
+<input class="record-check rounded w-4 h-4 text-primary focus:ring-primary accent-primary cursor-pointer" type="checkbox"/>
+</td>
+<td class="py-3 px-4">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-primary text-[16px]">qr_code_2</span>
+<span class="font-label-md text-label-md font-mono text-on-surface font-semibold">#REC-2024-891</span>
+</div>
+</td>
+<td class="py-3 px-4 text-on-surface-variant font-body-sm text-body-sm">
+<div>Oct 25, 2024</div>
+<div class="text-[11px] text-on-surface-variant/70">11:30 AM</div>
+</td>
+<td class="py-3 px-4">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-tertiary bg-tertiary-fixed/30 font-label-sm text-label-sm">Lunch</span>
+</td>
+<td class="py-3 px-4">
+<div class="font-label-md text-label-md text-on-surface font-medium">Steamed Seasonal Greens</div>
+<div class="text-[11px] text-on-surface-variant">Produce &amp; Salad · Bay 01</div>
+</td>
+<td class="py-3 px-4 text-right font-label-md text-label-md tabular-nums font-semibold">32.0 kg</td>
+<td class="py-3 px-4 text-right font-body-md text-body-md tabular-nums text-on-surface-variant">27.8 kg</td>
+<td class="py-3 px-4 text-right font-label-md text-label-md tabular-nums text-primary font-semibold">3.2 kg</td>
+<td class="py-3 px-4 text-right font-body-md text-body-md tabular-nums text-on-surface-variant">1.0 kg</td>
+<td class="py-3 px-4 text-center">
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-on-secondary-fixed"></span>
+                Recorded
+              </span>
+</td>
+<td class="py-3 px-4 text-right pr-6">
+<div class="flex items-center justify-end gap-1">
+<button class="p-1 rounded text-on-surface-variant hover:text-primary hover:bg-surface-container transition-colors" title="View Record"><span class="material-symbols-outlined text-[18px]">visibility</span></button>
+<button class="p-1 rounded text-on-surface-variant hover:text-tertiary hover:bg-surface-container transition-colors" title="Edit Record"><span class="material-symbols-outlined text-[18px]">edit</span></button>
+<button class="p-1 rounded text-on-surface-variant hover:text-error hover:bg-error-container/40 transition-colors" onclick="openDeleteModal('REC-2024-891', 'Steamed Seasonal Greens', 32.0)" title="Delete"><span class="material-symbols-outlined text-[18px]">delete</span></button>
+</div>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container-low/60 transition-colors group">
+<td class="py-3 px-4 text-center">
+<input class="record-check rounded w-4 h-4 text-primary focus:ring-primary accent-primary cursor-pointer" type="checkbox"/>
+</td>
+<td class="py-3 px-4">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-primary text-[16px]">qr_code_2</span>
+<span class="font-label-md text-label-md font-mono text-on-surface font-semibold">#REC-2024-890</span>
+</div>
+</td>
+<td class="py-3 px-4 text-on-surface-variant font-body-sm text-body-sm">
+<div>Oct 25, 2024</div>
+<div class="text-[11px] text-on-surface-variant/70">10:15 AM</div>
+</td>
+<td class="py-3 px-4">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-on-secondary-container bg-secondary-container font-label-sm text-label-sm">Breakfast</span>
+</td>
+<td class="py-3 px-4">
+<div class="font-label-md text-label-md text-on-surface font-medium">Sourdough &amp; Brioche Loaves</div>
+<div class="text-[11px] text-on-surface-variant">Bakery &amp; Grains · Bay 04</div>
+</td>
+<td class="py-3 px-4 text-right font-label-md text-label-md tabular-nums font-semibold">54.0 kg</td>
+<td class="py-3 px-4 text-right font-body-md text-body-md tabular-nums text-on-surface-variant">38.0 kg</td>
+<td class="py-3 px-4 text-right font-label-md text-label-md tabular-nums text-primary font-semibold">14.5 kg</td>
+<td class="py-3 px-4 text-right font-body-md text-body-md tabular-nums text-on-surface-variant">1.5 kg</td>
+<td class="py-3 px-4 text-center">
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm animate-pulse">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+                In Progress
+              </span>
+</td>
+<td class="py-3 px-4 text-right pr-6">
+<div class="flex items-center justify-end gap-1">
+<button class="p-1 rounded text-on-surface-variant hover:text-primary hover:bg-surface-container transition-colors" title="View Record"><span class="material-symbols-outlined text-[18px]">visibility</span></button>
+<button class="p-1 rounded text-on-surface-variant hover:text-tertiary hover:bg-surface-container transition-colors" title="Edit Record"><span class="material-symbols-outlined text-[18px]">edit</span></button>
+<button class="p-1 rounded text-on-surface-variant hover:text-error hover:bg-error-container/40 transition-colors" onclick="openDeleteModal('REC-2024-890', 'Sourdough &amp; Brioche Loaves', 54.0)" title="Delete"><span class="material-symbols-outlined text-[18px]">delete</span></button>
+</div>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-surface-container-low/60 transition-colors group">
+<td class="py-3 px-4 text-center">
+<input class="record-check rounded w-4 h-4 text-primary focus:ring-primary accent-primary cursor-pointer" type="checkbox"/>
+</td>
+<td class="py-3 px-4">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-primary text-[16px]">qr_code_2</span>
+<span class="font-label-md text-label-md font-mono text-on-surface font-semibold">#REC-2024-889</span>
+</div>
+</td>
+<td class="py-3 px-4 text-on-surface-variant font-body-sm text-body-sm">
+<div>Oct 25, 2024</div>
+<div class="text-[11px] text-on-surface-variant/70">08:00 AM</div>
+</td>
+<td class="py-3 px-4">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-on-secondary-container bg-secondary-container font-label-sm text-label-sm">Breakfast</span>
+</td>
+<td class="py-3 px-4">
+<div class="font-label-md text-label-md text-on-surface font-medium">Greek Yogurt &amp; Berry Parfaits</div>
+<div class="text-[11px] text-on-surface-variant">Dairy &amp; Cold Prep · Bay 03</div>
+</td>
+<td class="py-3 px-4 text-right font-label-md text-label-md tabular-nums font-semibold">28.5 kg</td>
+<td class="py-3 px-4 text-right font-body-md text-body-md tabular-nums text-on-surface-variant">25.0 kg</td>
+<td class="py-3 px-4 text-right font-label-md text-label-md tabular-nums text-primary font-semibold">3.0 kg</td>
+<td class="py-3 px-4 text-right font-body-md text-body-md tabular-nums text-on-surface-variant">0.5 kg</td>
+<td class="py-3 px-4 text-center">
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-primary-fixed/40 text-primary font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[13px]">check_circle</span>
+                Completed
+              </span>
+</td>
+<td class="py-3 px-4 text-right pr-6">
+<div class="flex items-center justify-end gap-1">
+<button class="p-1 rounded text-on-surface-variant hover:text-primary hover:bg-surface-container transition-colors" title="View Record"><span class="material-symbols-outlined text-[18px]">visibility</span></button>
+<button class="p-1 rounded text-on-surface-variant hover:text-tertiary hover:bg-surface-container transition-colors" title="Edit Record"><span class="material-symbols-outlined text-[18px]">edit</span></button>
+<button class="p-1 rounded text-on-surface-variant hover:text-error hover:bg-error-container/40 transition-colors" onclick="openDeleteModal('REC-2024-889', 'Greek Yogurt &amp; Berry Parfaits', 28.5)" title="Delete"><span class="material-symbols-outlined text-[18px]">delete</span></button>
+</div>
+</td>
+</tr>
+<!-- Row 5 -->
+<tr class="hover:bg-surface-container-low/60 transition-colors group">
+<td class="py-3 px-4 text-center">
+<input class="record-check rounded w-4 h-4 text-primary focus:ring-primary accent-primary cursor-pointer" type="checkbox"/>
+</td>
+<td class="py-3 px-4">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-primary text-[16px]">qr_code_2</span>
+<span class="font-label-md text-label-md font-mono text-on-surface font-semibold">#REC-2024-888</span>
+</div>
+</td>
+<td class="py-3 px-4 text-on-surface-variant font-body-sm text-body-sm">
+<div>Oct 24, 2024</div>
+<div class="text-[11px] text-on-surface-variant/70">07:20 PM</div>
+</td>
+<td class="py-3 px-4">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-on-tertiary-fixed bg-tertiary-fixed font-label-sm text-label-sm">Dinner</span>
+</td>
+<td class="py-3 px-4">
+<div class="font-label-md text-label-md text-on-surface font-medium">Vegetable Tofu Stir-Fry</div>
+<div class="text-[11px] text-on-surface-variant">Produce &amp; Salad · Bay 02</div>
+</td>
+<td class="py-3 px-4 text-right font-label-md text-label-md tabular-nums font-semibold">40.0 kg</td>
+<td class="py-3 px-4 text-right font-body-md text-body-md tabular-nums text-on-surface-variant">36.2 kg</td>
+<td class="py-3 px-4 text-right font-label-md text-label-md tabular-nums text-primary font-semibold">2.8 kg</td>
+<td class="py-3 px-4 text-right font-body-md text-body-md tabular-nums text-on-surface-variant">1.0 kg</td>
+<td class="py-3 px-4 text-center">
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-primary-fixed/40 text-primary font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[13px]">check_circle</span>
+                Completed
+              </span>
+</td>
+<td class="py-3 px-4 text-right pr-6">
+<div class="flex items-center justify-end gap-1">
+<button class="p-1 rounded text-on-surface-variant hover:text-primary hover:bg-surface-container transition-colors" title="View Record"><span class="material-symbols-outlined text-[18px]">visibility</span></button>
+<button class="p-1 rounded text-on-surface-variant hover:text-tertiary hover:bg-surface-container transition-colors" title="Edit Record"><span class="material-symbols-outlined text-[18px]">edit</span></button>
+<button class="p-1 rounded text-on-surface-variant hover:text-error hover:bg-error-container/40 transition-colors" onclick="openDeleteModal('REC-2024-888', 'Vegetable Tofu Stir-Fry', 40.0)" title="Delete"><span class="material-symbols-outlined text-[18px]">delete</span></button>
+</div>
+</td>
+</tr>
+<!-- Row 6 -->
+<tr class="hover:bg-surface-container-low/60 transition-colors group">
+<td class="py-3 px-4 text-center">
+<input class="record-check rounded w-4 h-4 text-primary focus:ring-primary accent-primary cursor-pointer" type="checkbox"/>
+</td>
+<td class="py-3 px-4">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-primary text-[16px]">qr_code_2</span>
+<span class="font-label-md text-label-md font-mono text-on-surface font-semibold">#REC-2024-887</span>
+</div>
+</td>
+<td class="py-3 px-4 text-on-surface-variant font-body-sm text-body-sm">
+<div>Oct 24, 2024</div>
+<div class="text-[11px] text-on-surface-variant/70">06:00 PM</div>
+</td>
+<td class="py-3 px-4">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-on-primary-fixed-variant bg-primary-fixed-dim/40 font-label-sm text-label-sm">Event</span>
+</td>
+<td class="py-3 px-4">
+<div class="font-label-md text-label-md text-on-surface font-medium">Executive Buffet Carvery Beef</div>
+<div class="text-[11px] text-on-surface-variant">Cooked Proteins · Bay 01</div>
+</td>
+<td class="py-3 px-4 text-right font-label-md text-label-md tabular-nums font-semibold">78.0 kg</td>
+<td class="py-3 px-4 text-right font-body-md text-body-md tabular-nums text-on-surface-variant">59.0 kg</td>
+<td class="py-3 px-4 text-right font-label-md text-label-md tabular-nums text-primary font-semibold">15.0 kg</td>
+<td class="py-3 px-4 text-right font-body-md text-body-md tabular-nums text-error">4.0 kg</td>
+<td class="py-3 px-4 text-center">
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-on-secondary-fixed"></span>
+                Recorded
+              </span>
+</td>
+<td class="py-3 px-4 text-right pr-6">
+<div class="flex items-center justify-end gap-1">
+<button class="p-1 rounded text-on-surface-variant hover:text-primary hover:bg-surface-container transition-colors" title="View Record"><span class="material-symbols-outlined text-[18px]">visibility</span></button>
+<button class="p-1 rounded text-on-surface-variant hover:text-tertiary hover:bg-surface-container transition-colors" title="Edit Record"><span class="material-symbols-outlined text-[18px]">edit</span></button>
+<button class="p-1 rounded text-on-surface-variant hover:text-error hover:bg-error-container/40 transition-colors" onclick="openDeleteModal('REC-2024-887', 'Executive Buffet Carvery Beef', 78.0)" title="Delete"><span class="material-symbols-outlined text-[18px]">delete</span></button>
+</div>
+</td>
+</tr>
+<!-- Row 7 -->
+<tr class="hover:bg-surface-container-low/60 transition-colors group">
+<td class="py-3 px-4 text-center">
+<input class="record-check rounded w-4 h-4 text-primary focus:ring-primary accent-primary cursor-pointer" type="checkbox"/>
+</td>
+<td class="py-3 px-4">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-primary text-[16px]">qr_code_2</span>
+<span class="font-label-md text-label-md font-mono text-on-surface font-semibold">#REC-2024-886</span>
+</div>
+</td>
+<td class="py-3 px-4 text-on-surface-variant font-body-sm text-body-sm">
+<div>Oct 24, 2024</div>
+<div class="text-[11px] text-on-surface-variant/70">07:45 AM</div>
+</td>
+<td class="py-3 px-4">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-on-secondary-container bg-secondary-container font-label-sm text-label-sm">Breakfast</span>
+</td>
+<td class="py-3 px-4">
+<div class="font-label-md text-label-md text-on-surface font-medium">Free-Range Breakfast Scramble</div>
+<div class="text-[11px] text-on-surface-variant">Cooked Proteins · Bay 02</div>
+</td>
+<td class="py-3 px-4 text-right font-label-md text-label-md tabular-nums font-semibold">35.0 kg</td>
+<td class="py-3 px-4 text-right font-body-md text-body-md tabular-nums text-on-surface-variant">31.2 kg</td>
+<td class="py-3 px-4 text-right font-label-md text-label-md tabular-nums text-primary font-semibold">2.5 kg</td>
+<td class="py-3 px-4 text-right font-body-md text-body-md tabular-nums text-on-surface-variant">1.3 kg</td>
+<td class="py-3 px-4 text-center">
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-primary-fixed/40 text-primary font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[13px]">check_circle</span>
+                Completed
+              </span>
+</td>
+<td class="py-3 px-4 text-right pr-6">
+<div class="flex items-center justify-end gap-1">
+<button class="p-1 rounded text-on-surface-variant hover:text-primary hover:bg-surface-container transition-colors" title="View Record"><span class="material-symbols-outlined text-[18px]">visibility</span></button>
+<button class="p-1 rounded text-on-surface-variant hover:text-tertiary hover:bg-surface-container transition-colors" title="Edit Record"><span class="material-symbols-outlined text-[18px]">edit</span></button>
+<button class="p-1 rounded text-on-surface-variant hover:text-error hover:bg-error-container/40 transition-colors" onclick="openDeleteModal('REC-2024-886', 'Free-Range Breakfast Scramble', 35.0)" title="Delete"><span class="material-symbols-outlined text-[18px]">delete</span></button>
+</div>
+</td>
+</tr>
+<!-- Row 8 -->
+<tr class="hover:bg-surface-container-low/60 transition-colors group">
+<td class="py-3 px-4 text-center">
+<input class="record-check rounded w-4 h-4 text-primary focus:ring-primary accent-primary cursor-pointer" type="checkbox"/>
+</td>
+<td class="py-3 px-4">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-primary text-[16px]">qr_code_2</span>
+<span class="font-label-md text-label-md font-mono text-on-surface font-semibold">#REC-2024-885</span>
+</div>
+</td>
+<td class="py-3 px-4 text-on-surface-variant font-body-sm text-body-sm">
+<div>Oct 24, 2024</div>
+<div class="text-[11px] text-on-surface-variant/70">06:30 AM</div>
+</td>
+<td class="py-3 px-4">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-on-secondary-container bg-secondary-container font-label-sm text-label-sm">Breakfast</span>
+</td>
+<td class="py-3 px-4">
+<div class="font-label-md text-label-md text-on-surface font-medium">Fresh Melon &amp; Berry Platters</div>
+<div class="text-[11px] text-on-surface-variant">Produce &amp; Salad · Bay 03</div>
+</td>
+<td class="py-3 px-4 text-right font-label-md text-label-md tabular-nums font-semibold">22.0 kg</td>
+<td class="py-3 px-4 text-right font-body-md text-body-md tabular-nums text-on-surface-variant">18.5 kg</td>
+<td class="py-3 px-4 text-right font-label-md text-label-md tabular-nums text-primary font-semibold">2.0 kg</td>
+<td class="py-3 px-4 text-right font-body-md text-body-md tabular-nums text-on-surface-variant">1.5 kg</td>
+<td class="py-3 px-4 text-center">
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-primary-fixed/40 text-primary font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[13px]">check_circle</span>
+                Completed
+              </span>
+</td>
+<td class="py-3 px-4 text-right pr-6">
+<div class="flex items-center justify-end gap-1">
+<button class="p-1 rounded text-on-surface-variant hover:text-primary hover:bg-surface-container transition-colors" title="View Record"><span class="material-symbols-outlined text-[18px]">visibility</span></button>
+<button class="p-1 rounded text-on-surface-variant hover:text-tertiary hover:bg-surface-container transition-colors" title="Edit Record"><span class="material-symbols-outlined text-[18px]">edit</span></button>
+<button class="p-1 rounded text-on-surface-variant hover:text-error hover:bg-error-container/40 transition-colors" onclick="openDeleteModal('REC-2024-885', 'Fresh Melon &amp; Berry Platters', 22.0)" title="Delete"><span class="material-symbols-outlined text-[18px]">delete</span></button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- PAGINATION FOOTER -->
+<div class="px-space-md py-3 bg-surface-container-lowest flex flex-col sm:flex-row items-center justify-between gap-space-sm font-body-sm text-body-sm text-on-surface-variant">
+<div class="flex items-center gap-space-md">
+<span>Showing <span class="font-label-md text-label-md text-on-surface font-semibold">1</span> to <span class="font-label-md text-label-md text-on-surface font-semibold">8</span> of <span class="font-label-md text-label-md text-on-surface font-semibold">1,248</span> records</span>
+<div class="flex items-center gap-1">
+<span>Rows:</span>
+<select class="h-7 px-2 rounded bg-surface-container-low text-on-surface text-body-sm border-0 focus:ring-1 focus:ring-primary cursor-pointer">
+<option>10 per page</option>
+<option>25 per page</option>
+<option>50 per page</option>
+</select>
+</div>
+</div>
+<!-- Page selector items -->
+<div class="flex items-center gap-1">
+<button class="h-8 px-2 rounded bg-surface-container-low hover:bg-surface-container text-on-surface-variant disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center" disabled="">
+<span class="material-symbols-outlined text-[18px]">chevron_left</span>
+</button>
+<button class="h-8 w-8 rounded bg-primary text-on-primary font-label-sm text-label-sm font-semibold">1</button>
+<button class="h-8 w-8 rounded bg-surface-container-low hover:bg-surface-container text-on-surface font-label-sm text-label-sm">2</button>
+<button class="h-8 w-8 rounded bg-surface-container-low hover:bg-surface-container text-on-surface font-label-sm text-label-sm">3</button>
+<span class="px-1 text-on-surface-variant">...</span>
+<button class="h-8 w-8 rounded bg-surface-container-low hover:bg-surface-container text-on-surface font-label-sm text-label-sm">125</button>
+<button class="h-8 px-2 rounded bg-surface-container-low hover:bg-surface-container text-on-surface flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px]">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+<!-- SKELETON LOADING VIEW (Toggleable State) -->
+<div class="hidden bg-surface-container-lowest rounded-lg shadow-sm p-space-md animate-pulse" id="skeleton-view">
+<div class="h-8 bg-surface-container-high rounded w-full mb-space-md"></div>
+<div class="space-y-3">
+<div class="h-12 bg-surface-container rounded w-full"></div>
+<div class="h-12 bg-surface-container rounded w-full"></div>
+<div class="h-12 bg-surface-container rounded w-full"></div>
+<div class="h-12 bg-surface-container rounded w-full"></div>
+<div class="h-12 bg-surface-container rounded w-full"></div>
+<div class="h-12 bg-surface-container rounded w-full"></div>
+</div>
+<div class="mt-space-md h-8 bg-surface-container-high rounded w-1/3"></div>
+</div>
+<!-- EMPTY STATE (Toggleable State) -->
+<div class="hidden bg-surface-container-lowest rounded-lg shadow-sm py-16 px-space-md text-center flex-col items-center justify-center" id="empty-view">
+<div class="w-16 h-16 rounded-full bg-surface-container-low flex items-center justify-center text-on-surface-variant mb-space-md">
+<span class="material-symbols-outlined text-[36px]">inventory_2</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-1">No Food Records Found</h3>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-md mx-auto mb-space-lg">There are no food records matching your filter selection. Try clearing your filters or record a new kitchen batch from the preparation scale.</p>
+<div class="flex items-center gap-space-sm justify-center">
+<button class="px-space-md h-10 rounded-lg bg-surface-container text-on-surface font-label-md text-label-md hover:bg-surface-container-high transition-colors" onclick="resetAllFilters(); setUiState('default');">Clear All Filters</button>
+<button class="inline-flex items-center gap-1.5 px-4 h-10 rounded-lg bg-primary text-on-primary font-label-md text-label-md shadow-sm hover:bg-primary-container transition-colors" onclick="alert('Launching Scale Prep Wizard...')">
+<span class="material-symbols-outlined text-[18px]">add</span>
+<span>+ Add Food Record</span>
+</button>
+</div>
+</div>
+<!-- DELETE CONFIRMATION MODAL OVERLAY -->
+<div class="fixed inset-0 z-50 bg-inverse-surface/40 backdrop-blur-sm hidden items-center justify-center p-space-md" id="delete-modal-scrim">
+<div class="bg-surface-container-lowest rounded-xl shadow-xl max-w-lg w-full overflow-hidden animate-in fade-in zoom-in-95 duration-150">
+<!-- Modal Header -->
+<div class="p-space-lg pb-space-md flex items-start gap-space-md">
+<div class="w-10 h-10 rounded-full bg-error-container flex items-center justify-center text-error shrink-0">
+<span class="material-symbols-outlined text-[24px]">delete_forever</span>
+</div>
+<div class="flex-1 min-w-0">
+<h2 class="font-headline-md text-headline-md text-on-surface leading-snug" id="modal-delete-title">Delete Food Record #REC-2024-890?</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">Are you sure you want to permanently delete this food record? This will adjust historical mass balance ledgers for Station #04 and remove logged prep data. This action cannot be undone.</p>
+</div>
+</div>
+<!-- Metadata preview block inside modal -->
+<div class="mx-space-lg p-space-sm bg-surface-container-low rounded-lg font-body-sm text-body-sm text-on-surface-variant space-y-1">
+<div class="flex items-center justify-between">
+<span>Target Item:</span>
+<span class="font-label-sm text-label-sm text-on-surface font-semibold" id="modal-item-name">Roasted Poultry Loaf</span>
+</div>
+<div class="flex items-center justify-between">
+<span>Batch Prepared Mass:</span>
+<span class="font-label-sm text-label-sm text-on-surface font-semibold" id="modal-item-mass">68.0 kg</span>
+</div>
+<div class="flex items-center justify-between">
+<span>Audit Logged By:</span>
+<span class="font-label-sm text-label-sm text-on-surface">Shruti S. (Floor Lead)</span>
+</div>
+</div>
+<!-- Modal Footer -->
+<div class="mt-space-lg px-space-lg py-space-md bg-surface-container-low flex items-center justify-end gap-space-sm">
+<button class="px-space-md h-10 rounded-lg bg-surface-container-lowest text-on-surface font-label-md text-label-md hover:bg-surface-container shadow-sm transition-colors" onclick="closeDeleteModal()" type="button">Cancel</button>
+<button class="px-space-md h-10 rounded-lg bg-error text-on-error font-label-md text-label-md shadow-sm hover:opacity-90 transition-opacity flex items-center gap-1.5" onclick="confirmDeleteRecord()" type="button">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+<span>Delete Record</span>
+</button>
+</div>
+</div>
+</div>
+<!-- TOAST NOTIFICATION STUB -->
+<div class="fixed bottom-6 right-6 z-50 hidden bg-surface-container-lowest text-on-surface shadow-xl rounded-lg p-4 max-w-sm flex items-center gap-3" id="toast-notification">
+<span class="material-symbols-outlined text-primary text-[24px]">task_alt</span>
+<div class="flex-1">
+<div class="font-label-md text-label-md font-semibold text-on-surface">Action Verified</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant" id="toast-message">Record ledger updated successfully.</div>
+</div>
+</div>
+<!-- INTERACTION SCRIPT FOR COMPLETE FUNCTIONALITY -->
+<script>
+    let activeDeleteId = null;
+
+    function setUiState(state) {
+      const defaultTable = document.getElementById('table-view');
+      const skeletonView = document.getElementById('skeleton-view');
+      const emptyView = document.getElementById('empty-view');
+      const errorBanner = document.getElementById('ui-error-banner');
+      const kpis = document.getElementById('kpi-container');
+      const kpiSkeleton = document.getElementById('kpi-skeleton');
+
+      // Reset button styles
+      ['default', 'empty', 'skeleton', 'error'].forEach(s => {
+        const btn = document.getElementById('btn-state-' + s);
+        if (btn) {
+          btn.className = 'px-space-sm py-1 rounded text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm transition-all whitespace-nowrap';
+        }
+      });
+      const activeBtn = document.getElementById('btn-state-' + state);
+      if (activeBtn) {
+        activeBtn.className = 'px-space-sm py-1 rounded text-primary-container bg-surface-container-lowest font-label-sm text-label-sm shadow-sm transition-all whitespace-nowrap';
+      }
+
+      // Hide all main containers
+      defaultTable.classList.add('hidden');
+      skeletonView.classList.add('hidden');
+      emptyView.classList.add('hidden');
+      emptyView.classList.remove('flex');
+      errorBanner.classList.add('hidden');
+      kpis.classList.remove('hidden');
+      kpiSkeleton.classList.add('hidden');
+      kpiSkeleton.classList.remove('grid');
+
+      if (state === 'default') {
+        defaultTable.classList.remove('hidden');
+      } else if (state === 'empty') {
+        emptyView.classList.remove('hidden');
+        emptyView.classList.add('flex');
+      } else if (state === 'skeleton') {
+        skeletonView.classList.remove('hidden');
+        kpis.classList.add('hidden');
+        kpiSkeleton.classList.remove('hidden');
+        kpiSkeleton.classList.add('grid');
+      } else if (state === 'error') {
+        defaultTable.classList.remove('hidden');
+        errorBanner.classList.remove('hidden');
+      }
+    }
+
+    function openDeleteModal(recId, itemName, massKg) {
+      activeDeleteId = recId;
+      document.getElementById('modal-delete-title').innerText = 'Delete Food Record #' + recId + '?';
+      document.getElementById('modal-item-name').innerText = itemName;
+      document.getElementById('modal-item-mass').innerText = massKg + ' kg';
+      const modal = document.getElementById('delete-modal-scrim');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function closeDeleteModal() {
+      const modal = document.getElementById('delete-modal-scrim');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+      activeDeleteId = null;
+    }
+
+    function confirmDeleteRecord() {
+      const deletedId = activeDeleteId;
+      closeDeleteModal();
+      showToast('Record #' + deletedId + ' was permanently deleted from the station ledger.');
+    }
+
+    function showToast(message) {
+      const toast = document.getElementById('toast-notification');
+      document.getElementById('toast-message').innerText = message;
+      toast.classList.remove('hidden');
+      setTimeout(() => {
+        toast.classList.add('hidden');
+      }, 4000);
+    }
+
+    function handleFilterSearch(e) {
+      const val = e.target.value.toLowerCase();
+      const clearBtn = document.getElementById('search-clear-btn');
+      if (val.length > 0) {
+        clearBtn.classList.remove('hidden');
+      } else {
+        clearBtn.classList.add('hidden');
+      }
+
+      const rows = document.querySelectorAll('#records-tbody tr');
+      let visibleCount = 0;
+      rows.forEach(row => {
+        const text = row.innerText.toLowerCase();
+        if (text.includes(val)) {
+          row.style.display = '';
+          visibleCount++;
+        } else {
+          row.style.display = 'none';
+        }
+      });
+
+      if (visibleCount === 0 && val.length > 0) {
+        setUiState('empty');
+      } else if (visibleCount > 0 && document.getElementById('table-view').classList.contains('hidden')) {
+        setUiState('default');
+      }
+    }
+
+    function clearSearchInput() {
+      const input = document.getElementById('table-search-input');
+      input.value = '';
+      document.getElementById('search-clear-btn').classList.add('hidden');
+      const rows = document.querySelectorAll('#records-tbody tr');
+      rows.forEach(r => r.style.display = '');
+      setUiState('default');
+    }
+
+    function resetAllFilters() {
+      clearSearchInput();
+      document.getElementById('meal-filter').value = 'all';
+      document.getElementById('status-filter').value = 'all';
+      document.getElementById('category-filter').value = 'all';
+      setUiState('default');
+    }
+
+    function applyFilters() {
+      showToast('Filters applied. Ingestion query synchronized.');
+    }
+
+    function toggleSelectAll(masterCheckbox) {
+      const checkboxes = document.querySelectorAll('.record-check');
+      checkboxes.forEach(cb => cb.checked = masterCheckbox.checked);
+    }
+
+    function exportCsv() {
+      showToast('Exporting current filter ledger to DigiTrace_Records.csv...');
+    }
+
+    function batchAuditPrompt() {
+      const selected = document.querySelectorAll('.record-check:checked').length;
+      if (selected === 0) {
+        showToast('Please select at least one record to batch audit.');
+      } else {
+        showToast('Initiating compliance verification for ' + selected + ' records.');
+      }
+    }
+  </script>
+</div></main></div></body></html>

@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={"darkMode":"class","theme":{"extend":{"colors":{"tertiary-fixed":"#cce5ff","on-tertiary-fixed-variant":"#004b73","on-surface-variant":"#3d4a42","on-background":"#0b1c30","primary":"#006948","on-error":"#ffffff","secondary-fixed-dim":"#bec6e0","primary-container":"#00855d","surface-container":"#e5eeff","tertiary-fixed-dim":"#93ccff","inverse-primary":"#68dba9","surface-container-highest":"#d3e4fe","on-surface":"#0b1c30","surface-tint":"#006c4a","on-primary-container":"#f5fff7","on-primary":"#ffffff","outline-variant":"#bccac0","on-primary-fixed":"#002114","secondary-container":"#dae2fd","background":"#f8f9ff","surface-bright":"#f8f9ff","tertiary-container":"#007bb9","secondary":"#565e74","on-primary-fixed-variant":"#005137","on-tertiary":"#ffffff","secondary-fixed":"#dae2fd","error":"#ba1a1a","on-error-container":"#93000a","error-container":"#ffdad6","surface-container-high":"#dce9ff","surface-variant":"#d3e4fe","surface-container-low":"#eff4ff","on-tertiary-fixed":"#001d31","on-secondary-fixed-variant":"#3f465c","surface":"#f8f9ff","on-secondary-container":"#5c647a","primary-fixed":"#85f8c4","tertiary":"#006194","outline":"#6d7a72","surface-container-lowest":"#ffffff","on-secondary-fixed":"#131b2e","on-tertiary-container":"#fdfcff","inverse-surface":"#213145","surface-dim":"#cbdbf5","inverse-on-surface":"#eaf1ff","primary-fixed-dim":"#68dba9","on-secondary":"#ffffff"},"borderRadius":{"DEFAULT":"0.25rem","lg":"0.5rem","xl":"0.75rem","full":"9999px"},"spacing":{"margin":"2rem","space-2xl":"3rem","gutter":"1.5rem","space-sm":"0.5rem","space-xs":"0.25rem","space-md":"1rem","gutter-mobile":"1rem","space-xl":"2rem","margin-mobile":"1rem","space-lg":"1.5rem"},"fontFamily":{"headline-md":["Inter"],"label-sm":["Inter"],"body-md":["Inter"],"headline-sm":["Inter"],"body-sm":["Inter"],"display-lg":["Inter"],"data-metric":["Inter"],"label-lg":["Inter"],"display-lg-mobile":["Inter"],"label-md":["Inter"],"body-lg":["Inter"],"headline-lg":["Inter"]},"fontSize":{"headline-md":["20px",{"lineHeight":"28px","letterSpacing":"-0.01em","fontWeight":"600"}],"label-sm":["11px",{"lineHeight":"14px","letterSpacing":"0.03em","fontWeight":"600"}],"body-md":["14px",{"lineHeight":"20px","letterSpacing":"0em","fontWeight":"400"}],"headline-sm":["16px",{"lineHeight":"24px","letterSpacing":"-0.005em","fontWeight":"600"}],"body-sm":["12px",{"lineHeight":"16px","letterSpacing":"0em","fontWeight":"400"}],"display-lg":["32px",{"lineHeight":"40px","letterSpacing":"-0.02em","fontWeight":"600"}],"data-metric":["28px",{"lineHeight":"34px","letterSpacing":"-0.02em","fontWeight":"600"}],"label-lg":["14px",{"lineHeight":"20px","letterSpacing":"0em","fontWeight":"500"}],"display-lg-mobile":["26px",{"lineHeight":"32px","letterSpacing":"-0.015em","fontWeight":"600"}],"label-md":["12px",{"lineHeight":"16px","letterSpacing":"0.01em","fontWeight":"500"}],"body-lg":["16px",{"lineHeight":"24px","letterSpacing":"0em","fontWeight":"400"}],"headline-lg":["24px",{"lineHeight":"32px","letterSpacing":"-0.015em","fontWeight":"600"}]}}}}</script></head><body class="bg-surface font-body-md text-body-md text-on-surface"><aside class="fixed left-0 top-0 h-full w-64 bg-surface-container-lowest shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-50 flex flex-col justify-between hidden md:flex"><div class="flex flex-col"><div class="h-16 px-space-lg flex items-center gap-space-sm bg-surface-container-lowest"><img alt="DigiTrace Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1UDzmwdrJKw-H-CjGIfdCd2O20-KyRNBWaegCW0_3pycRrZgT1pr-AVBleqy9TCrth-flUiOEZxrATL75MNgoLWybEt-bGV_0IWVSZxBfw4j6jYck3JGXzTQXetstaMqqKzEsUcyDlCKd1PgAzD_ZOf7SpX15kNM49TVT5Ibum4eOwtKOhtqXn3t2BetEeljh3Mv8ttYXiExOTK21hCwaieOt9sL7IKLM5Ds8dVKwGeBhIv5wqJNOwpR1o"/><div class="flex flex-col"><span class="font-headline-sm text-headline-sm text-on-surface leading-tight">DigiTrace</span><span class="font-label-sm text-label-sm text-on-surface-variant leading-none">Food Waste Mgmt</span></div></div><nav class="flex flex-col gap-space-xs px-space-md mt-space-md" data-active-classes="bg-primary-container text-on-primary-container font-label-lg text-label-lg rounded-lg shadow-sm"><a class="flex items-center px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="dashboard" href="#">Dashboard</a><a class="flex items-center px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="food-records" href="#">Food Records</a><a class="flex items-center px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="waste-tracking" href="#">Waste Tracking</a><a class="flex items-center px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="waste-record-details" href="#">Record Details &amp; Trace</a><a class="flex items-center px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="surplus" href="#">Surplus</a><a class="flex items-center px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="analytics" href="#">Analytics</a><a class="flex items-center px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="reports" href="#">Reports</a><a class="flex items-center px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="settings" href="#">Settings</a></nav></div><div class="p-space-md bg-surface-container-lowest"><div class="flex items-center gap-space-sm p-space-sm rounded-lg bg-surface-container-low"><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center shrink-0"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div><div class="flex flex-col min-w-0 flex-1"><span class="font-label-md text-label-md text-on-surface truncate">Shruti Sharma</span><span class="font-label-sm text-label-sm text-on-surface-variant truncate">Kitchen Ops Lead</span></div><a class="p-space-xs text-on-surface-variant hover:text-error hover:bg-surface-container-high rounded transition-colors shrink-0" data-path="logout" href="#" title="Log out"><span class="material-symbols-outlined text-[20px]">logout</span></a></div></div></aside><div class="md:pl-64"><header class="fixed top-0 left-0 md:left-64 right-0 h-16 bg-surface-container-lowest/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-40 flex items-center justify-between px-space-lg"><div class="flex items-center gap-space-md"><button class="md:hidden p-space-xs text-on-surface-variant hover:text-on-surface"><span class="material-symbols-outlined text-[24px]">menu</span></button><nav class="hidden sm:flex items-center gap-space-xs font-label-md text-label-md text-on-surface-variant"><span class="hover:text-on-surface cursor-pointer">Operational Floor</span><span class="material-symbols-outlined text-[14px]">chevron_right</span><a class="hover:text-on-surface cursor-pointer text-on-surface-variant" data-path="waste-tracking" href="#">Waste Tracking</a><span class="material-symbols-outlined text-[14px]">chevron_right</span><span class="text-on-surface font-label-lg text-label-lg">Waste Record Details / Trace</span></nav><div class="inline-flex items-center gap-space-xs px-space-sm py-space-xs rounded-full bg-surface-container-low text-primary font-label-sm text-label-sm"><span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span><span>Live Scale Ingestion</span></div></div><div class="flex items-center gap-space-md"><div class="relative hidden lg:flex items-center"><span class="material-symbols-outlined absolute left-space-sm text-on-surface-variant text-[18px]">search</span><input class="h-9 pl-9 pr-14 rounded-lg bg-surface-container-low text-on-surface placeholder:text-on-surface-variant font-body-sm text-body-sm focus:outline-none focus:ring-1 focus:ring-primary w-64" placeholder="Search food lots, audits, logs..." type="text"/><kbd class="absolute right-space-sm px-1.5 py-0.5 rounded bg-surface-container-highest text-on-surface-variant font-label-sm text-label-sm">⌘K</kbd></div><button class="relative p-space-xs text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low rounded-lg transition-colors" title="Notifications"><span class="material-symbols-outlined text-[22px]">notifications</span><span class="absolute top-1 right-1 w-2 h-2 rounded-full bg-error ring-2 ring-surface-container-lowest"></span></button><div class="flex items-center gap-space-sm pl-space-xs"><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center shrink-0"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div><div class="hidden xl:flex flex-col text-left"><span class="font-label-md text-label-md text-on-surface leading-tight">Shruti Sharma</span><span class="font-label-sm text-label-sm text-on-surface-variant leading-none">Kitchen Ops Lead</span></div></div></div></header><main class="relative pt-16 w-full px-gutter bg-surface min-h-screen"><div class="flex flex-col w-full pb-space-2xl">
+<!-- Top Control & Identity Header -->
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-md py-space-md">
+<div class="flex flex-col">
+<div class="flex items-center gap-space-sm mb-1">
+<span class="font-headline-lg text-headline-lg text-on-surface">Surplus Food</span>
+<span class="inline-flex items-center px-2 py-0.5 rounded-full font-label-sm text-label-sm bg-primary/10 text-primary">
+<span class="w-1.5 h-1.5 rounded-full bg-primary mr-1.5 animate-pulse"></span>Active Edible Ledger
+        </span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">
+        Audit-grade custody ledger for secondary edible recovery, strict cold-chain verification, and municipal redistribution handoffs.
+      </p>
+</div>
+<!-- Primary Action Controls -->
+<div class="flex flex-wrap items-center gap-space-sm">
+<button class="inline-flex items-center gap-2 h-10 px-4 rounded-lg bg-primary hover:bg-primary-container text-on-primary font-label-lg text-label-lg shadow-sm transition-all active:scale-[0.99]" onclick="openStageModal()">
+<span class="material-symbols-outlined text-[19px]">add_circle</span>
+<span>+ Stage Surplus Batch</span>
+</button>
+<button class="inline-flex items-center gap-2 h-10 px-4 rounded-lg bg-surface-container-lowest hover:bg-surface-container-low text-on-surface font-label-lg text-label-lg shadow-sm transition-colors" onclick="triggerExportNotice()">
+<span class="material-symbols-outlined text-[18px] text-on-surface-variant">receipt_long</span>
+<span>Export Custody Manifest (CSV)</span>
+</button>
+</div>
+</div>
+<!-- Operational Telemetry Bar -->
+<div class="w-full bg-surface-container-lowest rounded-xl p-space-md shadow-sm mb-space-lg flex flex-col md:flex-row md:items-center justify-between gap-space-md">
+<div class="flex flex-wrap items-center gap-space-lg">
+<div class="flex items-center gap-space-sm">
+<div class="w-2.5 h-2.5 rounded-full bg-primary"></div>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Storage Telemetry:</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-primary">kitchen</span>
+<span class="font-label-md text-label-md text-on-surface">Walk-in Cooler #02:</span>
+<span class="font-label-md text-label-md font-semibold text-primary">3.8°C</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">(Safe Limit &lt;4.4°C)</span>
+</div>
+<div class="hidden lg:block w-px h-4 bg-surface-container-high"></div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-tertiary">soup_kitchen</span>
+<span class="font-label-md text-label-md text-on-surface">Hot Hold Station #1:</span>
+<span class="font-label-md text-label-md font-semibold text-on-surface">63.5°C</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">(Compliant &gt;60.0°C)</span>
+</div>
+</div>
+<div class="flex items-center gap-space-sm text-on-surface-variant font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[16px] text-primary animate-spin">sync</span>
+<span>HACCP Node #04 Connected · Polled 12s ago</span>
+</div>
+</div>
+<!-- 4 Core Metric KPI Blocks -->
+<div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-space-md mb-space-lg">
+<!-- Card 1: Available -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm flex flex-col justify-between relative overflow-hidden group hover:shadow-md transition-shadow">
+<div class="flex items-start justify-between">
+<div>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wide">Available Surplus</span>
+<div class="flex items-baseline gap-2 mt-1">
+<span class="font-data-metric text-data-metric text-on-surface">42.5</span>
+<span class="font-headline-sm text-headline-sm text-on-surface-variant">kg</span>
+</div>
+</div>
+<div class="w-10 h-10 rounded-lg bg-surface-container-low flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[24px]">inventory_2</span>
+</div>
+</div>
+<div class="mt-space-md pt-space-sm flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant">5 active lots staged</span>
+<span class="font-label-sm text-label-sm text-primary font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">check_circle</span>Ready for Handoff
+        </span>
+</div>
+</div>
+<!-- Card 2: Redistributed -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm flex flex-col justify-between relative overflow-hidden group hover:shadow-md transition-shadow">
+<div class="flex items-start justify-between">
+<div>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wide">Redistributed (Cycle)</span>
+<div class="flex items-baseline gap-2 mt-1">
+<span class="font-data-metric text-data-metric text-on-surface">195.5</span>
+<span class="font-headline-sm text-headline-sm text-on-surface-variant">kg</span>
+</div>
+</div>
+<div class="w-10 h-10 rounded-lg bg-surface-container-low flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined text-[24px]">local_shipping</span>
+</div>
+</div>
+<div class="mt-space-md pt-space-sm flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-primary font-medium">+14.2% vs prev week</span>
+<span class="font-label-sm text-label-sm px-2 py-0.5 rounded-full bg-surface-container-high text-tertiary font-semibold">82.1% Diverted</span>
+</div>
+</div>
+<!-- Card 3: Pending Action -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm flex flex-col justify-between relative overflow-hidden group hover:shadow-md transition-shadow">
+<div class="flex items-start justify-between">
+<div>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wide">Pending Critical Action</span>
+<div class="flex items-baseline gap-2 mt-1">
+<span class="font-data-metric text-data-metric text-on-surface">18.0</span>
+<span class="font-headline-sm text-headline-sm text-on-surface-variant">kg</span>
+</div>
+</div>
+<div class="w-10 h-10 rounded-lg bg-error-container/50 flex items-center justify-center text-error">
+<span class="material-symbols-outlined text-[24px]">hourglass_top</span>
+</div>
+</div>
+<div class="mt-space-md pt-space-sm flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant">2 batches &lt;4h remaining</span>
+<span class="font-label-sm text-label-sm text-error font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">warning</span>Immediate Window
+        </span>
+</div>
+</div>
+<!-- Card 4: Expired / Relogged -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm flex flex-col justify-between relative overflow-hidden group hover:shadow-md transition-shadow">
+<div class="flex items-start justify-between">
+<div>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wide">Relogged to Organic Digest</span>
+<div class="flex items-baseline gap-2 mt-1">
+<span class="font-data-metric text-data-metric text-on-surface">3.2</span>
+<span class="font-headline-sm text-headline-sm text-on-surface-variant">kg</span>
+</div>
+</div>
+<div class="w-10 h-10 rounded-lg bg-surface-container-low flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[24px]">compost</span>
+</div>
+</div>
+<div class="mt-space-md pt-space-sm flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant">1.3% total batch loss</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Digester Stream B</span>
+</div>
+</div>
+</div>
+<!-- Operational Mass Stream Bar & Diversion Pipeline -->
+<div class="w-full bg-surface-container-lowest rounded-xl p-space-lg shadow-sm mb-space-lg">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-space-md">
+<div>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Mass-Flow Stream Allocation</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Current cycle surplus yield distribution across certified destination pipelines</p>
+</div>
+<div class="flex items-center gap-3 font-label-sm text-label-sm text-on-surface-variant">
+<span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-sm bg-primary"></span>Partner Rescue (65%)</span>
+<span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-sm bg-tertiary"></span>Kitchen Repurpose (20%)</span>
+<span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-sm bg-secondary"></span>Dispatch Staged (12%)</span>
+<span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-sm bg-error"></span>Critical Limit (3%)</span>
+</div>
+</div>
+<!-- Split Visual Bar -->
+<div class="w-full h-3 rounded-full bg-surface-container flex overflow-hidden">
+<div class="h-full bg-primary transition-all duration-500" style="width: 65%;" title="Partner Rescue: 65%"></div>
+<div class="h-full bg-tertiary transition-all duration-500" style="width: 20%;" title="Internal Kitchen Repurpose: 20%"></div>
+<div class="h-full bg-secondary transition-all duration-500" style="width: 12%;" title="Dispatch Staged: 12%"></div>
+<div class="h-full bg-error transition-all duration-500" style="width: 3%;" title="Critical Window: 3%"></div>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-space-md pt-space-sm text-center">
+<div class="p-space-sm rounded-lg bg-surface-container-low">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Certified Rescue</span>
+<p class="font-headline-sm text-headline-sm text-primary mt-0.5">154.2 kg</p>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Metro Food Bank &amp; Hope</span>
+</div>
+<div class="p-space-sm rounded-lg bg-surface-container-low">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Repurposed Prep</span>
+<p class="font-headline-sm text-headline-sm text-tertiary mt-0.5">47.4 kg</p>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Stock, Soups &amp; Staff Feed</span>
+</div>
+<div class="p-space-sm rounded-lg bg-surface-container-low">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Staged for Pickup</span>
+<p class="font-headline-sm text-headline-sm text-on-surface mt-0.5">28.5 kg</p>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Loading Dock Cold Box</span>
+</div>
+<div class="p-space-sm rounded-lg bg-surface-container-low">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Pending Disposition</span>
+<p class="font-headline-sm text-headline-sm text-error mt-0.5">7.1 kg</p>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Action required &lt;2 hours</span>
+</div>
+</div>
+</div>
+<!-- Filtration & Search Deck -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm mb-space-md flex flex-col lg:flex-row lg:items-center justify-between gap-space-md">
+<!-- Search Bar -->
+<div class="relative flex-1 min-w-[280px]">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[18px]">search</span>
+<input class="w-full h-10 pl-9 pr-4 rounded-lg bg-surface-container-low text-on-surface placeholder:text-on-surface-variant font-body-sm text-body-sm focus:outline-none focus:ring-1 focus:ring-primary" id="tableSearch" onkeyup="filterLedger()" placeholder="Filter by Surplus Batch ID (#SRP-...), item description, cold bin..." type="text"/>
+</div>
+<!-- Dropdown Filters -->
+<div class="flex flex-wrap items-center gap-space-sm">
+<select class="h-10 px-3 rounded-lg bg-surface-container-low text-on-surface font-label-md text-label-md focus:outline-none focus:ring-1 focus:ring-primary" id="categoryFilter" onchange="filterLedger()">
+<option value="ALL">All Categories</option>
+<option value="Cooked Proteins">Cooked Proteins</option>
+<option value="Bakery &amp; Grains">Bakery &amp; Grains</option>
+<option value="Prepared Entrees">Prepared Entrees</option>
+<option value="Dairy &amp; Cold Prep">Dairy &amp; Cold Prep</option>
+<option value="Produce &amp; Salad">Produce &amp; Salad</option>
+</select>
+<select class="h-10 px-3 rounded-lg bg-surface-container-low text-on-surface font-label-md text-label-md focus:outline-none focus:ring-1 focus:ring-primary" id="statusFilter" onchange="filterLedger()">
+<option value="ALL">All Statuses</option>
+<option value="Available">Available</option>
+<option value="Reserved">Reserved</option>
+<option value="Redistributed">Redistributed</option>
+<option value="Expired">Expired</option>
+</select>
+<select class="h-10 px-3 rounded-lg bg-surface-container-low text-on-surface font-label-md text-label-md focus:outline-none focus:ring-1 focus:ring-primary" id="zoneFilter" onchange="filterLedger()">
+<option value="ALL">All Holding Zones</option>
+<option value="Cold Vault">Cold Vault (3.8°C)</option>
+<option value="Bakery Rack">Bakery Rack (Ambient)</option>
+<option value="Hot Hold">Hot Hold Station</option>
+<option value="Chiller #01">Rapid Chiller</option>
+</select>
+<button class="h-10 px-3 rounded-lg bg-surface-container-low hover:bg-surface-container text-on-surface-variant hover:text-on-surface font-label-md text-label-md flex items-center gap-1 transition-colors" onclick="resetFilters()">
+<span class="material-symbols-outlined text-[16px]">restart_alt</span>
+<span>Reset</span>
+</button>
+</div>
+</div>
+<!-- Surplus Ledger Table Container -->
+<div class="bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse" id="surplusTable">
+<thead>
+<tr class="bg-surface-container-low text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider">
+<th class="py-3.5 pl-4 pr-2 w-10">
+<input class="rounded accent-primary w-4 h-4 cursor-pointer" onclick="toggleAllCheckboxes(this)" type="checkbox"/>
+</th>
+<th class="py-3.5 px-3">Batch &amp; Parent Origin</th>
+<th class="py-3.5 px-3">Item Classification</th>
+<th class="py-3.5 px-3 text-right">Mass (kg)</th>
+<th class="py-3.5 px-3">Storage Zone &amp; Temp</th>
+<th class="py-3.5 px-3">Logged Timestamp</th>
+<th class="py-3.5 px-3">Safe Window Expiry</th>
+<th class="py-3.5 px-3">Status</th>
+<th class="py-3.5 pr-4 pl-3 text-right">Ledger Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container font-body-sm text-body-sm text-on-surface">
+<!-- Row 1: High Priority Available Item -->
+<tr class="hover:bg-surface-container-low/60 transition-colors group" data-category="Cooked Proteins" data-status="Available" data-zone="Cold Vault">
+<td class="py-3.5 pl-4 pr-2">
+<input class="row-checkbox rounded accent-primary w-4 h-4 cursor-pointer" type="checkbox"/>
+</td>
+<td class="py-3.5 px-3">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-semibold text-primary">#SRP-2024-042</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]">link</span>Prep #REC-2024-892
+                </span>
+</div>
+</td>
+<td class="py-3.5 px-3">
+<div class="flex items-center gap-2.5">
+<div class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary text-[18px]">restaurant</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-semibold text-on-surface">Roasted Herb Chicken Breasts</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Cooked Proteins · HACCP Cleared</span>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-3 text-right">
+<span class="font-label-lg text-label-lg font-semibold tabular-nums text-on-surface">14.50</span>
+<span class="text-on-surface-variant font-body-sm text-body-sm ml-0.5">kg</span>
+</td>
+<td class="py-3.5 px-3">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-primary">ac_unit</span>Walk-in Cooler #02
+                </span>
+<span class="font-body-sm text-body-sm text-primary font-medium">3.8°C (Compliant)</span>
+</div>
+</td>
+<td class="py-3.5 px-3 text-on-surface-variant">
+<span>Oct 25, 2024</span><br/><span class="font-label-sm text-label-sm">01:30 PM</span>
+</td>
+<td class="py-3.5 px-3">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-error-container/60 text-error font-label-sm text-label-sm font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-error animate-ping"></span>Today 07:30 PM (4h left)
+              </span>
+</td>
+<td class="py-3.5 px-3">
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-surface-container-high text-primary font-label-sm text-label-sm font-medium">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>Available
+              </span>
+</td>
+<td class="py-3.5 pr-4 pl-3 text-right">
+<div class="flex items-center justify-end gap-1.5">
+<button class="px-2.5 py-1 rounded-md bg-surface-container text-on-surface hover:bg-surface-container-high font-label-sm text-label-sm transition-colors" onclick="openDrawer('SRP-2024-042', 'Roasted Herb Chicken Breasts', '14.50 kg', 'Cooked Proteins', 'Walk-in Cooler #02 (3.8°C)', 'City Mission Food Network', '#REC-2024-892')" title="Inspect Record">
+                  View
+                </button>
+<button class="px-2.5 py-1 rounded-md bg-primary text-on-primary hover:bg-primary-container font-label-sm text-label-sm transition-colors" onclick="markRedistributed(this, 'SRP-2024-042')" title="Execute Transfer">
+                  Redistribute
+                </button>
+<a class="p-1 rounded-md text-on-surface-variant hover:text-primary hover:bg-surface-container transition-colors" data-path="waste-record-details" href="#" title="Chain of Custody Trace">
+<span class="material-symbols-outlined text-[18px]">arrow_outward</span>
+</a>
+</div>
+</td>
+</tr>
+<!-- Row 2: Bakery Reserved Item -->
+<tr class="hover:bg-surface-container-low/60 transition-colors group" data-category="Bakery &amp; Grains" data-status="Reserved" data-zone="Bakery Rack">
+<td class="py-3.5 pl-4 pr-2">
+<input class="row-checkbox rounded accent-primary w-4 h-4 cursor-pointer" type="checkbox"/>
+</td>
+<td class="py-3.5 px-3">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-semibold text-on-surface">#SRP-2024-043</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]">link</span>Prep #REC-2024-850
+                </span>
+</div>
+</td>
+<td class="py-3.5 px-3">
+<div class="flex items-center gap-2.5">
+<div class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-secondary text-[18px]">bakery_dining</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-semibold text-on-surface">Artisan Brioche &amp; Sourdough</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Bakery &amp; Grains · Day-End Surplus</span>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-3 text-right">
+<span class="font-label-lg text-label-lg font-semibold tabular-nums text-on-surface">8.00</span>
+<span class="text-on-surface-variant font-body-sm text-body-sm ml-0.5">kg</span>
+</td>
+<td class="py-3.5 px-3">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-secondary">shelves</span>Bakery Staging Racks
+                </span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Ambient (21.0°C)</span>
+</div>
+</td>
+<td class="py-3.5 px-3 text-on-surface-variant">
+<span>Oct 25, 2024</span><br/><span class="font-label-sm text-label-sm">11:15 AM</span>
+</td>
+<td class="py-3.5 px-3">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-surface-container text-on-surface-variant font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[13px]">schedule</span>Oct 26, 12:00 PM (22h left)
+              </span>
+</td>
+<td class="py-3.5 px-3">
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-tertiary-container/30 text-tertiary font-label-sm text-label-sm font-medium">
+<span class="material-symbols-outlined text-[12px]">lock</span>Reserved
+              </span>
+</td>
+<td class="py-3.5 pr-4 pl-3 text-right">
+<div class="flex items-center justify-end gap-1.5">
+<button class="px-2.5 py-1 rounded-md bg-surface-container text-on-surface hover:bg-surface-container-high font-label-sm text-label-sm transition-colors" onclick="openDrawer('SRP-2024-043', 'Artisan Brioche &amp; Sourdough', '8.00 kg', 'Bakery &amp; Grains', 'Bakery Staging Racks', 'St. Jude Youth Center', '#REC-2024-850')">
+                  View
+                </button>
+<button class="px-2.5 py-1 rounded-md bg-surface-container-high text-on-surface hover:bg-primary hover:text-on-primary font-label-sm text-label-sm transition-colors" onclick="markRedistributed(this, 'SRP-2024-043')">
+                  Dispatch
+                </button>
+<a class="p-1 rounded-md text-on-surface-variant hover:text-primary hover:bg-surface-container transition-colors" data-path="waste-record-details" href="#">
+<span class="material-symbols-outlined text-[18px]">arrow_outward</span>
+</a>
+</div>
+</td>
+</tr>
+<!-- Row 3: Prepared Entrees -->
+<tr class="hover:bg-surface-container-low/60 transition-colors group" data-category="Prepared Entrees" data-status="Available" data-zone="Hot Hold">
+<td class="py-3.5 pl-4 pr-2">
+<input class="row-checkbox rounded accent-primary w-4 h-4 cursor-pointer" type="checkbox"/>
+</td>
+<td class="py-3.5 px-3">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-semibold text-primary">#SRP-2024-044</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]">link</span>Prep #REC-2024-904
+                </span>
+</div>
+</td>
+<td class="py-3.5 px-3">
+<div class="flex items-center gap-2.5">
+<div class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary text-[18px]">dinner_dining</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-semibold text-on-surface">Vegetable Pasta Bake</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Prepared Entrees · Hot Line Excess</span>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-3 text-right">
+<span class="font-label-lg text-label-lg font-semibold tabular-nums text-on-surface">12.00</span>
+<span class="text-on-surface-variant font-body-sm text-body-sm ml-0.5">kg</span>
+</td>
+<td class="py-3.5 px-3">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-tertiary">soup_kitchen</span>Hot Hold Bay #1
+                </span>
+<span class="font-body-sm text-body-sm text-tertiary font-medium">64.0°C (Holding)</span>
+</div>
+</td>
+<td class="py-3.5 px-3 text-on-surface-variant">
+<span>Oct 25, 2024</span><br/><span class="font-label-sm text-label-sm">02:00 PM</span>
+</td>
+<td class="py-3.5 px-3">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-error-container/60 text-error font-label-sm text-label-sm font-semibold">
+<span class="material-symbols-outlined text-[13px]">alarm</span>Today 06:00 PM (2.5h left)
+              </span>
+</td>
+<td class="py-3.5 px-3">
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-surface-container-high text-primary font-label-sm text-label-sm font-medium">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>Available
+              </span>
+</td>
+<td class="py-3.5 pr-4 pl-3 text-right">
+<div class="flex items-center justify-end gap-1.5">
+<button class="px-2.5 py-1 rounded-md bg-surface-container text-on-surface hover:bg-surface-container-high font-label-sm text-label-sm transition-colors" onclick="openDrawer('SRP-2024-044', 'Vegetable Pasta Bake', '12.00 kg', 'Prepared Entrees', 'Hot Hold Bay #1 (64°C)', 'Salvation Food Trust', '#REC-2024-904')">
+                  View
+                </button>
+<button class="px-2.5 py-1 rounded-md bg-primary text-on-primary hover:bg-primary-container font-label-sm text-label-sm transition-colors" onclick="markRedistributed(this, 'SRP-2024-044')">
+                  Redistribute
+                </button>
+<a class="p-1 rounded-md text-on-surface-variant hover:text-primary hover:bg-surface-container transition-colors" data-path="waste-record-details" href="#">
+<span class="material-symbols-outlined text-[18px]">arrow_outward</span>
+</a>
+</div>
+</td>
+</tr>
+<!-- Row 4: Dairy & Cold Prep (Already Redistributed) -->
+<tr class="hover:bg-surface-container-low/60 transition-colors group opacity-85" data-category="Dairy &amp; Cold Prep" data-status="Redistributed" data-zone="Chiller #01">
+<td class="py-3.5 pl-4 pr-2">
+<input class="row-checkbox rounded accent-primary w-4 h-4 cursor-pointer" type="checkbox"/>
+</td>
+<td class="py-3.5 px-3">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-semibold text-secondary">#SRP-2024-040</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]">link</span>Prep #REC-2024-811
+                </span>
+</div>
+</td>
+<td class="py-3.5 px-3">
+<div class="flex items-center gap-2.5">
+<div class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-secondary text-[18px]">egg_alt</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-semibold text-on-surface">Greek Yogurt &amp; Honey Parfaits</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Dairy &amp; Cold Prep · Packaged</span>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-3 text-right">
+<span class="font-label-lg text-label-lg font-semibold tabular-nums text-on-surface">5.00</span>
+<span class="text-on-surface-variant font-body-sm text-body-sm ml-0.5">kg</span>
+</td>
+<td class="py-3.5 px-3">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">severe_cold</span>Chiller #01
+                </span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">2.5°C (Transit Verified)</span>
+</div>
+</td>
+<td class="py-3.5 px-3 text-on-surface-variant">
+<span>Oct 25, 2024</span><br/><span class="font-label-sm text-label-sm">09:30 AM</span>
+</td>
+<td class="py-3.5 px-3">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-surface-container text-on-surface-variant font-label-sm text-label-sm">
+                Completed 11:20 AM
+              </span>
+</td>
+<td class="py-3.5 px-3">
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-semibold">
+<span class="material-symbols-outlined text-[12px]">check</span>Redistributed
+              </span>
+</td>
+<td class="py-3.5 pr-4 pl-3 text-right">
+<div class="flex items-center justify-end gap-1.5">
+<button class="px-2.5 py-1 rounded-md bg-surface-container text-on-surface hover:bg-surface-container-high font-label-sm text-label-sm transition-colors" onclick="openDrawer('SRP-2024-040', 'Greek Yogurt &amp; Honey Parfaits', '5.00 kg', 'Dairy &amp; Cold Prep', 'Chiller #01 (2.5°C)', 'Community Fridge Station B', '#REC-2024-811')">
+                  Manifest
+                </button>
+<a class="p-1 rounded-md text-on-surface-variant hover:text-primary hover:bg-surface-container transition-colors" data-path="waste-record-details" href="#">
+<span class="material-symbols-outlined text-[18px]">receipt_long</span>
+</a>
+</div>
+</td>
+</tr>
+<!-- Row 5: Expired / Routed Item -->
+<tr class="hover:bg-surface-container-low/60 transition-colors group bg-error-container/10" data-category="Produce &amp; Salad" data-status="Expired" data-zone="Cold Vault">
+<td class="py-3.5 pl-4 pr-2">
+<input class="row-checkbox rounded accent-primary w-4 h-4 cursor-pointer" type="checkbox"/>
+</td>
+<td class="py-3.5 px-3">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-semibold text-error">#SRP-2024-039</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]">link</span>Prep #REC-2024-780
+                </span>
+</div>
+</td>
+<td class="py-3.5 px-3">
+<div class="flex items-center gap-2.5">
+<div class="w-8 h-8 rounded-lg bg-error-container/40 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-error text-[18px]">nutrition</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-semibold text-on-surface">Prepared Melon Wedges</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Produce &amp; Salad · Fruit Display</span>
+</div>
+</div>
+</td>
+<td class="py-3.5 px-3 text-right">
+<span class="font-label-lg text-label-lg font-semibold tabular-nums text-error">3.20</span>
+<span class="text-on-surface-variant font-body-sm text-body-sm ml-0.5">kg</span>
+</td>
+<td class="py-3.5 px-3">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">ac_unit</span>Walk-in Cooler #02
+                </span>
+<span class="font-body-sm text-body-sm text-error">Reclassified: Safe Limit Exceeded</span>
+</div>
+</td>
+<td class="py-3.5 px-3 text-on-surface-variant">
+<span>Oct 24, 2024</span><br/><span class="font-label-sm text-label-sm">04:00 PM</span>
+</td>
+<td class="py-3.5 px-3">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-error-container text-on-error-container font-label-sm text-label-sm font-semibold">
+<span class="material-symbols-outlined text-[13px]">block</span>Expired · Routed to Compost
+              </span>
+</td>
+<td class="py-3.5 px-3">
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-error-container text-error font-label-sm text-label-sm font-semibold">
+<span class="material-symbols-outlined text-[12px]">delete_forever</span>Expired
+              </span>
+</td>
+<td class="py-3.5 pr-4 pl-3 text-right">
+<div class="flex items-center justify-end gap-1.5">
+<button class="px-2.5 py-1 rounded-md bg-surface-container text-on-surface hover:bg-surface-container-high font-label-sm text-label-sm transition-colors" onclick="openDrawer('SRP-2024-039', 'Prepared Melon Wedges', '3.20 kg', 'Produce &amp; Salad', 'Compost Stream B', 'Digester Unit #01', '#REC-2024-780')">
+                  Audit
+                </button>
+<a class="px-2.5 py-1 rounded-md bg-surface-container-high text-on-surface hover:text-error font-label-sm text-label-sm transition-colors" data-path="waste-tracking" href="#">
+                  Waste Log
+                </a>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Table Pagination & Selection Summary Footer -->
+<div class="p-space-md bg-surface-container-low flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm font-body-sm text-body-sm text-on-surface-variant">
+<div class="flex items-center gap-space-md">
+<span id="selectedCountText">0 batches selected</span>
+<button class="font-label-sm text-label-sm text-primary hover:underline font-semibold hidden" id="bulkActionBtn" onclick="bulkRedistribute()">
+          Execute Batch Redistribution
+        </button>
+</div>
+<div class="flex items-center gap-space-sm">
+<span>Showing 5 of 28 records this cycle</span>
+<div class="flex items-center gap-1">
+<button class="w-8 h-8 rounded bg-surface-container-lowest text-on-surface disabled:opacity-40 flex items-center justify-center shadow-xs" disabled="">
+<span class="material-symbols-outlined text-[16px]">chevron_left</span>
+</button>
+<span class="px-2 font-label-sm text-label-sm text-on-surface font-semibold">1</span>
+<button class="w-8 h-8 rounded bg-surface-container-lowest text-on-surface hover:bg-surface-container flex items-center justify-center shadow-xs">
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Operational Flow Reference Card -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-md mt-space-lg">
+<div class="p-space-md rounded-xl bg-surface-container-lowest shadow-sm flex items-start gap-space-sm">
+<div class="w-8 h-8 rounded-lg bg-surface-container-low flex items-center justify-center text-primary shrink-0">
+<span class="material-symbols-outlined text-[18px]">verified_user</span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Good Samaritan Compliance</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">All staged lots log cold chain temperatures continuously. Full legal immunity applies when safe holding limits are HACCP confirmed.</p>
+</div>
+</div>
+<div class="p-space-md rounded-xl bg-surface-container-lowest shadow-sm flex items-start gap-space-sm">
+<div class="w-8 h-8 rounded-lg bg-surface-container-low flex items-center justify-center text-tertiary shrink-0">
+<span class="material-symbols-outlined text-[18px]">barcode_scanner</span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Insulated Cambro Tracking</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Staged lots require designated RFID barcode scan before dock departure to maintain chain-of-custody validity.</p>
+</div>
+</div>
+<div class="p-space-md rounded-xl bg-surface-container-lowest shadow-sm flex items-start gap-space-sm">
+<div class="w-8 h-8 rounded-lg bg-surface-container-low flex items-center justify-center text-error shrink-0">
+<span class="material-symbols-outlined text-[18px]">auto_mode</span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Auto-Reclassification</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Batches reaching 0h safe consumption window automatically transfer into Anaerobic Digestion logs to prevent illegal serving.</p>
+</div>
+</div>
+</div>
+<!-- Slide-Over Record Detail Drawer (Auditable Ledger Inspector) -->
+<div class="fixed inset-0 bg-on-background/40 z-50 backdrop-blur-xs hidden transition-opacity" id="drawerBackdrop" onclick="closeDrawer()"></div>
+<aside class="fixed right-0 top-0 h-full w-full max-w-xl bg-surface-container-lowest shadow-2xl z-50 transform translate-x-full transition-transform duration-300 ease-in-out flex flex-col justify-between overflow-y-auto" id="surplusDrawer">
+<!-- Drawer Top Header -->
+<div class="p-space-lg bg-surface-container-low flex items-center justify-between sticky top-0 z-10">
+<div class="flex flex-col">
+<div class="flex items-center gap-2">
+<span class="font-headline-md text-headline-md text-on-surface" id="drawerBatchId">#SRP-2024-042</span>
+<span class="px-2.5 py-0.5 rounded-full bg-surface-container text-primary font-label-sm text-label-sm font-semibold">Available</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant" id="drawerOriginRef">Origin: Prep Batch #REC-2024-892</span>
+</div>
+<button class="w-8 h-8 rounded-lg bg-surface-container hover:bg-surface-container-high flex items-center justify-center text-on-surface-variant hover:text-on-surface transition-colors" onclick="closeDrawer()">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+<!-- Drawer Content Body -->
+<div class="p-space-lg flex flex-col gap-space-lg flex-1">
+<!-- Item Meta Header -->
+<div class="flex items-start justify-between pb-space-md">
+<div>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wide" id="drawerCategory">Cooked Proteins</span>
+<h3 class="font-headline-lg text-headline-lg text-on-surface" id="drawerItemName">Roasted Herb Chicken Breasts</h3>
+<span class="font-label-md text-label-md text-primary font-medium" id="drawerZone">Walk-in Cooler #02 (3.8°C)</span>
+</div>
+<div class="text-right">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wide">Net Mass</span>
+<p class="font-data-metric text-data-metric text-on-surface" id="drawerQuantity">14.50 kg</p>
+</div>
+</div>
+<!-- Food Safety & HACCP Critical Control -->
+<div class="rounded-xl p-space-md bg-surface-container-low flex flex-col gap-2">
+<div class="flex items-center justify-between">
+<span class="font-headline-sm text-headline-sm text-on-surface flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[18px] text-primary">verified</span>HACCP Cold-Chain Verification
+          </span>
+<span class="font-label-sm text-label-sm px-2 py-0.5 rounded-full bg-primary/10 text-primary font-semibold">Passed &amp; Monitored</span>
+</div>
+<div class="grid grid-cols-2 gap-2 mt-2">
+<div class="bg-surface-container-lowest p-2.5 rounded-lg">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Current Sensor Temp</span>
+<p class="font-headline-sm text-headline-sm text-primary">3.8°C</p>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Sensor: Node-COLD-02</span>
+</div>
+<div class="bg-surface-container-lowest p-2.5 rounded-lg">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Critical Safety Limit</span>
+<p class="font-headline-sm text-headline-sm text-on-surface">&lt;4.4°C</p>
+<span class="font-body-sm text-body-sm text-on-surface-variant">HACCP Class B Standard</span>
+</div>
+</div>
+</div>
+<!-- Mass Balance Ledger Reconciliation -->
+<div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface mb-2">Mass Balance Reconciliation</h4>
+<div class="rounded-xl p-space-md bg-surface-container-low flex flex-col gap-2">
+<div class="flex justify-between font-body-sm text-body-sm py-1">
+<span class="text-on-surface-variant">Original Prepared Batch Weight:</span>
+<span class="font-medium text-on-surface">45.00 kg</span>
+</div>
+<div class="flex justify-between font-body-sm text-body-sm py-1">
+<span class="text-on-surface-variant">Primary Dining Consumption:</span>
+<span class="font-medium text-on-surface">- 28.00 kg</span>
+</div>
+<div class="flex justify-between font-body-sm text-body-sm py-1">
+<span class="text-on-surface-variant">Unavoidable In-Pan Scraping / Trim:</span>
+<span class="font-medium text-error">- 2.50 kg (Waste)</span>
+</div>
+<div class="flex justify-between font-label-md text-label-md pt-2 border-t border-surface-container font-semibold">
+<span class="text-on-surface">Recoverable Edible Surplus:</span>
+<span class="text-primary font-headline-sm text-headline-sm">14.50 kg</span>
+</div>
+</div>
+</div>
+<!-- Redistribution Partner & Courier Dispatch Info -->
+<div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface mb-2">Dispatch &amp; Custody Channel</h4>
+<div class="p-space-md rounded-xl bg-surface-container-low flex flex-col gap-3 font-body-sm text-body-sm">
+<div class="flex items-center justify-between">
+<span class="text-on-surface-variant">Designated Partner:</span>
+<span class="font-semibold text-on-surface" id="drawerPartner">City Mission Food Network</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-on-surface-variant">Courier Transport ID:</span>
+<span class="font-label-md text-label-md font-mono text-tertiary">#CR-8821 (Certified Refrig Van)</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-on-surface-variant">Packaging Hardware:</span>
+<span class="font-medium text-on-surface">Insulated Cambro #04 (DIGI-CAM-109)</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-on-surface-variant">Nutritional Impact Yield:</span>
+<span class="font-medium text-primary">Approx. ~29 Portions Provided</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Drawer Footer Actions -->
+<div class="p-space-lg bg-surface-container-low flex flex-col gap-2 sticky bottom-0 z-10">
+<button class="w-full h-11 rounded-lg bg-primary hover:bg-primary-container text-on-primary font-label-lg text-label-lg flex items-center justify-center gap-2 shadow-sm transition-colors" onclick="confirmDrawerRedistribute()">
+<span class="material-symbols-outlined text-[18px]">verified</span>
+<span>Confirm Redistribution Handoff</span>
+</button>
+<div class="grid grid-cols-2 gap-2">
+<button class="h-10 rounded-lg bg-surface-container-lowest hover:bg-surface-container text-on-surface font-label-md text-label-md flex items-center justify-center gap-1.5 transition-colors" onclick="triggerManifestPrint()">
+<span class="material-symbols-outlined text-[16px]">print</span>
+<span>Print Manifest</span>
+</button>
+<button class="h-10 rounded-lg bg-surface-container-lowest hover:bg-error-container text-error font-label-md text-label-md flex items-center justify-center gap-1.5 transition-colors" onclick="reclassifyToWaste()">
+<span class="material-symbols-outlined text-[16px]">delete_sweep</span>
+<span>Route to Waste</span>
+</button>
+</div>
+</div>
+</aside>
+<!-- Interactive New Batch Modal -->
+<div class="fixed inset-0 bg-on-background/40 z-50 backdrop-blur-xs hidden flex items-center justify-center p-4" id="stageModal">
+<div class="bg-surface-container-lowest rounded-xl max-w-lg w-full shadow-2xl overflow-hidden flex flex-col">
+<div class="p-space-lg bg-surface-container-low flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[24px]">post_add</span>
+<h3 class="font-headline-md text-headline-md text-on-surface">Stage Surplus Batch</h3>
+</div>
+<button class="w-8 h-8 rounded-lg bg-surface-container hover:bg-surface-container-high flex items-center justify-center text-on-surface-variant" onclick="closeStageModal()">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+<div class="p-space-lg flex flex-col gap-space-md">
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-1.5">Parent Food Prep Batch ID</label>
+<input class="w-full h-10 px-3 rounded-lg bg-surface-container-low text-on-surface font-body-sm text-body-sm focus:outline-none focus:ring-1 focus:ring-primary" type="text" value="#REC-2024-915"/>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-1.5">Food Classification &amp; Description</label>
+<input class="w-full h-10 px-3 rounded-lg bg-surface-container-low text-on-surface font-body-sm text-body-sm focus:outline-none focus:ring-1 focus:ring-primary" placeholder="e.g. Steamed Jasmine Rice, Braised Beef Shank..." type="text"/>
+</div>
+<div class="grid grid-cols-2 gap-space-md">
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-1.5">Verified Mass (kg)</label>
+<input class="w-full h-10 px-3 rounded-lg bg-surface-container-low text-on-surface font-body-sm text-body-sm focus:outline-none focus:ring-1 focus:ring-primary" placeholder="0.0" step="0.1" type="number"/>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-1.5">Safe Holding Zone</label>
+<select class="w-full h-10 px-3 rounded-lg bg-surface-container-low text-on-surface font-body-sm text-body-sm focus:outline-none focus:ring-1 focus:ring-primary">
+<option>Walk-in Cooler #02 (3.8°C)</option>
+<option>Chiller #01 (2.5°C)</option>
+<option>Hot Hold Station #1 (63.5°C)</option>
+<option>Bakery Ambient Racks</option>
+</select>
+</div>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-1.5">Redistribution Recipient / Repurpose Target</label>
+<select class="w-full h-10 px-3 rounded-lg bg-surface-container-low text-on-surface font-body-sm text-body-sm focus:outline-none focus:ring-1 focus:ring-primary">
+<option>Metro Food Bank (Primary Certified Partner)</option>
+<option>Hope Center Community Pantry</option>
+<option>Internal Kitchen: Tomorrow's Soup Base</option>
+<option>Staff Dining Repurpose</option>
+</select>
+</div>
+</div>
+<div class="p-space-lg bg-surface-container-low flex items-center justify-end gap-2">
+<button class="h-10 px-4 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md" onclick="closeStageModal()">
+          Cancel
+        </button>
+<button class="h-10 px-4 rounded-lg bg-primary hover:bg-primary-container text-on-primary font-label-md text-label-md flex items-center gap-1.5" onclick="commitNewBatch()">
+<span class="material-symbols-outlined text-[16px]">check</span>
+<span>Commit Lot to Ledger</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Toast Notification -->
+<div class="fixed bottom-6 right-6 bg-surface-container-lowest rounded-xl p-space-md shadow-xl flex items-center gap-3 transform translate-y-24 opacity-0 transition-all duration-300 z-50" id="toastNotification">
+<div class="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center text-primary shrink-0" id="toastIconBg">
+<span class="material-symbols-outlined text-[20px]" id="toastIcon">check_circle</span>
+</div>
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm text-on-surface" id="toastTitle">Ledger Updated</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant" id="toastMessage">Custody transfer recorded successfully.</span>
+</div>
+</div>
+</div>
+<script>
+  // Drawer Interactions
+  function openDrawer(id, item, qty, cat, zone, partner, orig) {
+    document.getElementById('drawerBatchId').textContent = '#' + id;
+    document.getElementById('drawerItemName').textContent = item;
+    document.getElementById('drawerQuantity').textContent = qty;
+    document.getElementById('drawerCategory').textContent = cat;
+    document.getElementById('drawerZone').textContent = zone;
+    document.getElementById('drawerPartner').textContent = partner;
+    document.getElementById('drawerOriginRef').textContent = 'Origin: Prep Batch ' + orig;
+
+    const drawer = document.getElementById('surplusDrawer');
+    const backdrop = document.getElementById('drawerBackdrop');
+    backdrop.classList.remove('hidden');
+    drawer.classList.remove('translate-x-full');
+  }
+
+  function closeDrawer() {
+    const drawer = document.getElementById('surplusDrawer');
+    const backdrop = document.getElementById('drawerBackdrop');
+    drawer.classList.add('translate-x-full');
+    setTimeout(() => {
+      backdrop.classList.add('hidden');
+    }, 200);
+  }
+
+  // Stage Modal Interactions
+  function openStageModal() {
+    document.getElementById('stageModal').classList.remove('hidden');
+  }
+
+  function closeStageModal() {
+    document.getElementById('stageModal').classList.add('hidden');
+  }
+
+  function commitNewBatch() {
+    closeStageModal();
+    showToast('Batch Staged', 'Lot committed to active edible ledger with cold-chain lock.');
+  }
+
+  // Toast Functionality
+  function showToast(title, message, isError = false) {
+    const toast = document.getElementById('toastNotification');
+    const toastTitle = document.getElementById('toastTitle');
+    const toastMessage = document.getElementById('toastMessage');
+    const toastIcon = document.getElementById('toastIcon');
+    const toastIconBg = document.getElementById('toastIconBg');
+
+    toastTitle.textContent = title;
+    toastMessage.textContent = message;
+
+    if (isError) {
+      toastIcon.textContent = 'warning';
+      toastIconBg.className = 'w-8 h-8 rounded-lg bg-error-container text-error flex items-center justify-center shrink-0';
+    } else {
+      toastIcon.textContent = 'check_circle';
+      toastIconBg.className = 'w-8 h-8 rounded-lg bg-primary/10 text-primary flex items-center justify-center shrink-0';
+    }
+
+    toast.classList.remove('translate-y-24', 'opacity-0');
+    setTimeout(() => {
+      toast.classList.add('translate-y-24', 'opacity-0');
+    }, 3500);
+  }
+
+  // Row Redistribute Action
+  function markRedistributed(btn, batchId) {
+    const tr = btn.closest('tr');
+    tr.dataset.status = 'Redistributed';
+    const statusCell = tr.cells[7];
+    statusCell.innerHTML = `
+      <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-semibold">
+        <span class="material-symbols-outlined text-[12px]">check</span>Redistributed
+      </span>
+    `;
+    btn.disabled = true;
+    btn.classList.add('opacity-40', 'cursor-not-allowed');
+    btn.textContent = 'Completed';
+    showToast('Handoff Verified', `Batch #${batchId} custody logged to City Mission.`);
+  }
+
+  function confirmDrawerRedistribute() {
+    const id = document.getElementById('drawerBatchId').textContent;
+    closeDrawer();
+    showToast('Handoff Manifest Signed', `Chain of custody sealed for ${id}.`);
+  }
+
+  function triggerManifestPrint() {
+    showToast('Manifest Generated', 'Print buffer sent to kitchen manifest terminal.');
+  }
+
+  function reclassifyToWaste() {
+    closeDrawer();
+    showToast('Reclassified to Waste', 'Surplus transferred to Aerobic Digester Log B.', true);
+  }
+
+  function triggerExportNotice() {
+    showToast('Manifest Exported', 'CSV chain of custody manifest downloaded.');
+  }
+
+  // Multi-Select Checkboxes
+  function toggleAllCheckboxes(master) {
+    const checkboxes = document.querySelectorAll('.row-checkbox');
+    checkboxes.forEach(cb => cb.checked = master.checked);
+    updateBulkCount();
+  }
+
+  document.querySelectorAll('.row-checkbox').forEach(cb => {
+    cb.addEventListener('change', updateBulkCount);
+  });
+
+  function updateBulkCount() {
+    const checked = document.querySelectorAll('.row-checkbox:checked').length;
+    const counter = document.getElementById('selectedCountText');
+    const bulkBtn = document.getElementById('bulkActionBtn');
+    counter.textContent = `${checked} batches selected`;
+    if (checked > 0) {
+      bulkBtn.classList.remove('hidden');
+    } else {
+      bulkBtn.classList.add('hidden');
+    }
+  }
+
+  function bulkRedistribute() {
+    const checked = document.querySelectorAll('.row-checkbox:checked').length;
+    showToast('Batch Transfer Active', `${checked} selected lots marked for courier manifest.`);
+  }
+
+  // Table Filtration Logic
+  function filterLedger() {
+    const searchQuery = document.getElementById('tableSearch').value.toLowerCase();
+    const category = document.getElementById('categoryFilter').value;
+    const status = document.getElementById('statusFilter').value;
+    const zone = document.getElementById('zoneFilter').value;
+
+    const rows = document.querySelectorAll('#surplusTable tbody tr');
+
+    rows.forEach(row => {
+      const text = row.innerText.toLowerCase();
+      const rowCat = row.dataset.category;
+      const rowStatus = row.dataset.status;
+      const rowZone = row.dataset.zone;
+
+      const matchesSearch = text.includes(searchQuery);
+      const matchesCat = category === 'ALL' || rowCat === category;
+      const matchesStatus = status === 'ALL' || rowStatus === status;
+      const matchesZone = zone === 'ALL' || rowZone === zone;
+
+      if (matchesSearch && matchesCat && matchesStatus && matchesZone) {
+        row.style.display = '';
+      } else {
+        row.style.display = 'none';
+      }
+    });
+  }
+
+  function resetFilters() {
+    document.getElementById('tableSearch').value = '';
+    document.getElementById('categoryFilter').value = 'ALL';
+    document.getElementById('statusFilter').value = 'ALL';
+    document.getElementById('zoneFilter').value = 'ALL';
+    filterLedger();
+  }
+</script></main></div></body></html>

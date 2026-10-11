@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={"darkMode":"class","theme":{"extend":{"colors":{"tertiary-fixed":"#cce5ff","on-tertiary-fixed-variant":"#004b73","on-surface-variant":"#3d4a42","on-background":"#0b1c30","primary":"#006948","on-error":"#ffffff","secondary-fixed-dim":"#bec6e0","primary-container":"#00855d","surface-container":"#e5eeff","tertiary-fixed-dim":"#93ccff","inverse-primary":"#68dba9","surface-container-highest":"#d3e4fe","on-surface":"#0b1c30","surface-tint":"#006c4a","on-primary-container":"#f5fff7","on-primary":"#ffffff","outline-variant":"#bccac0","on-primary-fixed":"#002114","secondary-container":"#dae2fd","background":"#f8f9ff","surface-bright":"#f8f9ff","tertiary-container":"#007bb9","secondary":"#565e74","on-primary-fixed-variant":"#005137","on-tertiary":"#ffffff","secondary-fixed":"#dae2fd","error":"#ba1a1a","on-error-container":"#93000a","error-container":"#ffdad6","surface-container-high":"#dce9ff","surface-variant":"#d3e4fe","surface-container-low":"#eff4ff","on-tertiary-fixed":"#001d31","on-secondary-fixed-variant":"#3f465c","surface":"#f8f9ff","on-secondary-container":"#5c647a","primary-fixed":"#85f8c4","tertiary":"#006194","outline":"#6d7a72","surface-container-lowest":"#ffffff","on-secondary-fixed":"#131b2e","on-tertiary-container":"#fdfcff","inverse-surface":"#213145","surface-dim":"#cbdbf5","inverse-on-surface":"#eaf1ff","primary-fixed-dim":"#68dba9","on-secondary":"#ffffff"},"borderRadius":{"DEFAULT":"0.25rem","lg":"0.5rem","xl":"0.75rem","full":"9999px"},"spacing":{"margin":"2rem","space-2xl":"3rem","gutter":"1.5rem","space-sm":"0.5rem","space-xs":"0.25rem","space-md":"1rem","gutter-mobile":"1rem","space-xl":"2rem","margin-mobile":"1rem","space-lg":"1.5rem"},"fontFamily":{"headline-md":["Inter"],"label-sm":["Inter"],"body-md":["Inter"],"headline-sm":["Inter"],"body-sm":["Inter"],"display-lg":["Inter"],"data-metric":["Inter"],"label-lg":["Inter"],"display-lg-mobile":["Inter"],"label-md":["Inter"],"body-lg":["Inter"],"headline-lg":["Inter"]},"fontSize":{"headline-md":["20px",{"lineHeight":"28px","letterSpacing":"-0.01em","fontWeight":"600"}],"label-sm":["11px",{"lineHeight":"14px","letterSpacing":"0.03em","fontWeight":"600"}],"body-md":["14px",{"lineHeight":"20px","letterSpacing":"0em","fontWeight":"400"}],"headline-sm":["16px",{"lineHeight":"24px","letterSpacing":"-0.005em","fontWeight":"600"}],"body-sm":["12px",{"lineHeight":"16px","letterSpacing":"0em","fontWeight":"400"}],"display-lg":["32px",{"lineHeight":"40px","letterSpacing":"-0.02em","fontWeight":"600"}],"data-metric":["28px",{"lineHeight":"34px","letterSpacing":"-0.02em","fontWeight":"600"}],"label-lg":["14px",{"lineHeight":"20px","letterSpacing":"0em","fontWeight":"500"}],"display-lg-mobile":["26px",{"lineHeight":"32px","letterSpacing":"-0.015em","fontWeight":"600"}],"label-md":["12px",{"lineHeight":"16px","letterSpacing":"0.01em","fontWeight":"500"}],"body-lg":["16px",{"lineHeight":"24px","letterSpacing":"0em","fontWeight":"400"}],"headline-lg":["24px",{"lineHeight":"32px","letterSpacing":"-0.015em","fontWeight":"600"}]}}}}</script></head><body class="bg-surface font-body-md text-body-md text-on-surface"><aside class="fixed left-0 top-0 h-full w-64 bg-surface-container-lowest shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-50 flex flex-col justify-between hidden md:flex"><div class="flex flex-col"><div class="h-16 px-space-lg flex items-center gap-space-sm bg-surface-container-lowest"><img alt="DigiTrace Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1UDzmwdrJKw-H-CjGIfdCd2O20-KyRNBWaegCW0_3pycRrZgT1pr-AVBleqy9TCrth-flUiOEZxrATL75MNgoLWybEt-bGV_0IWVSZxBfw4j6jYck3JGXzTQXetstaMqqKzEsUcyDlCKd1PgAzD_ZOf7SpX15kNM49TVT5Ibum4eOwtKOhtqXn3t2BetEeljh3Mv8ttYXiExOTK21hCwaieOt9sL7IKLM5Ds8dVKwGeBhIv5wqJNOwpR1o"/><div class="flex flex-col"><span class="font-headline-sm text-headline-sm text-on-surface leading-tight">DigiTrace</span><span class="font-label-sm text-label-sm text-on-surface-variant leading-none">Food Waste Mgmt</span></div></div><nav class="flex flex-col gap-space-xs px-space-md mt-space-md" data-active-classes="bg-primary-container text-on-primary-container font-label-lg text-label-lg rounded-lg shadow-sm"><a class="flex items-center px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="dashboard" href="#">Dashboard</a><a class="flex items-center px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="food-records" href="#">Food Records</a><a class="flex items-center px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="waste-tracking" href="#">Waste Tracking</a><a class="flex items-center px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="waste-record-details" href="#">Record Details &amp; Trace</a><a class="flex items-center px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="surplus" href="#">Surplus</a><a class="flex items-center px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="analytics" href="#">Analytics</a><a class="flex items-center px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="reports" href="#">Reports</a><a class="flex items-center px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="settings" href="#">Settings</a></nav></div><div class="p-space-md bg-surface-container-lowest"><div class="flex items-center gap-space-sm p-space-sm rounded-lg bg-surface-container-low"><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center shrink-0"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div><div class="flex flex-col min-w-0 flex-1"><span class="font-label-md text-label-md text-on-surface truncate">Shruti Sharma</span><span class="font-label-sm text-label-sm text-on-surface-variant truncate">Kitchen Ops Lead</span></div><a class="p-space-xs text-on-surface-variant hover:text-error hover:bg-surface-container-high rounded transition-colors shrink-0" data-path="logout" href="#" title="Log out"><span class="material-symbols-outlined text-[20px]">logout</span></a></div></div></aside><div class="md:pl-64"><header class="fixed top-0 left-0 md:left-64 right-0 h-16 bg-surface-container-lowest/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-40 flex items-center justify-between px-space-lg"><div class="flex items-center gap-space-md"><button class="md:hidden p-space-xs text-on-surface-variant hover:text-on-surface"><span class="material-symbols-outlined text-[24px]">menu</span></button><nav class="hidden sm:flex items-center gap-space-xs font-label-md text-label-md text-on-surface-variant"><span class="hover:text-on-surface cursor-pointer">Operational Floor</span><span class="material-symbols-outlined text-[14px]">chevron_right</span><a class="hover:text-on-surface cursor-pointer text-on-surface-variant" data-path="waste-tracking" href="#">Waste Tracking</a><span class="material-symbols-outlined text-[14px]">chevron_right</span><span class="text-on-surface font-label-lg text-label-lg">Waste Record Details / Trace</span></nav><div class="inline-flex items-center gap-space-xs px-space-sm py-space-xs rounded-full bg-surface-container-low text-primary font-label-sm text-label-sm"><span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span><span>Live Scale Ingestion</span></div></div><div class="flex items-center gap-space-md"><div class="relative hidden lg:flex items-center"><span class="material-symbols-outlined absolute left-space-sm text-on-surface-variant text-[18px]">search</span><input class="h-9 pl-9 pr-14 rounded-lg bg-surface-container-low text-on-surface placeholder:text-on-surface-variant font-body-sm text-body-sm focus:outline-none focus:ring-1 focus:ring-primary w-64" placeholder="Search food lots, audits, logs..." type="text"/><kbd class="absolute right-space-sm px-1.5 py-0.5 rounded bg-surface-container-highest text-on-surface-variant font-label-sm text-label-sm">⌘K</kbd></div><button class="relative p-space-xs text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low rounded-lg transition-colors" title="Notifications"><span class="material-symbols-outlined text-[22px]">notifications</span><span class="absolute top-1 right-1 w-2 h-2 rounded-full bg-error ring-2 ring-surface-container-lowest"></span></button><div class="flex items-center gap-space-sm pl-space-xs"><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center shrink-0"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div><div class="hidden xl:flex flex-col text-left"><span class="font-label-md text-label-md text-on-surface leading-tight">Shruti Sharma</span><span class="font-label-sm text-label-sm text-on-surface-variant leading-none">Kitchen Ops Lead</span></div></div></div></header><main class="relative pt-16 w-full px-gutter bg-surface min-h-screen"><div class="flex flex-col w-full pb-space-2xl">
+<!-- Top Command Bar / Breadcrumb / Actions -->
+<div class="flex flex-col gap-space-md py-space-md">
+<div class="flex flex-wrap items-center justify-between gap-space-md">
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center gap-space-sm font-label-md text-label-md text-on-surface-variant">
+<a class="inline-flex items-center gap-1 hover:text-primary transition-colors text-on-surface-variant" href="#">
+<span class="material-symbols-outlined text-[16px]">arrow_back</span>
+<span>Back to Waste Tracking</span>
+</a>
+<span class="text-outline-variant">•</span>
+<span class="font-mono text-on-surface">Record #DT-W-00021</span>
+<span class="px-space-xs py-0.5 rounded-full bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm">Batch #BATCH-2024-892</span>
+</div>
+<div class="flex flex-wrap items-center gap-space-md">
+<h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">Waste Record Details &amp; Custody Trace</h1>
+<div class="inline-flex items-center gap-1.5 px-space-sm py-1 rounded-full bg-primary-container/15 text-primary font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span>Processed &amp; Diverted</span>
+</div>
+<div class="inline-flex items-center gap-1.5 px-space-sm py-1 rounded-full bg-surface-container-high text-on-surface font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[14px] text-primary">balance</span>
+<span>Mass Balance Verified: Δ 0.00 kg</span>
+</div>
+</div>
+</div>
+<!-- Action Cluster -->
+<div class="flex flex-wrap items-center gap-space-sm">
+<button class="inline-flex items-center gap-1.5 h-10 px-space-md rounded-lg bg-surface-container-lowest shadow-sm text-on-surface font-label-lg text-label-lg hover:bg-surface-container-low transition-colors" type="button">
+<span class="material-symbols-outlined text-[18px] text-on-surface-variant">picture_as_pdf</span>
+<span>Download Chain of Custody</span>
+</button>
+<button class="inline-flex items-center gap-1.5 h-10 px-space-md rounded-lg bg-surface-container-lowest shadow-sm text-on-surface font-label-lg text-label-lg hover:bg-surface-container-low transition-colors" type="button">
+<span class="material-symbols-outlined text-[18px] text-on-surface-variant">print</span>
+<span>Print Manifest</span>
+</button>
+<button class="inline-flex items-center gap-1.5 h-10 px-space-md rounded-lg bg-primary text-on-primary font-label-lg text-label-lg hover:bg-primary-container transition-colors shadow-sm" type="button">
+<span class="material-symbols-outlined text-[18px]">published_with_changes</span>
+<span>Re-Audit Record</span>
+</button>
+</div>
+</div>
+<!-- Verification Metadata Bar -->
+<div class="flex flex-wrap items-center justify-between gap-space-md px-space-md py-space-sm rounded-lg bg-surface-container-low text-on-surface-variant font-label-sm text-label-sm">
+<div class="flex flex-wrap items-center gap-x-space-lg gap-y-1">
+<span><strong class="text-on-surface">Digital Signature:</strong> SHA-256: 8f9b...a12c</span>
+<span><strong class="text-on-surface">Time of Final Audit:</strong> Oct 25, 2024 • 14:30:18 GMT+1</span>
+<span><strong class="text-on-surface">Scale Ingest Node:</strong> STN-04 (IP: 192.168.10.42)</span>
+<span><strong class="text-on-surface">Regulatory Protocol:</strong> EPA Recovery Rev 4.2</span>
+</div>
+<div class="flex items-center gap-1 text-primary">
+<span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
+<span class="font-medium">Continuous Calibration Active</span>
+</div>
+</div>
+</div>
+<!-- Hero Feature: End-to-End Visual Chain-of-Custody & Mass Balance Pipeline -->
+<section class="flex flex-col rounded-xl bg-surface-container-lowest shadow-sm p-space-lg mb-space-lg">
+<div class="flex flex-wrap items-start justify-between gap-space-md mb-space-lg">
+<div class="flex flex-col">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[22px]">account_tree</span>
+<span class="font-label-sm text-label-sm text-primary uppercase tracking-wider font-semibold">Auditable Conservation Flow</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-on-surface tracking-tight mt-0.5">Food Lifecycle Traceability &amp; Mass Pipeline</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">100% mass preservation tracking from initial prep through dual-channel recovery</p>
+</div>
+<!-- Quick KPI Chips -->
+<div class="flex flex-wrap items-center gap-space-sm">
+<div class="flex items-center gap-2 px-space-md py-space-xs rounded-lg bg-surface-container-low">
+<span class="text-on-surface-variant font-label-sm text-label-sm">Mass Diverted from Landfill</span>
+<span class="font-headline-sm text-headline-sm text-primary">100.0%</span>
+</div>
+<div class="flex items-center gap-2 px-space-md py-space-xs rounded-lg bg-surface-container-low">
+<span class="text-on-surface-variant font-label-sm text-label-sm">Variance</span>
+<span class="font-headline-sm text-headline-sm text-on-surface">0.00 kg</span>
+</div>
+</div>
+</div>
+<!-- Visual Interactive Flow Diagram (Desktop 12-col flow) -->
+<div class="relative w-full overflow-x-auto pb-space-sm">
+<div class="min-w-[980px] grid grid-cols-12 gap-space-md items-stretch relative">
+<!-- STEP 1: Food Prepared -->
+<div class="col-span-3 flex flex-col justify-between p-space-md rounded-xl bg-surface-container-low hover:bg-surface-container transition-colors relative group">
+<div class="flex items-center justify-between mb-space-sm">
+<span class="px-space-xs py-0.5 rounded bg-surface-container-highest text-on-surface-variant font-label-sm text-label-sm">Stage 01</span>
+<span class="material-symbols-outlined text-on-surface-variant text-[20px]">skillet</span>
+</div>
+<div>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Initial Ingest</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Food Prepared</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1 line-clamp-1">Steamed Greens &amp; Chicken</p>
+</div>
+<div class="mt-space-md pt-space-sm flex items-baseline justify-between border-t border-transparent">
+<div>
+<span class="font-data-metric text-data-metric text-on-surface font-semibold">100.0</span>
+<span class="font-label-md text-label-md text-on-surface-variant ml-0.5">kg</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">100% Volume</span>
+</div>
+</div>
+<!-- TRANSITION 1 -->
+<div class="col-span-1 flex flex-col items-center justify-center relative">
+<div class="w-full flex items-center justify-center">
+<div class="h-0.5 w-full bg-surface-container-highest"></div>
+<div class="absolute w-7 h-7 rounded-full bg-surface-container flex items-center justify-center text-on-surface-variant shadow-sm">
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</div>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant mt-2 text-center">Service</span>
+</div>
+<!-- STEP 2: Food Consumed -->
+<div class="col-span-3 flex flex-col justify-between p-space-md rounded-xl bg-surface-container-low hover:bg-surface-container transition-colors relative group">
+<div class="flex items-center justify-between mb-space-sm">
+<span class="px-space-xs py-0.5 rounded bg-surface-container-highest text-on-surface-variant font-label-sm text-label-sm">Stage 02</span>
+<span class="material-symbols-outlined text-tertiary text-[20px]">restaurant</span>
+</div>
+<div>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Primary Outflow</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Food Consumed</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Lunch Service Finalized</p>
+</div>
+<div class="mt-space-md pt-space-sm flex items-baseline justify-between">
+<div>
+<span class="font-data-metric text-data-metric text-tertiary font-semibold">72.0</span>
+<span class="font-label-md text-label-md text-on-surface-variant ml-0.5">kg</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">72.0% Served</span>
+</div>
+</div>
+<!-- TRANSITION 2 -->
+<div class="col-span-1 flex flex-col items-center justify-center relative">
+<div class="w-full flex items-center justify-center">
+<div class="h-0.5 w-full bg-surface-container-highest"></div>
+<div class="absolute w-7 h-7 rounded-full bg-surface-container flex items-center justify-center text-on-surface-variant shadow-sm">
+<span class="material-symbols-outlined text-[16px]">call_split</span>
+</div>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant mt-2 text-center">Split 28.0 kg</span>
+</div>
+<!-- STEP 3: Dual Diversion Branch (Surplus + Waste) -->
+<div class="col-span-4 flex flex-col gap-space-sm">
+<!-- Branch A: Surplus Recovered -->
+<div class="p-space-sm rounded-xl bg-surface-container-low hover:bg-surface-container-high transition-colors flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<div class="w-9 h-9 rounded-lg bg-tertiary-fixed text-on-tertiary-fixed-variant flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px]">volunteer_activism</span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-1.5">
+<span class="font-label-sm text-label-sm font-semibold text-tertiary">Surplus Donated</span>
+<span class="text-on-surface-variant text-[11px]">• Metro Food Bank</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface font-medium">18.0 kg <span class="text-on-surface-variant font-normal">(18.0%)</span></span>
+</div>
+</div>
+<div class="text-right">
+<span class="px-2 py-0.5 rounded bg-tertiary-fixed text-on-tertiary-fixed-variant font-label-sm text-label-sm font-semibold">36 Meals</span>
+</div>
+</div>
+<!-- Branch B: Avoided Waste Digested -->
+<div class="p-space-sm rounded-xl bg-primary-container/10 hover:bg-primary-container/20 transition-colors flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<div class="w-9 h-9 rounded-lg bg-primary-container text-on-primary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px]">recycling</span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-1.5">
+<span class="font-label-sm text-label-sm font-semibold text-primary">Classified Waste</span>
+<span class="text-on-surface-variant text-[11px]">• Aerobic Digester #02</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface font-medium">10.0 kg <span class="text-on-surface-variant font-normal">(10.0%)</span></span>
+</div>
+</div>
+<div class="text-right">
+<span class="px-2 py-0.5 rounded bg-primary-fixed text-on-primary-fixed font-label-sm text-label-sm font-semibold">9.2 kg Bio-Nutrient</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Mass Conservation Ledger Equation Bar -->
+<div class="mt-space-md p-space-sm rounded-lg bg-surface-container flex flex-wrap items-center justify-between gap-space-sm text-on-surface">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[18px]">verified_user</span>
+<span class="font-label-sm text-label-sm font-semibold uppercase tracking-wider text-on-surface-variant">Reconciliation Formula:</span>
+<span class="font-mono font-label-md text-label-md">Prepared (100.0 kg) = Consumed (72.0 kg) + Surplus (18.0 kg) + Residue (10.0 kg)</span>
+</div>
+<span class="px-space-sm py-0.5 rounded-full bg-primary text-on-primary font-label-sm text-label-sm font-semibold">Conservation Factor: 1.000 (Zero Leakage)</span>
+</div>
+</section>
+<!-- Interactive State Tabs -->
+<div class="flex items-center gap-space-xs mb-space-md border-b border-transparent">
+<button class="px-space-md py-space-sm rounded-lg font-label-lg text-label-lg transition-colors bg-primary text-on-primary shadow-sm flex items-center gap-2" id="tab-btn-lifecycle" onclick="switchTraceTab('lifecycle')">
+<span class="material-symbols-outlined text-[18px]">hub</span>
+<span>Lifecycle View</span>
+</button>
+<button class="px-space-md py-space-sm rounded-lg font-label-lg text-label-lg transition-colors bg-surface-container-low text-on-surface-variant hover:text-on-surface flex items-center gap-2" id="tab-btn-telemetry" onclick="switchTraceTab('telemetry')">
+<span class="material-symbols-outlined text-[18px]">scale</span>
+<span>Raw Scale Telemetry</span>
+</button>
+<button class="px-space-md py-space-sm rounded-lg font-label-lg text-label-lg transition-colors bg-surface-container-low text-on-surface-variant hover:text-on-surface flex items-center gap-2" id="tab-btn-audit" onclick="switchTraceTab('audit')">
+<span class="material-symbols-outlined text-[18px]">verified</span>
+<span>Audit Certification</span>
+</button>
+</div>
+<!-- MAIN TAB 1: Lifecycle View (Default) -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg" id="tab-panel-lifecycle">
+<!-- LEFT COLUMN: Record Specs & Mass Balance Breakdown (7 cols) -->
+<div class="lg:col-span-7 flex flex-col gap-space-lg">
+<!-- Section 1: Record Information & Hardware Registry -->
+<div class="rounded-xl bg-surface-container-lowest shadow-sm p-space-lg">
+<div class="flex items-center justify-between mb-space-md">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]">badge</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Record Information &amp; Custody Stamp</h3>
+</div>
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface font-mono font-label-sm text-label-sm">STN-04-AUTH</span>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-space-md">
+<div class="flex flex-col p-space-sm rounded-lg bg-surface-container-low">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Source Kitchen Lot</span>
+<span class="font-body-md text-body-md font-semibold text-on-surface mt-0.5">Steamed Seasonal Greens &amp; Chicken</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Recipe ID: #REC-CHK-2024</span>
+</div>
+<div class="flex flex-col p-space-sm rounded-lg bg-surface-container-low">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Weighing Station &amp; Sensor</span>
+<span class="font-body-md text-body-md font-semibold text-on-surface mt-0.5">Bench Scale #STN-04</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Mettler Toledo IND570 (Cal: Oct 2024)</span>
+</div>
+<div class="flex flex-col p-space-sm rounded-lg bg-surface-container-low">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Lead Kitchen Operator</span>
+<span class="font-body-md text-body-md font-semibold text-on-surface mt-0.5">Shruti Sharma</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Badge ID: #OP-9941 (Shift Lead)</span>
+</div>
+<div class="flex flex-col p-space-sm rounded-lg bg-surface-container-low">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Location &amp; Production Line</span>
+<span class="font-body-md text-body-md font-semibold text-on-surface mt-0.5">Central Kitchen Bay #1</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Prep Line Gamma (Hot Holding Exit)</span>
+</div>
+</div>
+<!-- Facility Photo & Verification QR Strip -->
+<div class="mt-space-md grid grid-cols-1 sm:grid-cols-3 gap-space-sm items-center p-space-sm rounded-lg bg-surface-container">
+<div class="sm:col-span-2 flex items-center gap-space-sm">
+<img class="w-14 h-14 rounded-lg object-cover shadow-sm shrink-0" data-alt="Close-up photograph of a commercial kitchen stainless steel preparation bench with digital bench scale Mettler Toledo and fresh leafy vegetable trimmings under cool operational task lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBMwshJzeXYYcLrkADLwxNHlH_cvafKtGBmFY6vYW6lJji4_o9IGOWrHEDuBUo6Gd4Hs2rIjyzP78cD2c1Oa8eTX-XtL3Y0pWO2tqAG8VepRsFFsnAgOClKdb8AyiOs1H-8vrDMQgLMEuYYWunGPXNgrvKvE7msI6OfhzLiy4mLHhsxZyZka7No6FyHBSL7KXKPo2REoGGprNGg4UAbqxyC7V3aXMpJmzyb-gn9-OUXcodCqYmIggI-"/>
+<div class="flex flex-col min-w-0">
+<span class="font-label-sm text-label-sm font-semibold text-on-surface truncate">Optical Sensor Audit Stamp</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Visual stream matched prep scraps profile with 99.4% confidence rating.</span>
+</div>
+</div>
+<div class="flex items-center justify-end sm:justify-center p-space-xs bg-surface-container-lowest rounded-lg shadow-sm">
+<div class="flex flex-col items-center">
+<span class="material-symbols-outlined text-[32px] text-on-surface">qr_code_2</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant text-[10px]">DT-VERIFIED-21</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Section 2: Quantity Breakdown (Mass Conservation Ledger) -->
+<div class="rounded-xl bg-surface-container-lowest shadow-sm p-space-lg">
+<div class="flex items-center justify-between mb-space-md">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]">calculate</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Mass Conservation Ledger</h3>
+</div>
+<span class="px-2 py-0.5 rounded bg-primary-container/15 text-primary font-label-sm text-label-sm font-semibold">100% Accounted</span>
+</div>
+<!-- Stacked Horizontal Bar Chart for Mass Distribution -->
+<div class="flex flex-col gap-1.5 mb-space-md">
+<div class="flex justify-between font-label-sm text-label-sm text-on-surface-variant">
+<span>Mass Allocation Visualization</span>
+<span>Total: 100.0 kg</span>
+</div>
+<div class="w-full h-4 rounded-full overflow-hidden flex bg-surface-container">
+<div class="h-full bg-secondary" style="width: 72%" title="Consumed 72.0 kg (72%)"></div>
+<div class="h-full bg-tertiary-container" style="width: 18%" title="Surplus Donated 18.0 kg (18%)"></div>
+<div class="h-full bg-primary" style="width: 10%" title="Organic Waste 10.0 kg (10%)"></div>
+</div>
+<div class="flex flex-wrap items-center gap-space-md text-label-sm font-label-sm text-on-surface-variant mt-1">
+<div class="flex items-center gap-1.5">
+<span class="w-2.5 h-2.5 rounded-full bg-secondary"></span>
+<span>Consumed: 72%</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="w-2.5 h-2.5 rounded-full bg-tertiary-container"></span>
+<span>Surplus Donated: 18%</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="w-2.5 h-2.5 rounded-full bg-primary"></span>
+<span>Digested Waste: 10%</span>
+</div>
+</div>
+</div>
+<!-- Ledger Table -->
+<div class="overflow-x-auto">
+<table class="w-full text-left font-body-sm text-body-sm">
+<thead>
+<tr class="bg-surface-container-low text-on-surface-variant font-label-sm text-label-sm">
+<th class="py-2.5 px-space-sm rounded-l">Component</th>
+<th class="py-2.5 px-space-sm">Mass (kg)</th>
+<th class="py-2.5 px-space-sm">Yield Ratio</th>
+<th class="py-2.5 px-space-sm">Audit Status</th>
+<th class="py-2.5 px-space-sm rounded-r text-right">Destination</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-transparent">
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="py-3 px-space-sm font-medium text-on-surface">1. Food Prepared</td>
+<td class="py-3 px-space-sm font-mono font-semibold text-on-surface">100.00</td>
+<td class="py-3 px-space-sm text-on-surface-variant">100.0%</td>
+<td class="py-3 px-space-sm"><span class="px-2 py-0.5 rounded-full bg-surface-container text-on-surface-variant font-label-sm text-label-sm">Baseline</span></td>
+<td class="py-3 px-space-sm text-right text-on-surface-variant">Kitchen Production</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="py-3 px-space-sm font-medium text-on-surface">2. Food Consumed</td>
+<td class="py-3 px-space-sm font-mono font-semibold text-tertiary">72.00</td>
+<td class="py-3 px-space-sm text-on-surface-variant">72.0%</td>
+<td class="py-3 px-space-sm"><span class="px-2 py-0.5 rounded-full bg-surface-container text-on-surface-variant font-label-sm text-label-sm">POS Matched</span></td>
+<td class="py-3 px-space-sm text-right text-on-surface-variant">Dining Floor</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="py-3 px-space-sm font-medium text-on-surface">3. Surplus Reclaimed</td>
+<td class="py-3 px-space-sm font-mono font-semibold text-tertiary">18.00</td>
+<td class="py-3 px-space-sm text-on-surface-variant">18.0%</td>
+<td class="py-3 px-space-sm"><span class="px-2 py-0.5 rounded-full bg-tertiary-fixed text-on-tertiary-fixed-variant font-label-sm text-label-sm font-semibold">Cold Vault Logged</span></td>
+<td class="py-3 px-space-sm text-right text-tertiary font-medium">Metro Food Bank</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="py-3 px-space-sm font-medium text-on-surface">4. Unavoidable Waste</td>
+<td class="py-3 px-space-sm font-mono font-semibold text-primary">10.00</td>
+<td class="py-3 px-space-sm text-on-surface-variant">10.0%</td>
+<td class="py-3 px-space-sm"><span class="px-2 py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed font-label-sm text-label-sm font-semibold">Weighed &amp; Tagged</span></td>
+<td class="py-3 px-space-sm text-right text-primary font-medium">Aerobic Digester #02</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Section 3: Waste Classification & Characteristics -->
+<div class="rounded-xl bg-surface-container-lowest shadow-sm p-space-lg">
+<div class="flex items-center justify-between mb-space-md">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]">category</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Waste Classification &amp; Characteristics</h3>
+</div>
+<span class="px-2 py-0.5 rounded bg-surface-container-high text-on-surface font-label-sm text-label-sm">Standard Prep Scraps</span>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-space-sm">
+<div class="p-space-sm rounded-lg bg-surface-container-low flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Primary Category</span>
+<span class="font-headline-sm text-headline-sm text-on-surface mt-1">Organic Residue</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Vegetable stalks, outer peels</span>
+</div>
+<div class="p-space-sm rounded-lg bg-surface-container-low flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Moisture Profile</span>
+<div class="flex items-baseline gap-1 mt-1">
+<span class="font-headline-sm text-headline-sm text-on-surface">78.0%</span>
+<span class="font-label-sm text-label-sm text-tertiary">High Hydration</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Optimal for microbial digest</span>
+</div>
+<div class="p-space-sm rounded-lg bg-surface-container-low flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Contamination Check</span>
+<div class="flex items-baseline gap-1 mt-1">
+<span class="font-headline-sm text-headline-sm text-primary">0.0%</span>
+<span class="font-label-sm text-label-sm text-primary">Non-Organic</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Zero plastic/foil detected</span>
+</div>
+</div>
+<div class="mt-space-md p-space-sm rounded-lg bg-surface-container flex items-start gap-space-sm">
+<span class="material-symbols-outlined text-on-surface-variant text-[20px] shrink-0 mt-0.5">info</span>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm font-semibold text-on-surface">Root Cause &amp; Disposition Variance Analysis</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
+              Loss flagged as <strong class="text-on-surface">Preparation Trimming Loss (Unavoidable)</strong>. The 10.0 kg discards fall strictly within the standard 9-11% butchery and produce yield tolerance for broccoli crowns, celery root bases, and herb stems. No culinary overproduction breach occurred.
+            </p>
+</div>
+</div>
+</div>
+</div>
+<!-- RIGHT COLUMN: ESG Impact & Chronological Activity Ledger (5 cols) -->
+<div class="lg:col-span-5 flex flex-col gap-space-lg">
+<!-- Section 4: Action Taken & ESG Impact Card -->
+<div class="rounded-xl bg-surface-container-lowest shadow-sm p-space-lg">
+<div class="flex items-center justify-between mb-space-md">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]">eco</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Action Taken &amp; ESG Yield</h3>
+</div>
+<span class="px-2 py-0.5 rounded bg-primary-container text-on-primary-container font-label-sm text-label-sm">Active Ingestion</span>
+</div>
+<!-- ESG Graphic Callout -->
+<div class="relative overflow-hidden rounded-xl bg-primary text-on-primary p-space-md">
+<div class="flex items-start justify-between relative z-10">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-primary-fixed uppercase tracking-wider">Avoided Landfill Emissions</span>
+<div class="flex items-baseline gap-1 mt-1">
+<span class="font-display-lg text-display-lg font-bold">22.4</span>
+<span class="font-headline-sm text-headline-sm text-primary-fixed">kg CO₂e</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-primary/80 mt-1 max-w-xs">
+                Methane generation fully mitigated via controlled aerobic breakdown in Digester #02.
+              </p>
+</div>
+<div class="w-12 h-12 rounded-full bg-primary-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[28px] text-on-primary">energy_savings_leaf</span>
+</div>
+</div>
+<!-- Secondary Metric Counters -->
+<div class="grid grid-cols-2 gap-space-sm mt-space-md pt-space-sm border-t border-primary-container/40 relative z-10">
+<div>
+<span class="font-label-sm text-label-sm text-primary-fixed block">Bio-Nutrient Output</span>
+<span class="font-headline-sm text-headline-sm font-semibold">9.2 kg Soil Blend</span>
+</div>
+<div>
+<span class="font-label-sm text-label-sm text-primary-fixed block">Meals Donated</span>
+<span class="font-headline-sm text-headline-sm font-semibold">36 Servings</span>
+</div>
+</div>
+</div>
+<!-- Operational Dispatch Specs -->
+<div class="mt-space-md space-y-space-xs font-body-sm text-body-sm">
+<div class="flex items-center justify-between p-2 rounded-lg bg-surface-container-low">
+<span class="text-on-surface-variant">Dispatch Seal Tag</span>
+<span class="font-mono font-medium text-on-surface">#DIG-2024-1025-04</span>
+</div>
+<div class="flex items-center justify-between p-2 rounded-lg bg-surface-container-low">
+<span class="text-on-surface-variant">Cold Chain Maintained</span>
+<span class="font-mono font-medium text-primary">4.2°C at Handover</span>
+</div>
+<div class="flex items-center justify-between p-2 rounded-lg bg-surface-container-low">
+<span class="text-on-surface-variant">Output Destination</span>
+<span class="font-medium text-on-surface">Campus Micro-Farm Bed B-12</span>
+</div>
+<div class="flex items-center justify-between p-2 rounded-lg bg-surface-container-low">
+<span class="text-on-surface-variant">Surplus Courier Receipt</span>
+<span class="font-mono font-medium text-on-surface">Receipt #MFB-9912</span>
+</div>
+</div>
+</div>
+<!-- Section 5: Chronological Custody Audit Log -->
+<div class="rounded-xl bg-surface-container-lowest shadow-sm p-space-lg flex-1">
+<div class="flex items-center justify-between mb-space-md">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]">history_toggle_off</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Chain of Custody Timeline</h3>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">6 Events Recorded</span>
+</div>
+<div class="relative pl-6 space-y-space-md before:content-[''] before:absolute before:left-2.5 before:top-2 before:bottom-2 before:w-0.5 before:bg-surface-container-highest">
+<!-- Event 1 -->
+<div class="relative">
+<div class="absolute -left-6 top-1 w-2.5 h-2.5 rounded-full bg-primary ring-4 ring-surface-container-lowest"></div>
+<div class="flex flex-col">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md font-semibold text-on-surface">Food Record Created</span>
+<span class="font-mono font-label-sm text-label-sm text-on-surface-variant">10:30 AM</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
+                100.0 kg prepared batch logged by Station #04. Recipe verification pass completed.
+              </p>
+</div>
+</div>
+<!-- Event 2 -->
+<div class="relative">
+<div class="absolute -left-6 top-1 w-2.5 h-2.5 rounded-full bg-primary ring-4 ring-surface-container-lowest"></div>
+<div class="flex flex-col">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md font-semibold text-on-surface">Consumption Recorded</span>
+<span class="font-mono font-label-sm text-label-sm text-on-surface-variant">12:45 PM</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
+                Lunch service closeout: 72.0 kg marked consumed based on banquet hall tray returns.
+              </p>
+</div>
+</div>
+<!-- Event 3 -->
+<div class="relative">
+<div class="absolute -left-6 top-1 w-2.5 h-2.5 rounded-full bg-tertiary ring-4 ring-surface-container-lowest"></div>
+<div class="flex flex-col">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md font-semibold text-tertiary">Surplus Identified</span>
+<span class="font-mono font-label-sm text-label-sm text-on-surface-variant">01:30 PM</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
+                18.0 kg unserved prepared portions staged into Cold Vault #2 at 3.8°C.
+              </p>
+</div>
+</div>
+<!-- Event 4 -->
+<div class="relative">
+<div class="absolute -left-6 top-1 w-2.5 h-2.5 rounded-full bg-tertiary ring-4 ring-surface-container-lowest"></div>
+<div class="flex flex-col">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md font-semibold text-tertiary">Surplus Redistributed</span>
+<span class="font-mono font-label-sm text-label-sm text-on-surface-variant">02:00 PM</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
+                18.0 kg transferred to Metro Food Bank courier. Manifest receipt confirmed (#MFB-9912).
+              </p>
+</div>
+</div>
+<!-- Event 5 -->
+<div class="relative">
+<div class="absolute -left-6 top-1 w-2.5 h-2.5 rounded-full bg-primary ring-4 ring-surface-container-lowest"></div>
+<div class="flex flex-col">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md font-semibold text-primary">Waste Classified</span>
+<span class="font-mono font-label-sm text-label-sm text-on-surface-variant">02:10 PM</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
+                10.0 kg prep trimmings weighed on bench scale. 0.0% contaminants detected.
+              </p>
+</div>
+</div>
+<!-- Event 6 -->
+<div class="relative">
+<div class="absolute -left-6 top-1 w-2.5 h-2.5 rounded-full bg-primary ring-4 ring-surface-container-lowest"></div>
+<div class="flex flex-col">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md font-semibold text-primary">Waste Processed &amp; Diverted</span>
+<span class="font-mono font-label-sm text-label-sm text-on-surface-variant">02:30 PM</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
+                Routed into On-Site Aerobic Digester #02. Tag #DIG-2024-1025-04 locked. Batch cycle closed.
+              </p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- TAB 2: Raw Scale Telemetry (Hidden by default, controlled via JS) -->
+<div class="hidden flex-col gap-space-lg" id="tab-panel-telemetry">
+<div class="rounded-xl bg-surface-container-lowest shadow-sm p-space-lg">
+<div class="flex items-center justify-between mb-space-md">
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Hardware Ingestion Stream</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Live telemetry logs from Mettler Toledo IND570 (STN-04)</p>
+</div>
+<span class="px-space-sm py-1 rounded bg-surface-container-high text-on-surface font-mono font-label-sm text-label-sm">Baud: 115200 • Parity: None</span>
+</div>
+<div class="p-space-md rounded-lg bg-surface-container-lowest text-on-surface font-mono text-body-sm overflow-x-auto border border-transparent shadow-inner">
+<pre class="text-on-surface leading-relaxed">[2024-10-25 10:29:58 UTC] DEVICE:METTLER_IND570_STN04 STATUS:ONLINE CALIBRATED_OFFSET:0.000kg
+[2024-10-25 10:30:02 UTC] CMD:TARE RESULT:SUCCESS NET:0.000kg TARE:1.240kg
+[2024-10-25 10:30:14 UTC] EVENT:MASS_INGEST STABLE:YES WEIGHT:100.000kg UOM:kg CRC:0x7A9F
+[2024-10-25 10:30:16 UTC] OCR_SCANNER_CAMERA_TOP: DETECTED_RECIPE="STEAMED_GREENS_HERB_CHICKEN" CONF:0.994
+[2024-10-25 12:45:00 UTC] ERP_CLOSEOUT_SYNC: POS_TICKETS=182 CONSUMED_ESTIMATE=72.000kg RESIDUAL=28.000kg
+[2024-10-25 13:30:05 UTC] COLD_VAULT_SCALE_STN02: STAGED_DONATION=18.000kg TEMP_PROBE=3.8C RFID:VAULT-BIN-44
+[2024-10-25 14:10:02 UTC] CMD:STN04_WEIGH_WASTE RAW:10.000kg DENSITY:0.68kg/L MOISTURE_SPECTROMETER:78.1%
+[2024-10-25 14:10:04 UTC] CONTAMINANT_AI_VISION: INORGANIC_COUNT=0 STATUS=CLEAR_TO_DIGEST
+[2024-10-25 14:30:18 UTC] DIGESTER_HOPPER_GATE_02: ACCEPTED WEIGHT:10.000kg SEAL:#DIG-2024-1025-04
+[2024-10-25 14:30:19 UTC] MASS_BALANCE_RECONCILE: PREP=100.0 CONSUMED=72.0 SURPLUS=18.0 WASTE=10.0 DELTA=0.000kg
+        </pre>
+</div>
+</div>
+</div>
+<!-- TAB 3: Audit Certification (Hidden by default, controlled via JS) -->
+<div class="hidden flex-col gap-space-lg" id="tab-panel-audit">
+<div class="rounded-xl bg-surface-container-lowest shadow-sm p-space-lg">
+<div class="flex items-center justify-between mb-space-md">
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">EPA &amp; Scope 3 Waste Hierarchy Compliance Audit</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Independent verifiable record certificate according to WRI Food Loss and Waste Standard</p>
+</div>
+<span class="px-space-sm py-1 rounded bg-primary-container text-on-primary-container font-label-sm text-label-sm font-semibold">Tier-1 Audit Ready</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-md mb-space-lg">
+<div class="p-space-md rounded-xl bg-surface-container-low flex flex-col justify-between">
+<div>
+<span class="font-label-sm text-label-sm text-primary uppercase tracking-wider font-semibold">Level 1: Source Reduction</span>
+<h4 class="font-headline-sm text-headline-sm text-on-surface mt-1">Culinary Standard Met</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Variance of 10.0 kg prep residue matches recipe target baseline standard of 10%.</p>
+</div>
+<span class="font-label-sm text-label-sm text-primary font-medium mt-space-md">Pass • Zero Penalty</span>
+</div>
+<div class="p-space-md rounded-xl bg-surface-container-low flex flex-col justify-between">
+<div>
+<span class="font-label-sm text-label-sm text-tertiary uppercase tracking-wider font-semibold">Level 2: Feed Hungry People</span>
+<h4 class="font-headline-sm text-headline-sm text-on-surface mt-1">Priority Donated</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">All 18.0 kg edible surplus redirected to Metro Food Bank within 2 hours of prep.</p>
+</div>
+<span class="font-label-sm text-label-sm text-tertiary font-medium mt-space-md">Certified Safe Handover</span>
+</div>
+<div class="p-space-md rounded-xl bg-surface-container-low flex flex-col justify-between">
+<div>
+<span class="font-label-sm text-label-sm text-primary uppercase tracking-wider font-semibold">Level 3: Industrial Uses / Compost</span>
+<h4 class="font-headline-sm text-headline-sm text-on-surface mt-1">Zero-Landfill Diverted</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Inedible portions converted on-site into regenerative soil amendment.</p>
+</div>
+<span class="font-label-sm text-label-sm text-primary font-medium mt-space-md">100% Circular Yield</span>
+</div>
+</div>
+<div class="p-space-md rounded-xl bg-surface-container flex flex-wrap items-center justify-between gap-space-md">
+<div class="flex items-center gap-space-sm">
+<div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined text-[20px]">verified</span>
+</div>
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm text-on-surface">Cryptographic Auditor Sign-off</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Validated by DigiTrace Automated Consensus Protocol Engine v2.4</span>
+</div>
+</div>
+<button class="inline-flex items-center gap-1.5 h-10 px-space-md rounded-lg bg-surface-container-lowest shadow-sm text-on-surface font-label-lg text-label-lg hover:bg-surface-container-high transition-colors" type="button">
+<span class="material-symbols-outlined text-[18px]">download</span>
+<span>Download ISO-14001 Evidence Packet</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Ambient Micro-Script for Tab Switching -->
+<script>
+    function switchTraceTab(tabName) {
+      const tabs = ['lifecycle', 'telemetry', 'audit'];
+      tabs.forEach(t => {
+        const panel = document.getElementById('tab-panel-' + t);
+        const btn = document.getElementById('tab-btn-' + t);
+        if (t === tabName) {
+          if (panel) {
+            panel.classList.remove('hidden');
+            if (t === 'lifecycle') {
+              panel.classList.add('grid');
+            } else {
+              panel.classList.add('flex');
+            }
+          }
+          if (btn) {
+            btn.classList.add('bg-primary', 'text-on-primary', 'shadow-sm');
+            btn.classList.remove('bg-surface-container-low', 'text-on-surface-variant');
+          }
+        } else {
+          if (panel) {
+            panel.classList.add('hidden');
+            panel.classList.remove('grid', 'flex');
+          }
+          if (btn) {
+            btn.classList.remove('bg-primary', 'text-on-primary', 'shadow-sm');
+            btn.classList.add('bg-surface-container-low', 'text-on-surface-variant');
+          }
+        }
+      });
+    }
+  </script>
+</div></main></div></body></html>

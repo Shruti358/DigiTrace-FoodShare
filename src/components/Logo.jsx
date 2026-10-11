@@ -1,0 +1,11 @@
+import React from 'react';
+
+export default function Logo({ className = "h-8 w-auto" }) {
+  return (
+    <svg className={className} viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect width="48" height="48" rx="12" fill="#1B4D3E" />
+      <path d="M24 10C16.268 10 10 16.268 10 24C10 31.732 16.268 38 24 38C27.5 38 30.7 36.7 33.2 34.5L29.5 30.8C28 31.6 26.1 32 24 32C19.582 32 16 28.418 16 24C16 19.582 19.582 16 24 16C27.5 16 30.5 18.2 31.6 21.3H24V26.7H38C38 17.5 31.7 10 24 10Z" fill="#FAF8F5" />
+      <circle cx="36" cy="30" r="4.5" fill="#22C55E" />
+    </svg>
+  );
+}

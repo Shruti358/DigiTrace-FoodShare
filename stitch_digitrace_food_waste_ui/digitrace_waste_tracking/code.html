@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={"darkMode":"class","theme":{"extend":{"colors":{"tertiary-fixed":"#cce5ff","on-tertiary-fixed-variant":"#004b73","on-surface-variant":"#3d4a42","on-background":"#0b1c30","primary":"#006948","on-error":"#ffffff","secondary-fixed-dim":"#bec6e0","primary-container":"#00855d","surface-container":"#e5eeff","tertiary-fixed-dim":"#93ccff","inverse-primary":"#68dba9","surface-container-highest":"#d3e4fe","on-surface":"#0b1c30","surface-tint":"#006c4a","on-primary-container":"#f5fff7","on-primary":"#ffffff","outline-variant":"#bccac0","on-primary-fixed":"#002114","secondary-container":"#dae2fd","background":"#f8f9ff","surface-bright":"#f8f9ff","tertiary-container":"#007bb9","secondary":"#565e74","on-primary-fixed-variant":"#005137","on-tertiary":"#ffffff","secondary-fixed":"#dae2fd","error":"#ba1a1a","on-error-container":"#93000a","error-container":"#ffdad6","surface-container-high":"#dce9ff","surface-variant":"#d3e4fe","surface-container-low":"#eff4ff","on-tertiary-fixed":"#001d31","on-secondary-fixed-variant":"#3f465c","surface":"#f8f9ff","on-secondary-container":"#5c647a","primary-fixed":"#85f8c4","tertiary":"#006194","outline":"#6d7a72","surface-container-lowest":"#ffffff","on-secondary-fixed":"#131b2e","on-tertiary-container":"#fdfcff","inverse-surface":"#213145","surface-dim":"#cbdbf5","inverse-on-surface":"#eaf1ff","primary-fixed-dim":"#68dba9","on-secondary":"#ffffff"},"borderRadius":{"DEFAULT":"0.25rem","lg":"0.5rem","xl":"0.75rem","full":"9999px"},"spacing":{"margin":"2rem","space-2xl":"3rem","gutter":"1.5rem","space-sm":"0.5rem","space-xs":"0.25rem","space-md":"1rem","gutter-mobile":"1rem","space-xl":"2rem","margin-mobile":"1rem","space-lg":"1.5rem"},"fontFamily":{"headline-md":["Inter"],"label-sm":["Inter"],"body-md":["Inter"],"headline-sm":["Inter"],"body-sm":["Inter"],"display-lg":["Inter"],"data-metric":["Inter"],"label-lg":["Inter"],"display-lg-mobile":["Inter"],"label-md":["Inter"],"body-lg":["Inter"],"headline-lg":["Inter"]},"fontSize":{"headline-md":["20px",{"lineHeight":"28px","letterSpacing":"-0.01em","fontWeight":"600"}],"label-sm":["11px",{"lineHeight":"14px","letterSpacing":"0.03em","fontWeight":"600"}],"body-md":["14px",{"lineHeight":"20px","letterSpacing":"0em","fontWeight":"400"}],"headline-sm":["16px",{"lineHeight":"24px","letterSpacing":"-0.005em","fontWeight":"600"}],"body-sm":["12px",{"lineHeight":"16px","letterSpacing":"0em","fontWeight":"400"}],"display-lg":["32px",{"lineHeight":"40px","letterSpacing":"-0.02em","fontWeight":"600"}],"data-metric":["28px",{"lineHeight":"34px","letterSpacing":"-0.02em","fontWeight":"600"}],"label-lg":["14px",{"lineHeight":"20px","letterSpacing":"0em","fontWeight":"500"}],"display-lg-mobile":["26px",{"lineHeight":"32px","letterSpacing":"-0.015em","fontWeight":"600"}],"label-md":["12px",{"lineHeight":"16px","letterSpacing":"0.01em","fontWeight":"500"}],"body-lg":["16px",{"lineHeight":"24px","letterSpacing":"0em","fontWeight":"400"}],"headline-lg":["24px",{"lineHeight":"32px","letterSpacing":"-0.015em","fontWeight":"600"}]}}}}</script></head><body class="bg-surface font-body-md text-body-md text-on-surface"><aside class="fixed left-0 top-0 h-full w-64 bg-surface-container-lowest shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-50 flex flex-col justify-between hidden md:flex"><div class="flex flex-col"><div class="h-16 px-space-lg flex items-center gap-space-sm bg-surface-container-lowest"><img alt="DigiTrace Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1UDzmwdrJKw-H-CjGIfdCd2O20-KyRNBWaegCW0_3pycRrZgT1pr-AVBleqy9TCrth-flUiOEZxrATL75MNgoLWybEt-bGV_0IWVSZxBfw4j6jYck3JGXzTQXetstaMqqKzEsUcyDlCKd1PgAzD_ZOf7SpX15kNM49TVT5Ibum4eOwtKOhtqXn3t2BetEeljh3Mv8ttYXiExOTK21hCwaieOt9sL7IKLM5Ds8dVKwGeBhIv5wqJNOwpR1o"/><div class="flex flex-col"><span class="font-headline-sm text-headline-sm text-on-surface leading-tight">DigiTrace</span><span class="font-label-sm text-label-sm text-on-surface-variant leading-none">Food Waste Mgmt</span></div></div><nav class="flex flex-col gap-space-xs px-space-md mt-space-md" data-active-classes="bg-primary-container text-on-primary-container font-label-lg text-label-lg rounded-lg shadow-sm"><a class="flex items-center px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="dashboard" href="#">Dashboard</a><a class="flex items-center px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="food-records" href="#">Food Records</a><a class="flex items-center px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="waste-tracking" href="#">Waste Tracking</a><a class="flex items-center px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="waste-record-details" href="#">Record Details &amp; Trace</a><a class="flex items-center px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="surplus" href="#">Surplus</a><a class="flex items-center px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="analytics" href="#">Analytics</a><a class="flex items-center px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="reports" href="#">Reports</a><a class="flex items-center px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors font-label-lg text-label-lg" data-path="settings" href="#">Settings</a></nav></div><div class="p-space-md bg-surface-container-lowest"><div class="flex items-center gap-space-sm p-space-sm rounded-lg bg-surface-container-low"><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center shrink-0"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div><div class="flex flex-col min-w-0 flex-1"><span class="font-label-md text-label-md text-on-surface truncate">Shruti Sharma</span><span class="font-label-sm text-label-sm text-on-surface-variant truncate">Kitchen Ops Lead</span></div><a class="p-space-xs text-on-surface-variant hover:text-error hover:bg-surface-container-high rounded transition-colors shrink-0" data-path="logout" href="#" title="Log out"><span class="material-symbols-outlined text-[20px]">logout</span></a></div></div></aside><div class="md:pl-64"><header class="fixed top-0 left-0 md:left-64 right-0 h-16 bg-surface-container-lowest/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-40 flex items-center justify-between px-space-lg"><div class="flex items-center gap-space-md"><button class="md:hidden p-space-xs text-on-surface-variant hover:text-on-surface"><span class="material-symbols-outlined text-[24px]">menu</span></button><nav class="hidden sm:flex items-center gap-space-xs font-label-md text-label-md text-on-surface-variant"><span class="hover:text-on-surface cursor-pointer">Operational Floor</span><span class="material-symbols-outlined text-[14px]">chevron_right</span><a class="hover:text-on-surface cursor-pointer text-on-surface-variant" data-path="waste-tracking" href="#">Waste Tracking</a><span class="material-symbols-outlined text-[14px]">chevron_right</span><span class="text-on-surface font-label-lg text-label-lg">Waste Record Details / Trace</span></nav><div class="inline-flex items-center gap-space-xs px-space-sm py-space-xs rounded-full bg-surface-container-low text-primary font-label-sm text-label-sm"><span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span><span>Live Scale Ingestion</span></div></div><div class="flex items-center gap-space-md"><div class="relative hidden lg:flex items-center"><span class="material-symbols-outlined absolute left-space-sm text-on-surface-variant text-[18px]">search</span><input class="h-9 pl-9 pr-14 rounded-lg bg-surface-container-low text-on-surface placeholder:text-on-surface-variant font-body-sm text-body-sm focus:outline-none focus:ring-1 focus:ring-primary w-64" placeholder="Search food lots, audits, logs..." type="text"/><kbd class="absolute right-space-sm px-1.5 py-0.5 rounded bg-surface-container-highest text-on-surface-variant font-label-sm text-label-sm">⌘K</kbd></div><button class="relative p-space-xs text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low rounded-lg transition-colors" title="Notifications"><span class="material-symbols-outlined text-[22px]">notifications</span><span class="absolute top-1 right-1 w-2 h-2 rounded-full bg-error ring-2 ring-surface-container-lowest"></span></button><div class="flex items-center gap-space-sm pl-space-xs"><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center shrink-0"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div><div class="hidden xl:flex flex-col text-left"><span class="font-label-md text-label-md text-on-surface leading-tight">Shruti Sharma</span><span class="font-label-sm text-label-sm text-on-surface-variant leading-none">Kitchen Ops Lead</span></div></div></div></header><main class="relative pt-16 w-full px-gutter bg-surface min-h-screen"><div class="flex flex-col w-full pb-space-2xl">
+<!-- Operational Sub-Header & Live System Status -->
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-md py-space-md">
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center gap-space-sm flex-wrap">
+<h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">Waste Tracking</h1>
+<div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
+<span>Station #04 Active</span>
+<span class="text-outline-variant">•</span>
+<span class="text-outline">Bench Scale IND570 (Sync 2s ago)</span>
+</div>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">
+        Monitor verified food waste records, track processing chains, and audit diversion efficiency.
+      </p>
+</div>
+<!-- Page Actions -->
+<div class="flex items-center gap-space-sm self-start lg:self-center shrink-0">
+<button class="h-10 px-4 rounded-lg bg-surface-container-lowest text-on-surface font-label-lg text-label-lg shadow-sm hover:bg-surface-container-low transition-colors flex items-center gap-2" type="button">
+<span class="material-symbols-outlined text-[18px]">download</span>
+<span>Export Log (CSV)</span>
+</button>
+<button class="h-10 px-4 rounded-lg bg-primary text-on-primary font-label-lg text-label-lg shadow-sm hover:bg-primary-container transition-colors flex items-center gap-2" type="button">
+<span class="material-symbols-outlined text-[18px]">add</span>
+<span>Log Waste Event</span>
+</button>
+</div>
+</div>
+<!-- Metric Summary Cards Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-md mt-space-sm">
+<!-- Card 1: Total Waste -->
+<div class="p-space-lg rounded-xl bg-surface-container-lowest shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Total Waste Stream</span>
+<div class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[18px]">scale</span>
+</div>
+</div>
+<div class="mt-space-md flex flex-col">
+<div class="flex items-baseline gap-space-xs">
+<span class="font-data-metric text-data-metric text-on-surface">184.2</span>
+<span class="font-body-md text-body-md text-on-surface-variant">kg</span>
+</div>
+<div class="flex items-center gap-1.5 mt-1 font-label-sm text-label-sm">
+<span class="inline-flex items-center text-primary font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[14px]">trending_down</span>
+            12.4%
+          </span>
+<span class="text-on-surface-variant">vs last week</span>
+</div>
+</div>
+<div class="mt-space-md pt-space-sm bg-surface-container-low/50 rounded p-2 flex items-center justify-between text-on-surface-variant font-label-sm text-label-sm">
+<span>Target Ceiling</span>
+<span class="font-headline-sm text-label-sm text-on-surface">220.0 kg</span>
+</div>
+</div>
+<!-- Card 2: Organic Waste -->
+<div class="p-space-lg rounded-xl bg-surface-container-lowest shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Organic Waste</span>
+<div class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[18px]">compost</span>
+</div>
+</div>
+<div class="mt-space-md flex flex-col">
+<div class="flex items-baseline gap-space-xs">
+<span class="font-data-metric text-data-metric text-on-surface">142.8</span>
+<span class="font-body-md text-body-md text-on-surface-variant">kg</span>
+</div>
+<div class="flex items-center gap-1.5 mt-1 font-label-sm text-label-sm">
+<span class="text-primary font-label-sm text-label-sm">77.5%</span>
+<span class="text-on-surface-variant">of total waste stream</span>
+</div>
+</div>
+<div class="mt-space-md pt-space-sm bg-surface-container-low/50 rounded p-2 flex items-center justify-between text-on-surface-variant font-label-sm text-label-sm">
+<span>Channel</span>
+<span class="font-headline-sm text-label-sm text-primary">Compost &amp; Digestion</span>
+</div>
+</div>
+<!-- Card 3: Processed -->
+<div class="p-space-lg rounded-xl bg-surface-container-lowest shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Processed &amp; Diverted</span>
+<div class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined text-[18px]">verified</span>
+</div>
+</div>
+<div class="mt-space-md flex flex-col">
+<div class="flex items-baseline gap-space-xs">
+<span class="font-data-metric text-data-metric text-on-surface">158.0</span>
+<span class="font-body-md text-body-md text-on-surface-variant">kg</span>
+</div>
+<div class="flex items-center gap-1.5 mt-1 font-label-sm text-label-sm">
+<span class="text-on-surface-variant font-body-sm text-body-sm">85.8% diversion verified</span>
+</div>
+</div>
+<div class="mt-space-md pt-space-sm bg-surface-container-low/50 rounded p-2 flex items-center justify-between text-on-surface-variant font-label-sm text-label-sm">
+<span>Audit State</span>
+<span class="px-2 py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed-variant font-label-sm text-label-sm">On Track</span>
+</div>
+</div>
+<!-- Card 4: Pending Action -->
+<div class="p-space-lg rounded-xl bg-surface-container-lowest shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Pending Staging</span>
+<div class="w-8 h-8 rounded-lg bg-error-container/40 flex items-center justify-center text-error">
+<span class="material-symbols-outlined text-[18px]">pending_actions</span>
+</div>
+</div>
+<div class="mt-space-md flex flex-col">
+<div class="flex items-baseline gap-space-xs">
+<span class="font-data-metric text-data-metric text-on-surface">26.2</span>
+<span class="font-body-md text-body-md text-on-surface-variant">kg</span>
+</div>
+<div class="flex items-center gap-1.5 mt-1 font-label-sm text-label-sm">
+<span class="text-error font-label-sm text-label-sm">3 batches</span>
+<span class="text-on-surface-variant">awaiting staging</span>
+</div>
+</div>
+<div class="mt-space-md pt-space-sm bg-error-container/20 rounded p-2 flex items-center justify-between text-on-surface-variant font-label-sm text-label-sm">
+<span>Immediate Queue</span>
+<span class="px-2 py-0.5 rounded-full bg-error-container text-on-error-container font-label-sm text-label-sm">Action Required</span>
+</div>
+</div>
+</div>
+<!-- Operational Ledger Tabs & Visual Stream Monitor -->
+<div class="mt-space-xl flex flex-col lg:flex-row gap-space-md items-stretch">
+<!-- Stream Allocation Mini Gauge Bar -->
+<div class="flex-1 p-space-md rounded-xl bg-surface-container-lowest shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between mb-space-xs">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[18px]">hub</span>
+<span class="font-label-lg text-label-lg text-on-surface">Waste Diversion Breakdown (24h)</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">184.2 kg recorded</span>
+</div>
+<!-- Progress Segments -->
+<div class="w-full h-3 bg-surface-container rounded-full overflow-hidden flex my-2">
+<div class="bg-primary h-full" style="width: 58%;" title="Aerobic Digestion (58%)"></div>
+<div class="bg-tertiary-container h-full" style="width: 24%;" title="Municipal Compost (24%)"></div>
+<div class="bg-secondary h-full" style="width: 12%;" title="Bokashi &amp; Animal Feed (12%)"></div>
+<div class="bg-error h-full" style="width: 6%;" title="Landfill / Non-divertible (6%)"></div>
+</div>
+<!-- Legend -->
+<div class="flex items-center gap-space-md flex-wrap text-label-sm font-label-sm text-on-surface-variant mt-1">
+<div class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-primary"></span><span>Digester (106.8 kg)</span></div>
+<div class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-tertiary-container"></span><span>Compost (44.2 kg)</span></div>
+<div class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-secondary"></span><span>Bio-reactor (22.1 kg)</span></div>
+<div class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-error"></span><span>Unsorted (11.1 kg)</span></div>
+</div>
+</div>
+<!-- Active Station Telemetry -->
+<div class="lg:w-80 p-space-md rounded-xl bg-surface-container-low shadow-sm flex items-center justify-between">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Scale Dock Status</span>
+<span class="font-headline-sm text-headline-sm text-on-surface mt-0.5">Scale Station #04</span>
+<span class="font-body-sm text-body-sm text-primary mt-1 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">sensors</span> Stable Zero: 0.000 kg
+        </span>
+</div>
+<div class="flex flex-col items-end">
+<button class="h-8 px-3 rounded-lg bg-surface-container-lowest hover:bg-surface-container text-on-surface font-label-sm text-label-sm shadow-sm transition-colors flex items-center gap-1" type="button">
+<span class="material-symbols-outlined text-[16px]">sync</span>
+<span>Calibrate</span>
+</button>
+<span class="font-label-sm text-label-sm text-outline mt-2">Tare Lock: Active</span>
+</div>
+</div>
+</div>
+<!-- Table Container Card -->
+<div class="mt-space-lg rounded-xl bg-surface-container-lowest shadow-sm flex flex-col overflow-hidden">
+<!-- View Mode Tabs -->
+<div class="px-space-lg pt-space-md pb-space-xs flex items-center justify-between border-b border-surface-container-high/60 flex-wrap gap-space-sm">
+<div class="flex items-center gap-space-xs">
+<button class="px-3.5 py-2 rounded-lg bg-primary-container text-on-primary-container font-label-md text-label-md flex items-center gap-2" type="button">
+<span class="material-symbols-outlined text-[16px]">receipt_long</span>
+<span>Active Discard Ledger</span>
+<span class="ml-1 px-1.5 py-0.2 rounded-full bg-primary text-on-primary font-label-sm text-label-sm">184</span>
+</button>
+<button class="px-3.5 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface font-label-md text-label-md flex items-center gap-2 transition-colors" type="button">
+<span class="material-symbols-outlined text-[16px]">hourglass_top</span>
+<span>Pending Verification</span>
+<span class="ml-1 px-1.5 py-0.2 rounded-full bg-error-container text-on-error-container font-label-sm text-label-sm">3</span>
+</button>
+<button class="px-3.5 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface font-label-md text-label-md flex items-center gap-2 transition-colors" type="button">
+<span class="material-symbols-outlined text-[16px]">inventory_2</span>
+<span>Archived Logs</span>
+</button>
+</div>
+<div class="flex items-center gap-2">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Auto-refresh in <strong class="text-on-surface">48s</strong></span>
+<button class="p-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-low" title="Refresh data" type="button">
+<span class="material-symbols-outlined text-[18px]">refresh</span>
+</button>
+</div>
+</div>
+<!-- Filter Control Bar -->
+<div class="p-space-lg bg-surface-container-low/40 flex flex-col lg:flex-row gap-space-md items-start lg:items-center justify-between">
+<!-- Search Input -->
+<div class="relative w-full lg:w-72">
+<span class="material-symbols-outlined absolute left-3 top-2.5 text-on-surface-variant text-[18px]">search</span>
+<input class="w-full h-10 pl-9 pr-3 rounded-lg bg-surface-container-lowest text-on-surface placeholder:text-on-surface-variant font-body-sm text-body-sm shadow-sm focus:outline-none focus:ring-1 focus:ring-primary" placeholder="Search by Record ID, item, or station..." type="text"/>
+</div>
+<!-- Filter Controls Group -->
+<div class="flex items-center gap-space-sm flex-wrap w-full lg:w-auto">
+<!-- Date Selector -->
+<button class="h-10 px-3 rounded-lg bg-surface-container-lowest text-on-surface font-label-md text-label-md shadow-sm hover:bg-surface-container-low flex items-center gap-2" type="button">
+<span class="material-symbols-outlined text-[18px] text-on-surface-variant">calendar_today</span>
+<span>Today (Oct 25, 2024)</span>
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant">expand_more</span>
+</button>
+<!-- Waste Type Dropdown -->
+<div class="relative">
+<select class="appearance-none h-10 pl-3 pr-8 rounded-lg bg-surface-container-lowest text-on-surface font-label-md text-label-md shadow-sm hover:bg-surface-container-low focus:outline-none cursor-pointer">
+<option>All Waste Types</option>
+<option>Organic Kitchen Residue</option>
+<option>Cooked Prep Residual</option>
+<option>Trim Loss</option>
+<option>Expired Ingredient</option>
+<option>Bulk Peelings</option>
+</select>
+<span class="material-symbols-outlined absolute right-2.5 top-2.5 text-[16px] text-on-surface-variant pointer-events-none">expand_more</span>
+</div>
+<!-- Status Dropdown -->
+<div class="relative">
+<select class="appearance-none h-10 pl-3 pr-8 rounded-lg bg-surface-container-lowest text-on-surface font-label-md text-label-md shadow-sm hover:bg-surface-container-low focus:outline-none cursor-pointer">
+<option>All Statuses</option>
+<option>Processed</option>
+<option>In Transit</option>
+<option>Pending Action</option>
+<option>Composted</option>
+</select>
+<span class="material-symbols-outlined absolute right-2.5 top-2.5 text-[16px] text-on-surface-variant pointer-events-none">expand_more</span>
+</div>
+<!-- Food Category Dropdown -->
+<div class="relative">
+<select class="appearance-none h-10 pl-3 pr-8 rounded-lg bg-surface-container-lowest text-on-surface font-label-md text-label-md shadow-sm hover:bg-surface-container-low focus:outline-none cursor-pointer">
+<option>All Categories</option>
+<option>Produce &amp; Greens</option>
+<option>Cooked Poultry</option>
+<option>Artisan Bakery</option>
+<option>Dairy &amp; Cream</option>
+<option>Root Vegetables</option>
+</select>
+<span class="material-symbols-outlined absolute right-2.5 top-2.5 text-[16px] text-on-surface-variant pointer-events-none">expand_more</span>
+</div>
+<!-- Reset Button -->
+<button class="h-10 px-3 text-tertiary hover:text-on-surface font-label-md text-label-md transition-colors flex items-center gap-1" type="button">
+<span class="material-symbols-outlined text-[16px]">restart_alt</span>
+<span>Reset Filters</span>
+</button>
+</div>
+</div>
+<!-- Auditable Data Table -->
+<div class="w-full overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider">
+<th class="py-3 px-space-lg font-label-sm">Record ID</th>
+<th class="py-3 px-space-md font-label-sm">Food Category</th>
+<th class="py-3 px-space-md font-label-sm text-right">Quantity</th>
+<th class="py-3 px-space-md font-label-sm">Waste Type</th>
+<th class="py-3 px-space-md font-label-sm">Timestamp</th>
+<th class="py-3 px-space-md font-label-sm">Action Taken</th>
+<th class="py-3 px-space-md font-label-sm">Status</th>
+<th class="py-3 px-space-lg font-label-sm text-right">Traceability</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container-low font-body-md text-body-md">
+<!-- Row 1: Featured Record #DT-W-00021 -->
+<tr class="hover:bg-surface-container-lowest bg-surface-container-low/20 transition-colors">
+<td class="py-3.5 px-space-lg">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+<span class="font-headline-sm text-headline-sm text-on-surface font-mono">#DT-W-00021</span>
+</div>
+</td>
+<td class="py-3.5 px-space-md">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-primary">eco</span>
+<span class="text-on-surface font-label-lg text-label-lg">Produce &amp; Greens</span>
+</div>
+</td>
+<td class="py-3.5 px-space-md text-right">
+<span class="font-headline-sm text-headline-sm text-on-surface tabular-nums">10.0</span>
+<span class="text-on-surface-variant text-body-sm font-body-sm ml-0.5">kg</span>
+</td>
+<td class="py-3.5 px-space-md text-on-surface">
+              Organic Kitchen Residue
+            </td>
+<td class="py-3.5 px-space-md text-on-surface-variant font-body-sm text-body-sm">
+              Oct 25, 2024 · 02:10 PM
+            </td>
+<td class="py-3.5 px-space-md">
+<div class="flex items-center gap-1.5 text-on-surface font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-[16px] text-primary">recycling</span>
+<span>Routed to Aerobic Digester #02</span>
+</div>
+</td>
+<td class="py-3.5 px-space-md">
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed-variant font-label-sm text-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+                Processed
+              </span>
+</td>
+<td class="py-3.5 px-space-lg text-right">
+<a class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-primary text-on-primary font-label-md text-label-md shadow-sm hover:bg-primary-container transition-colors" data-path="waste-record-details" href="#">
+<span>View Trace</span>
+<span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+</a>
+</td>
+</tr>
+<!-- Row 2: #DT-W-00020 -->
+<tr class="hover:bg-surface-container-low/40 transition-colors">
+<td class="py-3.5 px-space-lg">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-tertiary"></span>
+<span class="font-label-lg text-label-lg text-on-surface font-mono">#DT-W-00020</span>
+</div>
+</td>
+<td class="py-3.5 px-space-md">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-secondary">restaurant</span>
+<span class="text-on-surface font-label-lg text-label-lg">Cooked Poultry</span>
+</div>
+</td>
+<td class="py-3.5 px-space-md text-right">
+<span class="font-headline-sm text-headline-sm text-on-surface tabular-nums">14.5</span>
+<span class="text-on-surface-variant text-body-sm font-body-sm ml-0.5">kg</span>
+</td>
+<td class="py-3.5 px-space-md text-on-surface">
+              Cooked Prep Residual
+            </td>
+<td class="py-3.5 px-space-md text-on-surface-variant font-body-sm text-body-sm">
+              Oct 25, 2024 · 11:30 AM
+            </td>
+<td class="py-3.5 px-space-md">
+<div class="flex items-center gap-1.5 text-on-surface font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-[16px] text-tertiary">local_shipping</span>
+<span>Staged for Municipal Compost</span>
+</div>
+</td>
+<td class="py-3.5 px-space-md">
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-tertiary-fixed text-on-tertiary-fixed-variant font-label-sm text-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span>
+                In Transit
+              </span>
+</td>
+<td class="py-3.5 px-space-lg text-right">
+<a class="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg text-tertiary hover:bg-surface-container font-label-md text-label-md transition-colors" data-path="waste-record-details" href="#">
+<span>View Trace</span>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+</a>
+</td>
+</tr>
+<!-- Row 3: #DT-W-00019 -->
+<tr class="hover:bg-surface-container-low/40 transition-colors">
+<td class="py-3.5 px-space-lg">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-primary-container"></span>
+<span class="font-label-lg text-label-lg text-on-surface font-mono">#DT-W-00019</span>
+</div>
+</td>
+<td class="py-3.5 px-space-md">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-secondary">bakery_dining</span>
+<span class="text-on-surface font-label-lg text-label-lg">Artisan Bakery</span>
+</div>
+</td>
+<td class="py-3.5 px-space-md text-right">
+<span class="font-headline-sm text-headline-sm text-on-surface tabular-nums">8.2</span>
+<span class="text-on-surface-variant text-body-sm font-body-sm ml-0.5">kg</span>
+</td>
+<td class="py-3.5 px-space-md text-on-surface">
+              Trim Loss
+            </td>
+<td class="py-3.5 px-space-md text-on-surface-variant font-body-sm text-body-sm">
+              Oct 25, 2024 · 09:15 AM
+            </td>
+<td class="py-3.5 px-space-md">
+<div class="flex items-center gap-1.5 text-on-surface font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-[16px] text-primary">inventory_2</span>
+<span>Bokashi Bin C</span>
+</div>
+</td>
+<td class="py-3.5 px-space-md">
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed-variant font-label-sm text-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+                Composted
+              </span>
+</td>
+<td class="py-3.5 px-space-lg text-right">
+<a class="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg text-tertiary hover:bg-surface-container font-label-md text-label-md transition-colors" data-path="waste-record-details" href="#">
+<span>View Trace</span>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+</a>
+</td>
+</tr>
+<!-- Row 4: #DT-W-00018 -->
+<tr class="hover:bg-surface-container-low/40 transition-colors bg-error-container/5">
+<td class="py-3.5 px-space-lg">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-error"></span>
+<span class="font-label-lg text-label-lg text-on-surface font-mono">#DT-W-00018</span>
+</div>
+</td>
+<td class="py-3.5 px-space-md">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-error">egg</span>
+<span class="text-on-surface font-label-lg text-label-lg">Dairy &amp; Cream</span>
+</div>
+</td>
+<td class="py-3.5 px-space-md text-right">
+<span class="font-headline-sm text-headline-sm text-on-surface tabular-nums">4.0</span>
+<span class="text-on-surface-variant text-body-sm font-body-sm ml-0.5">kg</span>
+</td>
+<td class="py-3.5 px-space-md text-on-surface">
+              Expired Ingredient
+            </td>
+<td class="py-3.5 px-space-md text-on-surface-variant font-body-sm text-body-sm">
+              Oct 24, 2024 · 06:40 PM
+            </td>
+<td class="py-3.5 px-space-md">
+<div class="flex items-center gap-1.5 text-on-surface font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-[16px] text-error">warning</span>
+<span>Pending Bin Allocation</span>
+</div>
+</td>
+<td class="py-3.5 px-space-md">
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-error-container text-on-error-container font-label-sm text-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-error"></span>
+                Pending Action
+              </span>
+</td>
+<td class="py-3.5 px-space-lg text-right">
+<a class="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg text-tertiary hover:bg-surface-container font-label-md text-label-md transition-colors" data-path="waste-record-details" href="#">
+<span>View Trace</span>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+</a>
+</td>
+</tr>
+<!-- Row 5: #DT-W-00017 -->
+<tr class="hover:bg-surface-container-low/40 transition-colors">
+<td class="py-3.5 px-space-lg">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+<span class="font-label-lg text-label-lg text-on-surface font-mono">#DT-W-00017</span>
+</div>
+</td>
+<td class="py-3.5 px-space-md">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-primary">nutrition</span>
+<span class="text-on-surface font-label-lg text-label-lg">Root Vegetables</span>
+</div>
+</td>
+<td class="py-3.5 px-space-md text-right">
+<span class="font-headline-sm text-headline-sm text-on-surface tabular-nums">12.8</span>
+<span class="text-on-surface-variant text-body-sm font-body-sm ml-0.5">kg</span>
+</td>
+<td class="py-3.5 px-space-md text-on-surface">
+              Bulk Peelings
+            </td>
+<td class="py-3.5 px-space-md text-on-surface-variant font-body-sm text-body-sm">
+              Oct 24, 2024 · 01:20 PM
+            </td>
+<td class="py-3.5 px-space-md">
+<div class="flex items-center gap-1.5 text-on-surface font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-[16px] text-tertiary">biotech</span>
+<span>Anaerobic Bio-reactor</span>
+</div>
+</td>
+<td class="py-3.5 px-space-md">
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed-variant font-label-sm text-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+                Processed
+              </span>
+</td>
+<td class="py-3.5 px-space-lg text-right">
+<a class="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg text-tertiary hover:bg-surface-container font-label-md text-label-md transition-colors" data-path="waste-record-details" href="#">
+<span>View Trace</span>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+</a>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Table Pagination Footer -->
+<div class="p-space-md bg-surface-container-lowest border-t border-surface-container flex flex-col sm:flex-row items-center justify-between gap-space-md">
+<div class="flex items-center gap-2 font-body-sm text-body-sm text-on-surface-variant">
+<span>Showing <strong class="text-on-surface">1</strong> to <strong class="text-on-surface">5</strong> of <strong class="text-on-surface">184</strong> recorded entries</span>
+</div>
+<div class="flex items-center gap-space-xs">
+<button class="h-8 px-2.5 rounded-lg bg-surface-container-low text-on-surface-variant hover:text-on-surface disabled:opacity-40 flex items-center font-label-sm text-label-sm" disabled="" type="button">
+<span class="material-symbols-outlined text-[16px]">chevron_left</span>
+<span>Previous</span>
+</button>
+<button class="h-8 w-8 rounded-lg bg-primary text-on-primary font-label-sm text-label-sm" type="button">1</button>
+<button class="h-8 w-8 rounded-lg bg-surface-container-low hover:bg-surface-container text-on-surface font-label-sm text-label-sm transition-colors" type="button">2</button>
+<button class="h-8 w-8 rounded-lg bg-surface-container-low hover:bg-surface-container text-on-surface font-label-sm text-label-sm transition-colors" type="button">3</button>
+<span class="px-1 text-on-surface-variant font-label-sm">...</span>
+<button class="h-8 w-8 rounded-lg bg-surface-container-low hover:bg-surface-container text-on-surface font-label-sm text-label-sm transition-colors" type="button">37</button>
+<button class="h-8 px-2.5 rounded-lg bg-surface-container-low text-on-surface hover:bg-surface-container flex items-center font-label-sm text-label-sm transition-colors" type="button">
+<span>Next</span>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Operational Context Footer Card: High-Density Verification Info -->
+<div class="mt-space-lg grid grid-cols-1 md:grid-cols-3 gap-space-md">
+<div class="p-space-md rounded-xl bg-surface-container-low/60 flex items-start gap-space-sm">
+<div class="w-8 h-8 rounded-lg bg-surface-container-lowest flex items-center justify-center shrink-0 text-primary">
+<span class="material-symbols-outlined text-[18px]">verified_user</span>
+</div>
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm text-on-surface">Audited Scale Capture</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
+          Readings are digitally stamped via METTLER TOLEDO IND570 protocol directly over Modbus TCP to prevent manual tampering.
+        </p>
+</div>
+</div>
+<div class="p-space-md rounded-xl bg-surface-container-low/60 flex items-start gap-space-sm">
+<div class="w-8 h-8 rounded-lg bg-surface-container-lowest flex items-center justify-center shrink-0 text-tertiary">
+<span class="material-symbols-outlined text-[18px]">local_shipping</span>
+</div>
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm text-on-surface">Daily Collection Window</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
+          Next municipal green-waste pickup scheduled for 04:30 PM. Staging dock must have all pending bins barcoded.
+        </p>
+</div>
+</div>
+<div class="p-space-md rounded-xl bg-surface-container-low/60 flex items-start gap-space-sm">
+<div class="w-8 h-8 rounded-lg bg-surface-container-lowest flex items-center justify-center shrink-0 text-primary">
+<span class="material-symbols-outlined text-[18px]">co2</span>
+</div>
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm text-on-surface">Carbon Offset Yield</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
+          Today's 158.0 kg diverted yield prevents approximately 395 kg CO₂e from atmospheric landfill decomposition.
+        </p>
+</div>
+</div>
+</div>
+</div></main></div></body></html>

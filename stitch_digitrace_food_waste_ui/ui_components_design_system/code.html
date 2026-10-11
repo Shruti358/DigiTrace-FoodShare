@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_tab" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "error-container": "#ffdad6", "on-surface-variant": "#3d4a42", "on-secondary-fixed": "#131b2e", "tertiary-fixed-dim": "#93ccff", "on-secondary-container": "#5c647a", "on-primary": "#ffffff", "inverse-on-surface": "#eaf1ff", "primary-container": "#00855d", "on-primary-container": "#f5fff7", "surface-dim": "#cbdbf5", "surface": "#f8f9ff", "tertiary": "#006194", "secondary-container": "#dae2fd", "surface-tint": "#006c4a", "on-background": "#0b1c30", "on-tertiary": "#ffffff", "on-primary-fixed-variant": "#005137", "tertiary-fixed": "#cce5ff", "on-error": "#ffffff", "secondary-fixed-dim": "#bec6e0", "primary-fixed-dim": "#68dba9", "secondary": "#565e74", "surface-variant": "#d3e4fe", "on-tertiary-fixed": "#001d31", "on-secondary": "#ffffff", "primary": "#006948", "surface-container-low": "#eff4ff", "outline-variant": "#bccac0", "surface-container-lowest": "#ffffff", "on-error-container": "#93000a", "on-primary-fixed": "#002114", "inverse-primary": "#68dba9", "surface-bright": "#f8f9ff", "tertiary-container": "#007bb9", "on-surface": "#0b1c30", "surface-container-highest": "#d3e4fe", "background": "#f8f9ff", "error": "#ba1a1a", "on-tertiary-fixed-variant": "#004b73", "outline": "#6d7a72", "secondary-fixed": "#dae2fd", "surface-container": "#e5eeff", "on-secondary-fixed-variant": "#3f465c", "surface-container-high": "#dce9ff", "primary-fixed": "#85f8c4", "on-tertiary-container": "#fdfcff", "inverse-surface": "#213145" }, borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, spacing: { "gutter": "1.5rem", "space-xl": "2rem", "margin": "2rem", "space-xs": "0.25rem", "space-sm": "0.5rem", "space-2xl": "3rem", "space-lg": "1.5rem", "gutter-mobile": "1rem", "margin-mobile": "1rem", "space-md": "1rem" }, fontFamily: { "body-lg": ["Inter"], "label-sm": ["Inter"], "display-lg-mobile": ["Inter"], "label-lg": ["Inter"], "headline-sm": ["Inter"], "headline-md": ["Inter"], "headline-lg": ["Inter"], "display-lg": ["Inter"], "label-md": ["Inter"], "data-metric": ["Inter"], "body-md": ["Inter"], "body-sm": ["Inter"] }, fontSize: { "body-lg": ["16px", { "lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "400" }], "label-sm": ["11px", { "lineHeight": "14px", "letterSpacing": "0.03em", "fontWeight": "600" }], "display-lg-mobile": ["26px", { "lineHeight": "32px", "letterSpacing": "-0.015em", "fontWeight": "600" }], "label-lg": ["14px", { "lineHeight": "20px", "letterSpacing": "0em", "fontWeight": "500" }], "headline-sm": ["16px", { "lineHeight": "24px", "letterSpacing": "-0.005em", "fontWeight": "600" }], "headline-md": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "headline-lg": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.015em", "fontWeight": "600" }], "display-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "600" }], "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "500" }], "data-metric": ["28px", { "lineHeight": "34px", "letterSpacing": "-0.02em", "fontWeight": "600" }], "body-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0em", "fontWeight": "400" }], "body-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0em", "fontWeight": "400" }] } } } };</script><style>@layer base{html,body{width:100%;margin:0;padding:0;min-height:100%;}body{overscroll-behavior-y:none;-webkit-tap-highlight-color:transparent;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style></head><body class="bg-surface font-body-md text-body-md text-on-surface antialiased flex flex-col min-h-screen"><header class="fixed top-0 w-full z-50 bg-surface/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] pt-safe"><div class="h-16 px-gutter-mobile flex items-center justify-between gap-space-sm"><div class="flex items-center gap-space-sm min-w-0"><button aria-label="Open Menu" class="w-11 h-11 flex items-center justify-center rounded-lg text-on-surface hover:bg-surface-container active:bg-surface-container-high transition-colors -ml-space-xs"><span class="material-symbols-outlined text-[24px]">menu</span></button><img alt="DigiTrace Logo" class="h-8 w-auto object-contain shrink-0" src="https://lh3.googleusercontent.com/aida/AEtjO1W-43lbNY4FdISYszKRnL724WacWcNDE1ft8CgaT_Fqs5xVPF5WI5-cP4rXSSpdfYGGYD3IUsOCl2Q4gMHK9dZU53i2XeMYFlHgecFVwmgojDlP3GBk_hkR-GyHGe7LgH-FsfRWEq0P5y49enOMqglFbM8mcdNVCYOzw9OtPuO85kbGOno1vTEyf_IAkN9qSAej9ASKWs6DL48tooUGs_lv9fdDYMc87YIKnUs92asLuBgxt2teVQ-AI6E"/><div class="flex flex-col min-w-0"><div class="flex items-center gap-1.5 leading-none"><span class="font-headline-sm text-headline-sm text-on-surface truncate">DigiTrace</span><span class="hidden xs:inline-block font-label-sm text-label-sm text-primary px-1.5 py-0.5 rounded-full bg-primary-fixed/30 font-semibold uppercase tracking-wider">HQ</span></div><span class="font-label-sm text-label-sm text-on-surface-variant truncate">Food Waste Management</span></div></div><div class="flex items-center gap-space-xs shrink-0"><button aria-label="Notifications" class="relative w-11 h-11 flex items-center justify-center rounded-full text-secondary hover:bg-surface-container active:bg-surface-container-high transition-colors"><span class="material-symbols-outlined text-[22px]">notifications</span><span class="absolute top-2.5 right-2.5 w-2 h-2 rounded-full bg-error ring-2 ring-surface"></span></button><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center shadow-sm"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="flex-1 flex flex-col relative w-full pt-16 pb-24 bg-surface min-h-screen"><div class="flex flex-col w-full px-gutter-mobile py-space-md space-y-space-lg">
+<!-- 1. Header & Design System Overview -->
+<section class="bg-surface-container-lowest p-space-md rounded-lg shadow-sm space-y-space-sm">
+<div class="flex flex-wrap items-center gap-space-xs">
+<span class="bg-primary-fixed/40 text-on-primary-fixed font-label-sm text-label-sm px-2 py-0.5 rounded-full font-semibold">Design System &amp; Component Kit</span>
+<span class="bg-surface-container text-on-surface-variant font-label-sm text-label-sm px-2 py-0.5 rounded-full">v2.4.0</span>
+</div>
+<div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface">DigiTrace UI Foundations</h1>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">
+        Atomic component architecture, verified token scales, and operational design patterns for institutional food waste management.
+      </p>
+</div>
+<!-- Metadata Tech Chips -->
+<div class="flex flex-wrap items-center gap-1.5 pt-space-xs">
+<span class="inline-flex items-center gap-1 px-2 py-1 rounded bg-surface-container text-on-surface font-label-sm text-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span> React 18
+      </span>
+<span class="inline-flex items-center gap-1 px-2 py-1 rounded bg-surface-container text-on-surface font-label-sm text-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span> Tailwind CSS
+      </span>
+<span class="inline-flex items-center gap-1 px-2 py-1 rounded bg-surface-container text-on-surface font-label-sm text-label-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span> Material Symbols
+      </span>
+<span class="inline-flex items-center gap-1 px-2 py-1 rounded bg-surface-container-high text-on-surface font-label-sm text-label-sm font-semibold">
+<span class="material-symbols-outlined text-[14px] text-primary">verified</span> WCAG AAA Scored
+      </span>
+</div>
+</section>
+<!-- Interactive Token Navigator Tabs -->
+<section class="bg-surface-container-lowest p-1 rounded-lg shadow-sm">
+<div class="grid grid-cols-4 gap-1 text-center font-label-sm text-label-sm font-semibold" id="kitTabContainer">
+<button class="kit-tab-btn py-2 px-1 rounded bg-primary text-on-primary transition-colors" data-target="section-tokens" onclick="switchKitTab('tokens')">Tokens</button>
+<button class="kit-tab-btn py-2 px-1 rounded text-on-surface-variant hover:bg-surface-container transition-colors" data-target="section-controls" onclick="switchKitTab('controls')">Controls</button>
+<button class="kit-tab-btn py-2 px-1 rounded text-on-surface-variant hover:bg-surface-container transition-colors" data-target="section-badges" onclick="switchKitTab('badges')">Status</button>
+<button class="kit-tab-btn py-2 px-1 rounded text-on-surface-variant hover:bg-surface-container transition-colors" data-target="section-feedback" onclick="switchKitTab('feedback')">Feedback</button>
+</div>
+</section>
+<!-- 2. Color Palette Tokens -->
+<section class="space-y-space-md" id="section-tokens">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]">palette</span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Color Palette &amp; Token Scale</h2>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase">8 Token Classes</span>
+</div>
+<!-- Sustainability Green / Primary -->
+<div class="bg-surface-container-lowest p-space-md rounded-lg shadow-sm space-y-space-sm">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface font-semibold">Primary Sustainability Scale</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Resource Diversion</span>
+</div>
+<div class="grid grid-cols-3 gap-2">
+<div class="bg-primary text-on-primary p-2.5 rounded-lg flex flex-col justify-between h-20 shadow-sm">
+<span class="font-label-sm text-label-sm font-semibold">Primary Core</span>
+<span class="font-body-sm text-body-sm font-mono opacity-90">#006948</span>
+</div>
+<div class="bg-primary-container text-on-primary-container p-2.5 rounded-lg flex flex-col justify-between h-20 shadow-sm">
+<span class="font-label-sm text-label-sm font-semibold">Primary Surface</span>
+<span class="font-body-sm text-body-sm font-mono opacity-90">#00855D</span>
+</div>
+<div class="bg-primary-fixed text-on-primary-fixed p-2.5 rounded-lg flex flex-col justify-between h-20 shadow-sm">
+<span class="font-label-sm text-label-sm font-semibold">Primary Fixed</span>
+<span class="font-body-sm text-body-sm font-mono opacity-90">#85F8C4</span>
+</div>
+</div>
+</div>
+<!-- Semantic Status Colors -->
+<div class="bg-surface-container-lowest p-space-md rounded-lg shadow-sm space-y-space-sm">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface font-semibold">Semantic Governance States</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Audit Classification</span>
+</div>
+<div class="grid grid-cols-2 gap-2">
+<div class="p-3 rounded-lg bg-surface-container-low flex items-center justify-between shadow-sm">
+<div>
+<span class="block font-label-sm text-label-sm font-semibold text-primary">Diverted / Yield</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant font-mono">primary-fixed-dim</span>
+</div>
+<div class="w-7 h-7 rounded-full bg-primary-fixed-dim shadow-inner"></div>
+</div>
+<div class="p-3 rounded-lg bg-surface-container-low flex items-center justify-between shadow-sm">
+<div>
+<span class="block font-label-sm text-label-sm font-semibold text-tertiary">Logistics / Rescued</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant font-mono">tertiary</span>
+</div>
+<div class="w-7 h-7 rounded-full bg-tertiary shadow-inner"></div>
+</div>
+<div class="p-3 rounded-lg bg-surface-container-low flex items-center justify-between shadow-sm">
+<div>
+<span class="block font-label-sm text-label-sm font-semibold text-secondary">Operational Audit</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant font-mono">secondary</span>
+</div>
+<div class="w-7 h-7 rounded-full bg-secondary shadow-inner"></div>
+</div>
+<div class="p-3 rounded-lg bg-surface-container-low flex items-center justify-between shadow-sm">
+<div>
+<span class="block font-label-sm text-label-sm font-semibold text-error">Disposed / Spoilage</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant font-mono">error</span>
+</div>
+<div class="w-7 h-7 rounded-full bg-error shadow-inner"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- 3. Buttons & Action Elements -->
+<section class="space-y-space-md" id="section-controls">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]">smart_button</span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Button Archetypes &amp; States</h2>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Height 40px Focus</span>
+</div>
+<div class="bg-surface-container-lowest p-space-md rounded-lg shadow-sm space-y-space-md">
+<!-- Button Grid: Primary, Secondary, Outline, Destructive -->
+<div class="space-y-space-xs">
+<label class="block font-label-sm text-label-sm text-on-surface-variant font-semibold">Tier 1 &amp; Tier 2 Primary Actions</label>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+<!-- Primary Action -->
+<button class="h-10 px-4 rounded bg-primary text-on-primary font-label-lg text-label-lg flex items-center justify-center gap-2 hover:bg-primary-container active:scale-[0.99] transition shadow-sm">
+<span class="material-symbols-outlined text-[18px]">add</span>
+<span>Record Waste Log</span>
+</button>
+<!-- Secondary Action -->
+<button class="h-10 px-4 rounded bg-on-secondary-fixed text-surface font-label-lg text-label-lg flex items-center justify-center gap-2 hover:bg-on-background active:scale-[0.99] transition shadow-sm">
+<span class="material-symbols-outlined text-[18px]">file_download</span>
+<span>Export CSV Audit</span>
+</button>
+</div>
+</div>
+<!-- Outline, Destructive, Ghost -->
+<div class="space-y-space-xs">
+<label class="block font-label-sm text-label-sm text-on-surface-variant font-semibold">Contextual Actions &amp; Neutral Triggers</label>
+<div class="grid grid-cols-3 gap-2">
+<!-- Neutral Outline -->
+<button class="h-10 px-2 rounded bg-surface-container text-on-surface font-label-md text-label-md flex items-center justify-center gap-1 hover:bg-surface-container-high transition">
+<span class="material-symbols-outlined text-[16px]">tune</span>
+<span>Filter</span>
+</button>
+<!-- Destructive -->
+<button class="h-10 px-2 rounded bg-error-container text-on-error-container font-label-md text-label-md flex items-center justify-center gap-1 hover:opacity-90 transition">
+<span class="material-symbols-outlined text-[16px]">delete</span>
+<span>Discard</span>
+</button>
+<!-- Ghost Action -->
+<button class="h-10 px-2 rounded text-secondary hover:bg-surface-container active:bg-surface-container-high font-label-md text-label-md flex items-center justify-center gap-1 transition">
+<span class="material-symbols-outlined text-[18px]">visibility</span>
+<span>Inspect</span>
+</button>
+</div>
+</div>
+<!-- State Demonstration: Disabled and Loading -->
+<div class="space-y-space-xs">
+<label class="block font-label-sm text-label-sm text-on-surface-variant font-semibold">Interactive Micro-States</label>
+<div class="grid grid-cols-2 gap-2">
+<!-- Disabled State -->
+<button class="h-10 px-4 rounded bg-surface-container text-secondary opacity-60 font-label-lg text-label-lg flex items-center justify-center gap-2 cursor-not-allowed" disabled="">
+<span class="material-symbols-outlined text-[18px]">lock</span>
+<span>Sync Disabled</span>
+</button>
+<!-- Loading State with Spinner -->
+<button class="h-10 px-4 rounded bg-primary text-on-primary font-label-lg text-label-lg flex items-center justify-center gap-2 pointer-events-none opacity-90 shadow-sm">
+<svg class="animate-spin h-4 w-4 text-on-primary" fill="none" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+<path class="opacity-75" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z" fill="currentColor"></path>
+</svg>
+<span>Verifying Scale...</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- 4. Form & Input Controls -->
+<section class="space-y-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]">input</span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Data Capture &amp; Form Architecture</h2>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Input 40px Height</span>
+</div>
+<div class="bg-surface-container-lowest p-space-md rounded-lg shadow-sm space-y-space-md">
+<!-- Search Field with Clear Button -->
+<div class="space-y-1">
+<label class="block font-label-sm text-label-sm text-on-surface font-semibold">Inventory Manifest Search</label>
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-3 text-secondary text-[18px]">search</span>
+<input class="w-full h-10 pl-9 pr-9 bg-surface-container-low rounded font-body-md text-body-md text-on-surface placeholder:text-secondary focus:outline-none focus:bg-surface-container-lowest focus:ring-1 focus:ring-primary shadow-sm" placeholder="Search batch tag, kitchen station, or SKU..." type="text" value="Organic Dairy #402"/>
+<button aria-label="Clear Search Input" class="absolute right-2.5 w-5 h-5 flex items-center justify-center rounded-full text-secondary hover:bg-surface-container">
+<span class="material-symbols-outlined text-[14px]">close</span>
+</button>
+</div>
+</div>
+<!-- Dual Input Row: Number Input with Trailing Unit + Select Menu -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-space-sm">
+<div class="space-y-1">
+<label class="block font-label-sm text-label-sm text-on-surface font-semibold">Net Diversion Weight</label>
+<div class="relative flex items-center">
+<input class="w-full h-10 pl-3 pr-12 bg-surface-container-low rounded font-body-md text-body-md text-on-surface focus:outline-none focus:bg-surface-container-lowest focus:ring-1 focus:ring-primary shadow-sm" step="0.1" type="number" value="28.4"/>
+<span class="absolute right-3 font-label-sm text-label-sm text-secondary font-semibold pointer-events-none">KG</span>
+</div>
+</div>
+<div class="space-y-1">
+<label class="block font-label-sm text-label-sm text-on-surface font-semibold">Waste Category Stream</label>
+<div class="relative flex items-center">
+<select class="w-full h-10 px-3 bg-surface-container-low rounded font-body-md text-body-md text-on-surface appearance-none focus:outline-none focus:bg-surface-container-lowest focus:ring-1 focus:ring-primary shadow-sm">
+<option>Prepared Banquet Overproduction</option>
+<option>Raw Kitchen Trimmings</option>
+<option>Expired Dairy &amp; Yogurts</option>
+<option>Bakery / Surplus Stale Dough</option>
+</select>
+<span class="material-symbols-outlined absolute right-2.5 text-secondary pointer-events-none text-[20px]">expand_more</span>
+</div>
+</div>
+</div>
+<!-- Date Range Mock Selector -->
+<div class="space-y-1">
+<label class="block font-label-sm text-label-sm text-on-surface font-semibold">Audit Reporting Window</label>
+<button class="w-full h-10 px-3 bg-surface-container-low rounded flex items-center justify-between text-left hover:bg-surface-container transition shadow-sm">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-[18px]">calendar_month</span>
+<span class="font-body-md text-body-md text-on-surface font-medium">Oct 12 – Oct 18, 2024</span>
+</div>
+<span class="font-label-sm text-label-sm text-primary font-semibold">Week 42</span>
+</button>
+</div>
+<!-- Food Condition Segmented Choice (Radios/Checkboxes) -->
+<div class="space-y-1.5 pt-space-xs">
+<label class="block font-label-sm text-label-sm text-on-surface font-semibold">Food Rescue Suitability Rating</label>
+<div class="grid grid-cols-3 gap-2" id="conditionRadioGroup">
+<button class="condition-btn p-2 rounded bg-primary-fixed/40 text-on-primary-fixed flex flex-col items-center justify-center gap-1 transition text-center shadow-sm" onclick="selectCondition(this)">
+<span class="material-symbols-outlined text-[18px] text-primary">volunteer_activism</span>
+<span class="font-label-sm text-label-sm font-semibold">Edible / Fresh</span>
+</button>
+<button class="condition-btn p-2 rounded bg-surface-container text-on-surface-variant flex flex-col items-center justify-center gap-1 transition text-center" onclick="selectCondition(this)">
+<span class="material-symbols-outlined text-[18px]">warning</span>
+<span class="font-label-sm text-label-sm font-semibold">Near Best-By</span>
+</button>
+<button class="condition-btn p-2 rounded bg-surface-container text-on-surface-variant flex flex-col items-center justify-center gap-1 transition text-center" onclick="selectCondition(this)">
+<span class="material-symbols-outlined text-[18px]">compost</span>
+<span class="font-label-sm text-label-sm font-semibold">Organic Waste</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- 5. Badges & Status Indicators -->
+<section class="space-y-space-md" id="section-badges">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]">sell</span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Pill Badges &amp; Yield Chips</h2>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Classification Standard</span>
+</div>
+<div class="bg-surface-container-lowest p-space-md rounded-lg shadow-sm space-y-space-md">
+<!-- Operational Badges Grid -->
+<div class="space-y-space-xs">
+<span class="block font-label-sm text-label-sm text-on-surface font-semibold">State Lifecycle Chips</span>
+<div class="flex flex-wrap gap-2">
+<!-- Logged -->
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-surface-container text-secondary font-label-sm text-label-sm font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+            Logged
+          </span>
+<!-- Donated -->
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-primary-fixed/40 text-on-primary-fixed font-label-sm text-label-sm font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+            Donated
+          </span>
+<!-- Composted -->
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-primary-container/20 text-primary-container font-label-sm text-label-sm font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container"></span>
+            Composted
+          </span>
+<!-- Biofuel / Feed -->
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+            Animal Feed
+          </span>
+<!-- Landfill Avoided -->
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-tertiary-fixed text-on-tertiary-fixed font-label-sm text-label-sm font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span>
+            Avoided Landfill
+          </span>
+<!-- Spoiled / Disposed -->
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-error-container text-on-error-container font-label-sm text-label-sm font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-error"></span>
+            Spoiled / Dumped
+          </span>
+</div>
+</div>
+<!-- Metric Trend Micro Badges -->
+<div class="space-y-space-xs">
+<span class="block font-label-sm text-label-sm text-on-surface font-semibold">Realtime Trend &amp; Impact Badges</span>
+<div class="grid grid-cols-2 gap-2">
+<div class="p-2.5 rounded bg-surface-container-low flex items-center justify-between shadow-sm">
+<span class="font-body-sm text-body-sm text-on-surface-variant font-medium">Weekly Recovery Yield</span>
+<span class="inline-flex items-center gap-0.5 px-2 py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed font-label-sm text-label-sm font-semibold">
+<span class="material-symbols-outlined text-[14px]">trending_up</span>
+              +12.4%
+            </span>
+</div>
+<div class="p-2.5 rounded bg-surface-container-low flex items-center justify-between shadow-sm">
+<span class="font-body-sm text-body-sm text-on-surface-variant font-medium">Net Carbon Abated</span>
+<span class="inline-flex items-center gap-0.5 px-2 py-0.5 rounded-full bg-tertiary-fixed text-on-tertiary-fixed font-label-sm text-label-sm font-semibold">
+<span class="material-symbols-outlined text-[14px]">eco</span>
+              -180 kg CO₂e
+            </span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 6. Data Display & Card Components -->
+<section class="space-y-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]">monitoring</span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Data Displays &amp; Complex Cards</h2>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Card Primitives</span>
+</div>
+<!-- Metric / Stat KPI Card with Sparkline -->
+<div class="bg-surface-container-lowest p-space-md rounded-lg shadow-sm space-y-space-sm">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-secondary font-semibold uppercase tracking-wider">Kitchen Yield KPI</span>
+<span class="font-label-sm text-label-sm text-primary font-semibold flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[14px]">arrow_upward</span>
+          +8.4% Efficiency
+        </span>
+</div>
+<div class="flex items-end justify-between">
+<div>
+<span class="block font-data-metric text-data-metric text-on-surface">342.5 <span class="font-headline-sm text-headline-sm text-secondary">kg</span></span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Daily Waste Diverted from Incineration</span>
+</div>
+<!-- Lightweight Sparkline SVG -->
+<div class="w-24 h-10">
+<svg class="w-full h-full text-primary" fill="none" viewbox="0 0 100 40">
+<path d="M0 32 L15 28 L30 35 L45 20 L60 25 L75 12 L90 18 L100 6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path>
+<path d="M0 32 L15 28 L30 35 L45 20 L60 25 L75 12 L90 18 L100 6 L100 40 L0 40 Z" fill="currentColor" fill-opacity="0.1"></path>
+</svg>
+</div>
+</div>
+</div>
+<!-- Waste Entry Row Card (Mock Production Table Row) -->
+<div class="bg-surface-container-lowest p-space-md rounded-lg shadow-sm space-y-space-xs">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant font-semibold">Audit Item Pattern: Waste Entry Row</span>
+<span class="font-label-sm text-label-sm text-secondary">#LOG-9024</span>
+</div>
+<div class="p-3 rounded-lg bg-surface-container-low flex items-center justify-between gap-3 shadow-sm">
+<div class="flex items-center gap-3 min-w-0">
+<div class="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary text-[22px]">bakery_dining</span>
+</div>
+<div class="min-w-0 flex flex-col">
+<span class="font-headline-sm text-headline-sm text-on-surface truncate">Artisan Baguettes &amp; Croissants</span>
+<div class="flex items-center gap-2 font-label-sm text-label-sm text-secondary">
+<span>Main Bakery Station</span>
+<span>•</span>
+<span>10:45 AM</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-3 shrink-0">
+<div class="text-right">
+<span class="font-headline-sm text-headline-sm text-on-surface block font-mono">14.2 kg</span>
+<span class="inline-flex items-center px-1.5 py-0.5 rounded-full bg-primary-fixed/50 text-on-primary-fixed font-label-sm text-label-sm font-semibold">Donated</span>
+</div>
+<button aria-label="Waste Entry Options" class="w-8 h-8 rounded-full flex items-center justify-center text-secondary hover:bg-surface-container">
+<span class="material-symbols-outlined text-[18px]">more_vert</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- 7. Feedback, Modals & Notification States -->
+<section class="space-y-space-md" id="section-feedback">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]">feedback</span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Feedback &amp; Operational States</h2>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Toasts &amp; Empties</span>
+</div>
+<!-- Inline Alerts / Toasts -->
+<div class="space-y-space-xs">
+<!-- Success Toast -->
+<div class="p-3 rounded-lg bg-surface-container-lowest shadow-sm flex items-start gap-3">
+<div class="w-6 h-6 rounded-full bg-primary-fixed flex items-center justify-center shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-on-primary-fixed text-[16px]">check_circle</span>
+</div>
+<div class="flex-1 min-w-0">
+<span class="block font-label-md text-label-md text-on-surface font-semibold">Waste Audit Record Confirmed</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Record #LOG-8841 (32.8 kg fresh produce) has been synchronized with City Food Rescue Hub.</p>
+</div>
+<button aria-label="Dismiss Alert" class="text-secondary hover:text-on-surface">
+<span class="material-symbols-outlined text-[16px]">close</span>
+</button>
+</div>
+<!-- Warning Toast -->
+<div class="p-3 rounded-lg bg-surface-container-lowest shadow-sm flex items-start gap-3">
+<div class="w-6 h-6 rounded-full bg-secondary-container flex items-center justify-center shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-on-secondary-container text-[16px]">thermostat</span>
+</div>
+<div class="flex-1 min-w-0">
+<span class="block font-label-md text-label-md text-on-surface font-semibold">Dairy Cooler #2 Temperature Variance</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Sensor reading at 6.8°C (Target: ≤4.0°C). High spoilage hazard for 48 milk units.</p>
+</div>
+<span class="font-label-sm text-label-sm text-secondary font-semibold whitespace-nowrap">2m ago</span>
+</div>
+</div>
+<!-- Empty State Component -->
+<div class="bg-surface-container-lowest p-space-lg rounded-lg shadow-sm text-center flex flex-col items-center justify-center space-y-space-sm">
+<div class="w-14 h-14 rounded-full bg-surface-container flex items-center justify-center text-primary shadow-inner">
+<span class="material-symbols-outlined text-[28px]">inventory_2</span>
+</div>
+<div class="space-y-1 max-w-xs">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">No Pending Donations Found</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+          All excess food stock has either been processed for community soup kitchens or transferred to on-site composting.
+        </p>
+</div>
+<button class="h-10 px-4 rounded bg-primary text-on-primary font-label-lg text-label-lg flex items-center justify-center gap-1.5 hover:bg-primary-container transition shadow-sm">
+<span class="material-symbols-outlined text-[18px]">add_circle</span>
+<span>Create Donation Batch</span>
+</button>
+</div>
+<!-- Skeleton Shimmer Placeholder Card & Retry State -->
+<div class="bg-surface-container-lowest p-space-md rounded-lg shadow-sm space-y-space-sm">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface font-semibold">Loading Skeleton State</span>
+<button class="font-label-sm text-label-sm text-primary font-semibold flex items-center gap-1 hover:underline">
+<span class="material-symbols-outlined text-[14px]">refresh</span> Retry Stream
+        </button>
+</div>
+<!-- Shimmer Placeholder Content -->
+<div class="animate-pulse space-y-2.5">
+<div class="h-4 bg-surface-container rounded w-3/4"></div>
+<div class="h-3 bg-surface-container rounded w-1/2"></div>
+<div class="grid grid-cols-3 gap-2 pt-2">
+<div class="h-12 bg-surface-container rounded"></div>
+<div class="h-12 bg-surface-container rounded"></div>
+<div class="h-12 bg-surface-container rounded"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- Micro-interactions Script -->
+<script>
+    function switchKitTab(tabKey) {
+      const tabs = document.querySelectorAll('.kit-tab-btn');
+      tabs.forEach(tab => {
+        tab.classList.remove('bg-primary', 'text-on-primary');
+        tab.classList.add('text-on-surface-variant');
+      });
+      event.currentTarget.classList.add('bg-primary', 'text-on-primary');
+      event.currentTarget.classList.remove('text-on-surface-variant');
+
+      const targetId = event.currentTarget.getAttribute('data-target');
+      const targetElem = document.getElementById(targetId);
+      if (targetElem) {
+        targetElem.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+
+    function selectCondition(el) {
+      const container = document.getElementById('conditionRadioGroup');
+      const buttons = container.querySelectorAll('.condition-btn');
+      buttons.forEach(btn => {
+        btn.classList.remove('bg-primary-fixed/40', 'text-on-primary-fixed');
+        btn.classList.add('bg-surface-container', 'text-on-surface-variant');
+        const icon = btn.querySelector('.material-symbols-outlined');
+        if (icon) icon.classList.remove('text-primary');
+      });
+
+      el.classList.remove('bg-surface-container', 'text-on-surface-variant');
+      el.classList.add('bg-primary-fixed/40', 'text-on-primary-fixed');
+      const icon = el.querySelector('.material-symbols-outlined');
+      if (icon) icon.classList.add('text-primary');
+    }
+  </script>
+</div></main><nav class="fixed bottom-0 w-full z-50 pb-safe bg-surface/95 backdrop-blur-xl shadow-[0_-1px_8px_rgba(0,0,0,0.04)]" data-active-classes="text-primary font-semibold"><div class="flex items-center justify-between h-16 px-1 max-w-lg mx-auto"><a class="flex-1 flex flex-col items-center justify-center h-full min-w-0 text-secondary hover:text-on-surface transition-colors" data-path="dashboard" href="#"><span class="material-symbols-outlined text-[22px]">dashboard</span><span class="font-label-sm text-label-sm mt-0.5 truncate">Dashboard</span></a><a class="flex-1 flex flex-col items-center justify-center h-full min-w-0 text-secondary hover:text-on-surface transition-colors" data-path="waste-logs" href="#"><span class="material-symbols-outlined text-[22px]">assignment</span><span class="font-label-sm text-label-sm mt-0.5 truncate">Logs</span></a><a class="flex-1 flex flex-col items-center justify-center h-full min-w-0 text-secondary hover:text-on-surface transition-colors" data-path="analytics" href="#"><span class="material-symbols-outlined text-[22px]">analytics</span><span class="font-label-sm text-label-sm mt-0.5 truncate">Analytics</span></a><a class="flex-1 flex flex-col items-center justify-center h-full min-w-0 text-secondary hover:text-on-surface transition-colors" data-path="donations-rescue" href="#"><span class="material-symbols-outlined text-[22px]">volunteer_activism</span><span class="font-label-sm text-label-sm mt-0.5 truncate">Rescue</span></a><a class="flex-1 flex flex-col items-center justify-center h-full min-w-0 text-secondary hover:text-on-surface transition-colors" data-path="components-ui-kit" href="#"><span class="material-symbols-outlined text-[22px]">layers</span><span class="font-label-sm text-label-sm mt-0.5 truncate">UI Kit</span></a></div></nav></body></html>
