@@ -1,18 +1,21 @@
 import React from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Logo from './Logo';
+import { useAuth } from '../context/AuthContext';
 
 export default function Sidebar({ mobileOpen, setMobileOpen }) {
   const location = useLocation();
   const navigate = useNavigate();
+  const { user, logout } = useAuth();
 
   const mainNavItems = [
     { label: 'Dashboard', path: '/dashboard', icon: 'grid_view' },
-    { label: 'Surplus Food / Find Food', path: '/surplus-food', icon: 'storefront' },
-    { label: 'My Donations', path: '/food-records', icon: 'volunteer_activism' },
-    { label: 'My Requests', path: '/my-requests', icon: 'assignment' },
-    { label: 'Food Tracking', path: '/trace/DT-F-0001', icon: 'account_tree' },
-    { label: 'Impact & Reports', path: '/reports', icon: 'monitoring' },
+    { label: 'Food Records', path: '/food-records', icon: 'inventory_2' },
+    { label: 'Surplus & Rescue', path: '/surplus-food', icon: 'volunteer_activism' },
+    { label: 'Waste Tracking', path: '/waste-tracking', icon: 'delete_sweep' },
+    { label: 'Trace', path: '/trace/DT-F-0001', icon: 'account_tree' },
+    { label: 'Analytics', path: '/analytics', icon: 'monitoring' },
+    { label: 'Reports', path: '/reports', icon: 'description' },
   ];
 
   const accountNavItems = [
@@ -22,40 +25,46 @@ export default function Sidebar({ mobileOpen, setMobileOpen }) {
 
   const isActive = (path) => {
     if (path === '/dashboard') return location.pathname === '/dashboard';
-    if (path.startsWith('/trace')) return location.pathname.startsWith('/trace') || location.pathname.startsWith('/waste-record-details');
     const basePath = path.split('/')[1];
     return location.pathname.startsWith(`/${basePath}`);
   };
 
   const handleLogout = (e) => {
     e.preventDefault();
-    navigate('/login');
+    logout();
+    navigate('/login', { replace: true });
   };
+
+  const roleLabel = {
+    FOOD_PROVIDER: 'Food Provider',
+    NGO: 'NGO',
+    ADMIN: 'Administrator',
+  }[user?.role] || 'DigiTrace User';
 
   return (
     <>
       {/* Mobile Backdrop */}
       {mobileOpen && (
         <div 
-          className="fixed inset-0 bg-[#1C2421]/40 backdrop-blur-xs z-40 md:hidden"
+          className="fixed inset-0 bg-on-surface/40 backdrop-blur-xs z-40 md:hidden"
           onClick={() => setMobileOpen(false)}
         />
       )}
 
       {/* Sidebar Container */}
-      <aside className={`fixed left-0 top-0 h-full w-64 bg-white shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-50 flex flex-col justify-between transition-transform duration-300 ${mobileOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'} overflow-y-auto border-r border-[#E6E2D8]`}>
+      <aside className={`fixed left-0 top-0 h-full w-64 bg-surface-container-lowest shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-50 flex flex-col justify-between transition-transform duration-300 ${mobileOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'} overflow-y-auto border-r border-surface-container-low`}>
         <div className="flex flex-col">
           {/* Brand Header */}
-          <div className="h-16 px-5 flex items-center justify-between bg-white border-b border-[#E6E2D8] shrink-0">
-            <Link to="/dashboard" className="flex items-center gap-3">
-              <Logo className="h-8 w-8 shrink-0 text-[#1B4D3E]" />
+          <div className="h-16 px-space-lg flex items-center justify-between bg-surface-container-lowest border-b border-surface-container-low shrink-0">
+            <Link to="/dashboard" className="flex items-center gap-space-sm">
+              <Logo className="h-8 w-8 shrink-0" />
               <div className="flex flex-col">
-                <span className="font-headline-sm text-base text-[#1C2421] leading-tight font-extrabold tracking-tight">DigiTrace</span>
-                <span className="font-label-sm text-[11px] text-[#1B4D3E] leading-none font-bold">Food Rescue & Trace</span>
+                <span className="font-headline-sm text-headline-sm text-on-surface leading-tight font-bold">DigiTrace</span>
+                <span className="font-label-sm text-label-sm text-primary leading-none font-semibold">Food Waste & Rescue</span>
               </div>
             </Link>
             <button 
-              className="md:hidden p-1 text-[#4A5550] hover:text-[#1C2421]" 
+              className="md:hidden p-1 text-on-surface-variant hover:text-on-surface" 
               onClick={() => setMobileOpen(false)}
             >
               <span className="material-symbols-outlined text-[20px]">close</span>
@@ -63,11 +72,11 @@ export default function Sidebar({ mobileOpen, setMobileOpen }) {
           </div>
 
           {/* Navigation Items */}
-          <div className="flex flex-col gap-6 px-3.5 my-4">
+          <div className="flex flex-col gap-space-lg px-space-md my-space-md">
             {/* MAIN Group */}
             <div className="flex flex-col gap-1">
-              <span className="text-[11px] uppercase tracking-wider text-[#78857E] font-bold px-3 py-1">
-                PLATFORM
+              <span className="font-label-sm text-label-sm uppercase tracking-wider text-outline font-bold px-3 py-1">
+                MAIN
               </span>
               {mainNavItems.map((item) => {
                 const active = isActive(item.path);
@@ -76,14 +85,14 @@ export default function Sidebar({ mobileOpen, setMobileOpen }) {
                     key={item.path}
                     to={item.path}
                     onClick={() => setMobileOpen(false)}
-                    className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs transition-colors ${
+                    className={`flex items-center gap-space-sm px-3 py-2 rounded-lg font-label-md text-label-md transition-colors ${
                       active
-                        ? 'bg-[#1B4D3E] text-white font-bold shadow-xs'
-                        : 'text-[#4A5550] hover:bg-[#FAF8F5] hover:text-[#1C2421] font-semibold'
+                        ? 'bg-primary text-on-primary font-bold shadow-xs'
+                        : 'text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface'
                     }`}
                   >
-                    <span className="material-symbols-outlined text-[19px]">{item.icon}</span>
-                    <span className="truncate">{item.label}</span>
+                    <span className="material-symbols-outlined text-[18px]">{item.icon}</span>
+                    <span>{item.label}</span>
                   </Link>
                 );
               })}
@@ -91,7 +100,7 @@ export default function Sidebar({ mobileOpen, setMobileOpen }) {
 
             {/* ACCOUNT Group */}
             <div className="flex flex-col gap-1">
-              <span className="text-[11px] uppercase tracking-wider text-[#78857E] font-bold px-3 py-1">
+              <span className="font-label-sm text-label-sm uppercase tracking-wider text-outline font-bold px-3 py-1">
                 ACCOUNT
               </span>
               {accountNavItems.map((item) => {
@@ -101,13 +110,13 @@ export default function Sidebar({ mobileOpen, setMobileOpen }) {
                     key={item.path}
                     to={item.path}
                     onClick={() => setMobileOpen(false)}
-                    className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs transition-colors ${
+                    className={`flex items-center gap-space-sm px-3 py-2 rounded-lg font-label-md text-label-md transition-colors ${
                       active
-                        ? 'bg-[#1B4D3E] text-white font-bold shadow-xs'
-                        : 'text-[#4A5550] hover:bg-[#FAF8F5] hover:text-[#1C2421] font-semibold'
+                        ? 'bg-primary text-on-primary font-bold shadow-xs'
+                        : 'text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface'
                     }`}
                   >
-                    <span className="material-symbols-outlined text-[19px]">{item.icon}</span>
+                    <span className="material-symbols-outlined text-[18px]">{item.icon}</span>
                     <span>{item.label}</span>
                   </Link>
                 );
@@ -117,23 +126,23 @@ export default function Sidebar({ mobileOpen, setMobileOpen }) {
         </div>
 
         {/* User Profile Card */}
-        <div className="p-3.5 bg-white border-t border-[#E6E2D8] shrink-0">
-          <div className="flex items-center gap-3 p-2.5 rounded-xl bg-[#FAF8F5] border border-[#E6E2D8]">
-            <Link to="/profile" className="flex items-center gap-2.5 flex-1 min-w-0">
-              <div className="w-8 h-8 rounded-full bg-[#1B4D3E] flex items-center justify-center text-white shrink-0 font-bold">
+        <div className="p-space-md bg-surface-container-lowest border-t border-surface-container-low shrink-0">
+          <div className="flex items-center gap-space-sm p-space-sm rounded-lg bg-surface-container-low">
+            <Link to="/profile" className="flex items-center gap-space-sm flex-1 min-w-0">
+              <div className="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-white shrink-0 font-bold">
                 <span className="material-symbols-outlined text-[18px]">person</span>
               </div>
               <div className="flex flex-col min-w-0 flex-1">
-                <span className="text-xs text-[#1C2421] truncate font-bold">Shruti Sharma</span>
-                <span className="text-[11px] text-[#52796F] truncate font-medium">Food Provider Lead</span>
+                <span className="font-label-md text-label-md text-on-surface truncate font-bold">{user?.name || user?.email || 'DigiTrace User'}</span>
+                <span className="font-label-sm text-label-sm text-on-surface-variant truncate">{roleLabel}</span>
               </div>
             </Link>
             <button
               onClick={handleLogout}
-              className="p-1.5 text-[#4A5550] hover:text-[#DC2626] hover:bg-[#FEE2E2] rounded-lg transition-colors shrink-0"
+              className="p-space-xs text-on-surface-variant hover:text-error hover:bg-surface-container-high rounded transition-colors shrink-0"
               title="Log out"
             >
-              <span className="material-symbols-outlined text-[18px]">logout</span>
+              <span className="material-symbols-outlined text-[20px]">logout</span>
             </button>
           </div>
         </div>

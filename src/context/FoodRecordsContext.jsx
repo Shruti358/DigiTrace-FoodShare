@@ -21,8 +21,8 @@ export function FoodRecordsProvider({ children }) {
   // Add new food record (Enforces Prepared = Consumed + Surplus + Waste math)
   const addNewFoodRecord = (formData) => {
     const nextIdNum = records.length + 1;
-    const newRecordId = `DT-F-00${nextIdNum < 10 ? '0' + nextIdNum : nextIdNum}`;
-    const nowTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    const newRecordId = formData.recordId || `DT-F-00${nextIdNum < 10 ? '0' + nextIdNum : nextIdNum}`;
+    const nowTime = formData.time || new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 
     const preparedNum = parseFloat(formData.foodPrepared) || 0;
     const consumedNum = parseFloat(formData.foodConsumed) || 0;
@@ -311,6 +311,80 @@ export function FoodRecordsProvider({ children }) {
     setSurplusListings((prev) => prev.filter((s) => s.recordId !== recordId && s.id !== recordId));
   };
 
+  const updateFoodRecord = (recordId, updatedRecord) => {
+    setRecords((prev) => {
+      const recordExists = prev.some((record) => record.recordId === recordId);
+      const updatedRecords = prev.map((record) =>
+        record.recordId === recordId ? { ...record, ...updatedRecord } : record
+      );
+      return recordExists ? updatedRecords : [updatedRecord, ...updatedRecords];
+    });
+
+    setWasteLogs((prev) => {
+      const otherLogs = prev.filter((log) => log.recordId !== recordId);
+      if (updatedRecord.waste <= 0) return otherLogs;
+      return [{
+        logId: `DT-W-${recordId.replace(/\D/g, '')}`,
+        recordId,
+        date: updatedRecord.date,
+        time: updatedRecord.time,
+        item: `${updatedRecord.foodCategory} Scrap`,
+        station: updatedRecord.station,
+        category: updatedRecord.foodCategory,
+        weight: updatedRecord.waste,
+        type: updatedRecord.wasteType || 'Organic Scrap',
+        cause: updatedRecord.wasteReason || 'Prep Loss',
+        stream: updatedRecord.handlingStream === 'compost' ? 'Aerobic Digester' : 'Municipal Compost',
+        status: 'Composted',
+        statusBg: 'bg-primary-fixed text-on-primary-fixed',
+      }, ...otherLogs];
+    });
+
+    setSurplusLogs((prev) => {
+      const otherLogs = prev.filter((log) => log.recordId !== recordId);
+      if (updatedRecord.surplus <= 0) return otherLogs;
+      return [{
+        surplusId: `DT-S-${recordId.replace(/\D/g, '')}`,
+        recordId,
+        batch: updatedRecord.itemName,
+        weight: updatedRecord.surplus,
+        temp: '38°F (Chilled)',
+        readyTime: updatedRecord.time,
+        recipient: 'Available on Marketplace',
+        courier: 'Pending Claim Dispatch',
+        status: 'Available',
+        statusBg: 'bg-emerald-100 text-emerald-800',
+      }, ...otherLogs];
+    });
+
+    setSurplusListings((prev) => {
+      const matchingListing = prev.find((listing) => listing.recordId === recordId);
+      const otherListings = prev.filter((listing) => listing.recordId !== recordId);
+      if (updatedRecord.surplus <= 0) return otherListings;
+
+      return [{
+        id: matchingListing?.id || `SRP-${recordId}`,
+        recordId,
+        title: updatedRecord.itemName,
+        provider: matchingListing?.provider || 'Food Provider',
+        facilityId: matchingListing?.facilityId || 'NODE-04',
+        category: updatedRecord.foodCategory,
+        quantityKg: updatedRecord.surplus,
+        availableKg: updatedRecord.surplus,
+        servings: Math.round(updatedRecord.surplus * 2.5),
+        expiryWindow: matchingListing?.expiryWindow || '03h 00m',
+        prepTime: `${updatedRecord.date} ${updatedRecord.time}`,
+        temp: matchingListing?.temp || '38°F (Chilled)',
+        status: 'Available',
+        dietary: matchingListing?.dietary || ['HACCP Insured', 'Fresh Prep'],
+        pickupAddress: matchingListing?.pickupAddress || 'Loading Dock #2',
+        safetyCertified: matchingListing?.safetyCertified ?? true,
+        haccpCode: matchingListing?.haccpCode || 'Pending Audit',
+        description: `Updated surplus from ${updatedRecord.mealType} food record.`,
+      }, ...otherListings];
+    });
+  };
+
   return (
     <FoodRecordsContext.Provider
       value={{
@@ -323,6 +397,7 @@ export function FoodRecordsProvider({ children }) {
         setSelectedRecordId,
         getSelectedTraceDetails,
         addNewFoodRecord,
+        updateFoodRecord,
         requestSurplusFood,
         acceptRequest,
         rejectRequest,

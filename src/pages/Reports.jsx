@@ -1,167 +1,120 @@
 import React, { useState, useMemo } from 'react';
 import AppLayout from '../components/AppLayout';
 import { useFoodRecords } from '../context/FoodRecordsContext';
+import { mockReportsList } from '../data/mockData';
 
 export default function Reports() {
-  const { records, rescueRequests } = useFoodRecords();
+  const { records, surplusListings, rescueRequests } = useFoodRecords();
+  const [filterType, setFilterType] = useState('ALL');
   const [downloading, setDownloading] = useState(false);
 
   const metrics = useMemo(() => {
-    const surplusKg = records.reduce((acc, r) => acc + (parseFloat(r.surplus) || 0), 0);
-    const wasteKg = records.reduce((acc, r) => acc + (parseFloat(r.waste) || 0), 0);
+    const prepared = records.reduce((acc, r) => acc + (parseFloat(r.foodPrepared) || 0), 0);
+    const consumed = records.reduce((acc, r) => acc + (parseFloat(r.foodConsumed) || 0), 0);
+    const surplus = records.reduce((acc, r) => acc + (parseFloat(r.surplus) || 0), 0);
+    const waste = records.reduce((acc, r) => acc + (parseFloat(r.waste) || 0), 0);
 
-    const completedDonations = rescueRequests.filter((rq) =>
-      ['Picked Up', 'Received', 'Distributed', 'Completed'].includes(rq.status)
-    ).length;
+    const rescued = rescueRequests
+      .filter((rq) => ['Picked Up', 'Received', 'Distributed', 'Completed'].includes(rq.status))
+      .reduce((acc, rq) => acc + (parseFloat(rq.requestedKg) || 0), 0);
 
-    const mealsCount = Math.round(surplusKg * 2.4);
-    const co2eMitigated = (surplusKg * 2.2).toFixed(1);
+    const rescueRate = prepared > 0 ? ((surplus / prepared) * 100).toFixed(1) : '0.0';
+    const wasteRate = prepared > 0 ? ((waste / prepared) * 100).toFixed(1) : '0.0';
 
-    return { surplusKg, wasteKg, completedDonations, mealsCount, co2eMitigated };
+    return { prepared, consumed, surplus, rescued, waste, rescueRate, wasteRate };
   }, [records, rescueRequests]);
 
-  const reportItems = [
-    {
-      id: "RPT-2026-001",
-      title: "Monthly Food Rescue & Donation Summary",
-      type: "Rescue Summary",
-      period: "October 2026",
-      desc: "Detailed ledger of all surplus food batches claimed by verified NGO recipients."
-    },
-    {
-      id: "RPT-2026-002",
-      title: "Community Meal Distribution Outcome Receipt",
-      type: "NGO Receipt",
-      period: "Q3 - Q4 2026",
-      desc: "Record of portions delivered and served across community shelter dining programs."
-    },
-    {
-      id: "RPT-2026-003",
-      title: "Landfill Diversion & Organic Waste Reduction Report",
-      type: "Impact Ledger",
-      period: "Last 30 Days",
-      desc: "Analysis of food waste prevented and kilograms of methane/CO2e emissions mitigated."
-    },
-    {
-      id: "RPT-2026-004",
-      title: "Food Donation Receipt for Tax Exemption Records",
-      type: "Donation Manifest",
-      period: "Fiscal Year 2026",
-      desc: "Verified record of non-profit surplus donations for accounting and corporate CSR records."
-    }
-  ];
+  const filteredReports = useMemo(() => {
+    if (filterType === 'ALL') return mockReportsList;
+    return mockReportsList.filter((r) => r.type.toLowerCase().includes(filterType.toLowerCase()));
+  }, [filterType]);
 
-  const handleDownload = (report) => {
-    setDownloading(report.id);
+  const handleDownloadReport = (title) => {
+    setDownloading(title);
     setTimeout(() => {
       setDownloading(false);
-      const csvContent =
-        "data:text/csv;charset=utf-8,Report_ID,Report_Title,Period,Food_Rescued_kg,Estimated_Meals,CO2e_Mitigated_kg,Completed_Handoffs\n" +
-        `${report.id},"${report.title}","${report.period}",${metrics.surplusKg},${metrics.mealsCount},${metrics.co2eMitigated},${metrics.completedDonations}\n`;
+      const csvContent = "data:text/csv;charset=utf-8,ReportTitle,Date,PreparedKg,RescuedKg,WasteKg\n" + `${title},2026-10-06,${metrics.prepared},${metrics.surplus},${metrics.waste}`;
       const encodedUri = encodeURI(csvContent);
       const link = document.createElement("a");
       link.setAttribute("href", encodedUri);
-      link.setAttribute("download", `${report.title.replace(/\s+/g, '_')}.csv`);
+      link.setAttribute("download", `${title.replace(/\s+/g, '_')}_2026.csv`);
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
-    }, 400);
+    }, 500);
   };
 
   return (
-    <AppLayout pageTitle="Impact & Reports" breadcrumbs={[{ label: 'Impact & Reports' }]}>
-      <div className="flex flex-col gap-6 sm:gap-8">
-        
-        {/* Header */}
-        <div className="flex flex-col gap-1 pb-4 border-b border-[#E6E2D8]">
-          <h1 className="text-2xl sm:text-3xl font-extrabold text-[#1C2421] tracking-tight">
-            Impact Summary & Rescue Reports
-          </h1>
-          <p className="text-xs sm:text-sm text-[#4A5550]">
-            Export verified donation receipts, community impact ledgers, and waste reduction certificates.
-          </p>
-        </div>
-
-        {/* 4 Summary Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
-          <div className="p-5 sm:p-6 rounded-2xl bg-white shadow-xs border border-[#E6E2D8] flex flex-col justify-between card-hover">
-            <span className="text-[11px] font-bold text-[#4A5550] uppercase tracking-wider">Total Food Rescued</span>
-            <div className="my-2">
-              <span className="text-2xl sm:text-3xl font-black text-[#1B4D3E]">{metrics.surplusKg.toFixed(1)}</span>
-              <span className="text-xs font-bold text-[#4A5550] ml-1">kg</span>
-            </div>
-            <span className="text-xs text-[#065F46] font-semibold">Redirected from waste</span>
-          </div>
-
-          <div className="p-5 sm:p-6 rounded-2xl bg-white shadow-xs border border-[#E6E2D8] flex flex-col justify-between card-hover">
-            <span className="text-[11px] font-bold text-[#4A5550] uppercase tracking-wider">Community Meals</span>
-            <div className="my-2">
-              <span className="text-2xl sm:text-3xl font-black text-[#D97706]">~{metrics.mealsCount}</span>
-              <span className="text-xs font-bold text-[#4A5550] ml-1">meals</span>
-            </div>
-            <span className="text-xs text-[#92400E] font-semibold">Delivered to shelters</span>
-          </div>
-
-          <div className="p-5 sm:p-6 rounded-2xl bg-white shadow-xs border border-[#E6E2D8] flex flex-col justify-between card-hover">
-            <span className="text-[11px] font-bold text-[#4A5550] uppercase tracking-wider">Completed Donations</span>
-            <div className="my-2">
-              <span className="text-2xl sm:text-3xl font-black text-[#0284C7]">{metrics.completedDonations}</span>
-              <span className="text-xs font-bold text-[#4A5550] ml-1">handoffs</span>
-            </div>
-            <span className="text-xs text-[#0284C7] font-semibold">Verified NGO receipts</span>
-          </div>
-
-          <div className="p-5 sm:p-6 rounded-2xl bg-white shadow-xs border border-[#E6E2D8] flex flex-col justify-between card-hover">
-            <span className="text-[11px] font-bold text-[#4A5550] uppercase tracking-wider">CO2e Emissions Avoided</span>
-            <div className="my-2">
-              <span className="text-2xl sm:text-3xl font-black text-[#15803D]">{metrics.co2eMitigated}</span>
-              <span className="text-xs font-bold text-[#4A5550] ml-1">kg</span>
-            </div>
-            <span className="text-xs text-[#15803D] font-semibold">Avoided landfill methane</span>
+    <AppLayout pageTitle="Reports" breadcrumbs={[{ label: 'Executive Audit Reports' }]}>
+      <div className="flex flex-col gap-8">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-4 border-b border-[#E6E2D8]">
+          <div>
+            <h1 className="font-display-lg text-3xl font-extrabold text-[#1C2421] tracking-tight">Audit & ESG Compliance Reports</h1>
+            <p className="font-body-md text-base text-[#4A5550]">
+              Download sealed regulatory ledgers, EPA Scope 3 tax deduction manifests, and food rescue certificates.
+            </p>
           </div>
         </div>
 
-        {/* Reports Download List */}
-        <div className="bg-white rounded-2xl shadow-xs border border-[#E6E2D8] overflow-hidden flex flex-col">
-          <div className="p-5 border-b border-[#E6E2D8] flex items-center justify-between">
-            <div>
-              <h3 className="text-base font-bold text-[#1C2421]">Available Impact Documents</h3>
-              <p className="text-xs text-[#4A5550]">Download certified CSV receipts for accounting and social impact verification</p>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+          <div className="p-6 rounded-2xl bg-white shadow-xs border border-[#E6E2D8] flex flex-col justify-between card-hover">
+            <span className="text-xs font-bold text-[#4A5550] uppercase tracking-wider">Total Rescued Food</span>
+            <span className="text-3xl font-extrabold text-[#1B4D3E] my-1">{metrics.surplus.toFixed(1)} kg</span>
+            <span className="text-xs text-[#15803D] font-bold">100% Tax Deductible Value</span>
+          </div>
+          <div className="p-6 rounded-2xl bg-white shadow-xs border border-[#E6E2D8] flex flex-col justify-between card-hover">
+            <span className="text-xs font-bold text-[#4A5550] uppercase tracking-wider">Rescue Conversion</span>
+            <span className="text-3xl font-extrabold text-[#D97706] my-1">{metrics.rescueRate}%</span>
+            <span className="text-xs text-[#D97706] font-bold">Of total kitchen preparation</span>
+          </div>
+          <div className="p-6 rounded-2xl bg-white shadow-xs border border-[#E6E2D8] flex flex-col justify-between card-hover">
+            <span className="text-xs font-bold text-[#4A5550] uppercase tracking-wider">Waste Discard Ratio</span>
+            <span className="text-3xl font-extrabold text-[#DC2626] my-1">{metrics.wasteRate}%</span>
+            <span className="text-xs text-[#15803D] font-bold">Zero-Landfill Target Achieved</span>
+          </div>
+        </div>
+
+        <div className="rounded-2xl bg-white shadow-xs overflow-hidden border border-[#E6E2D8] flex flex-col">
+          <div className="p-6 bg-[#FAF8F5] flex items-center justify-between border-b border-[#E6E2D8]">
+            <h3 className="font-bold text-lg text-[#1C2421]">Available Audit Documents</h3>
+            <div className="flex gap-2">
+              {['ALL', 'ESG', 'TAX', 'HACCP'].map((t) => (
+                <button
+                  key={t}
+                  onClick={() => setFilterType(t)}
+                  className={`px-3 py-1 rounded-xl text-xs font-bold ${filterType === t ? 'bg-[#1B4D3E] text-white' : 'bg-white text-[#4A5550] border border-[#E6E2D8]'}`}
+                >
+                  {t}
+                </button>
+              ))}
             </div>
           </div>
 
           <div className="divide-y divide-[#E6E2D8]">
-            {reportItems.map((rpt) => (
-              <div key={rpt.id} className="p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 hover:bg-[#FAF8F5] transition-colors">
-                <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 rounded-xl bg-[#ECFDF5] text-[#1B4D3E] flex items-center justify-center shrink-0">
+            {filteredReports.map((report, idx) => (
+              <div key={idx} className="p-6 flex items-center justify-between hover:bg-[#FAF8F5] transition-colors">
+                <div className="flex items-center gap-4">
+                  <div className="w-10 h-10 rounded-xl bg-[#E0F2FE] text-[#0284C7] flex items-center justify-center font-bold">
                     <span className="material-symbols-outlined text-[20px]">description</span>
                   </div>
-                  <div className="flex flex-col gap-0.5">
-                    <div className="flex items-center gap-2">
-                      <span className="text-sm font-bold text-[#1C2421]">{rpt.title}</span>
-                      <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-[#FAF8F5] text-[#52796F] border border-[#E6E2D8]">
-                        {rpt.type}
-                      </span>
-                    </div>
-                    <p className="text-xs text-[#4A5550]">{rpt.desc}</p>
-                    <span className="text-[11px] text-[#78857E] mt-0.5">Period: {rpt.period}</span>
+                  <div>
+                    <h4 className="font-bold text-sm text-[#1C2421]">{report.title}</h4>
+                    <p className="text-xs text-[#4A5550]">{report.type} • {report.period || 'Oct 2026'}</p>
                   </div>
                 </div>
 
                 <button
-                  onClick={() => handleDownload(rpt)}
-                  disabled={downloading === rpt.id}
-                  className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-white hover:bg-[#FAF8F5] text-[#1B4D3E] border border-[#E6E2D8] text-xs font-bold shadow-xs transition-colors self-start sm:self-auto shrink-0"
+                  onClick={() => handleDownloadReport(report.title)}
+                  disabled={Boolean(downloading)}
+                  className="px-4 py-2 rounded-xl bg-[#1B4D3E] hover:bg-[#155E3D] text-white text-xs font-bold flex items-center gap-2 shadow-xs"
                 >
                   <span className="material-symbols-outlined text-[16px]">download</span>
-                  <span>{downloading === rpt.id ? 'Generating...' : 'Export CSV'}</span>
+                  <span>{downloading === report.title ? 'Generating CSV...' : 'Download CSV'}</span>
                 </button>
               </div>
             ))}
           </div>
         </div>
-
       </div>
     </AppLayout>
   );

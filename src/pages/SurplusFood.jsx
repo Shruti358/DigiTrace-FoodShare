@@ -1,183 +1,178 @@
-import React, { useState, useMemo } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import AppLayout from '../components/AppLayout';
-import { useFoodRecords } from '../context/FoodRecordsContext';
+import { surplusApi } from '../services/api';
 
 export default function SurplusFood() {
   const navigate = useNavigate();
-  const location = useLocation();
-  const { surplusListings, requestSurplusFood } = useFoodRecords();
+  const [surplusListings, setSurplusListings] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [loadError, setLoadError] = useState('');
 
-  // Search and Filter State
-  const initialQuery = new URLSearchParams(location.search).get('q') || '';
-  const [searchQuery, setSearchQuery] = useState(initialQuery);
+  const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('All');
-  const [selectedAvailability, setSelectedAvailability] = useState('All');
-
-  // Quick Request Modal State
-  const [requestModalItem, setRequestModalItem] = useState(null);
-  const [ngoName, setNgoName] = useState('Hope Harbor Community Kitchen');
-  const [requestedPortions, setRequestedPortions] = useState('');
-  const [purpose, setPurpose] = useState('Evening Meal Service for Shelter Residents');
-  const [pickupWindow, setPickupWindow] = useState('Today, 02:30 PM - 03:30 PM');
-  const [requestSuccess, setRequestSuccess] = useState(false);
+  const [selectedStatus, setSelectedStatus] = useState('All');
 
   const categories = ['All', 'Proteins', 'Bakery', 'Grains', 'Salad', 'Dairy'];
 
-  // High quality food image mapping
+  // Food image placeholders mapped to listings
   const foodImageMap = {
-    'Bakery': 'https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=700&q=80',
-    'Proteins': 'https://images.unsplash.com/photo-1598515214211-89d3c73ae83b?auto=format&fit=crop&w=700&q=80',
-    'Salad': 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=700&q=80',
-    'Grains': 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=700&q=80',
-    'Dairy': 'https://images.unsplash.com/photo-1528735602780-2552fd46c7af?auto=format&fit=crop&w=700&q=80'
-  };
-  const defaultFoodImg = 'https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=700&q=80';
-
-  // Filter listings
-  const filteredListings = useMemo(() => {
-    return surplusListings.filter((item) => {
-      const q = searchQuery.toLowerCase();
-      const matchesSearch =
-        item.title.toLowerCase().includes(q) ||
-        item.provider.toLowerCase().includes(q) ||
-        (item.pickupAddress && item.pickupAddress.toLowerCase().includes(q)) ||
-        item.category.toLowerCase().includes(q);
-
-      const matchesCat = selectedCategory === 'All' || item.category.toLowerCase() === selectedCategory.toLowerCase();
-
-      let matchesAvail = true;
-      if (selectedAvailability === 'Available') {
-        matchesAvail = item.status === 'Available';
-      } else if (selectedAvailability === 'Claimed') {
-        matchesAvail = item.status !== 'Available';
-      }
-
-      return matchesSearch && matchesCat && matchesAvail;
-    });
-  }, [surplusListings, searchQuery, selectedCategory, selectedAvailability]);
-
-  // Handle Quick Food Request submission
-  const handleOpenRequest = (item) => {
-    setRequestModalItem(item);
-    setRequestedPortions(item.servings ? item.servings.toString() : '20');
-    setRequestSuccess(false);
+    'Bakery': 'https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=600&q=80',
+    'Proteins': 'https://images.unsplash.com/photo-1598515214211-89d3c73ae83b?auto=format&fit=crop&w=600&q=80',
+    'Salad': 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=600&q=80',
+    'Grains': 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=600&q=80',
+    'Dairy': 'https://images.unsplash.com/photo-1528735602780-2552fd46c7af?auto=format&fit=crop&w=600&q=80'
   };
 
-  const handleConfirmRequest = (e) => {
-    e.preventDefault();
-    if (!requestModalItem) return;
+  const defaultFoodImg = 'https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=600&q=80';
 
-    const reqKg = (parseFloat(requestedPortions) / 2.4).toFixed(1);
-    requestSurplusFood(requestModalItem.id, {
-      ngoName,
-      requestedKg: reqKg,
-      purpose,
-      pickupWindow,
-      courier: `${ngoName} Van / Volunteer Dispatch`
-    });
-
-    setRequestSuccess(true);
-    setTimeout(() => {
-      setRequestModalItem(null);
-      setRequestSuccess(false);
-      navigate('/my-requests');
-    }, 800);
-  };
-
-  const statusBadge = (status) => {
-    switch (status) {
-      case 'Available':
-        return 'bg-[#ECFDF5] text-[#065F46] border-[#A7F3D0]';
-      case 'Requested':
-        return 'bg-[#FFFBEB] text-[#92400E] border-[#FDE68A]';
-      case 'Pickup Scheduled':
-        return 'bg-[#F0F9FF] text-[#0369A1] border-[#BAE6FD]';
-      case 'Picked Up':
-        return 'bg-[#F5F3FF] text-[#5B21B6] border-[#DDD6FE]';
-      case 'Completed':
-      case 'Distributed':
-        return 'bg-[#F0FDF4] text-[#166534] border-[#BBF7D0]';
-      default:
-        return 'bg-gray-100 text-gray-700 border-gray-300';
+  const loadListings = async () => {
+    setIsLoading(true);
+    setLoadError('');
+    try {
+      const response = await surplusApi.list();
+      setSurplusListings(response?.data?.listings || []);
+    } catch (error) {
+      setLoadError(error.message || 'Unable to load surplus listings.');
+    } finally {
+      setIsLoading(false);
     }
   };
 
+  useEffect(() => {
+    loadListings();
+  }, []);
+
+  const partnerNgos = [
+    { name: "Helping Hands Foundation", location: "Lucknow", meals: "420 meals received", status: "Verified 501(c)(3)" },
+    { name: "Robin Hood Army", location: "Delhi NCR", meals: "1,850 meals received", status: "Verified Partner" },
+    { name: "Food For All Relief Trust", location: "Kanpur", meals: "640 meals received", status: "Verified NGO" },
+    { name: "Akshaya Community Kitchen", location: "Varanasi", meals: "920 meals received", status: "Verified NGO" }
+  ];
+
+  const filteredListings = surplusListings.filter((item) => {
+    const matchesSearch = item.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                          item.provider.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                          item.category.toLowerCase().includes(searchQuery.toLowerCase());
+    const matchesCategory = selectedCategory === 'All' || item.category.toLowerCase() === selectedCategory.toLowerCase();
+    const matchesStatus = selectedStatus === 'All' || item.status === selectedStatus;
+    return matchesSearch && matchesCategory && matchesStatus;
+  });
+
+  const totalSurplusAvailableKg = surplusListings.filter(s => s.status === 'Available').reduce((sum, s) => sum + s.quantityKg, 0);
+  const activeRequestsCount = surplusListings.filter((listing) =>
+    listing.currentUserRequest
+      ? ['Pending', 'Accepted', 'Pickup Scheduled'].includes(listing.currentUserRequest.status)
+      : listing.status === 'Requested'
+  ).length;
+
+  const statusBgMap = {
+    Available: 'bg-[#DCFCE7] text-[#15803D] border-[#A7F3D0]',
+    Requested: 'bg-[#FEF3C7] text-[#92400E] border-[#FDE68A]',
+    'Pickup Scheduled': 'bg-[#E0F2FE] text-[#0369A1] border-[#BAE6FD]',
+    'Picked Up': 'bg-[#F3E8FF] text-[#6B21A8] border-[#E9D5FF]',
+    Received: 'bg-[#CCFBF1] text-[#0F766E] border-[#99F6E4]',
+    Distributed: 'bg-[#E0E7FF] text-[#3730A3] border-[#C7D2FE]',
+    Completed: 'bg-gray-100 text-gray-800 border-gray-300',
+    Expired: 'bg-red-100 text-red-800 border-red-300'
+  };
+
   return (
-    <AppLayout pageTitle="Find Surplus Food" breadcrumbs={[{ label: 'Find Surplus Food' }]}>
-      <div className="flex flex-col gap-6 sm:gap-8">
+    <AppLayout pageTitle="Rescue Surplus Food" breadcrumbs={[{ label: 'Rescue Surplus Food' }]}>
+      <div className="flex flex-col gap-8">
+
+        {loadError && (
+          <div role="alert" className="p-4 rounded-xl bg-[#FEE2E2] text-[#DC2626] text-xs font-bold border border-red-200 flex items-center justify-between gap-4">
+            <span>{loadError}</span>
+            <button onClick={loadListings} className="shrink-0 px-3 py-1.5 rounded-lg bg-white border border-red-200">Retry</button>
+          </div>
+        )}
         
-        {/* Header Banner */}
+        {/* Strong Header */}
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-4 border-b border-[#E6E2D8]">
-          <div className="flex flex-col gap-1">
-            <h1 className="text-2xl sm:text-3xl font-extrabold text-[#1C2421] tracking-tight">
-              Surplus Food Directory
-            </h1>
-            <p className="text-xs sm:text-sm text-[#4A5550]">
-              Browse available surplus food listings from restaurants and providers, ready for immediate rescue and distribution.
+          <div>
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#FEF3C7] text-[#D97706] font-label-sm text-xs font-bold mb-2">
+              <span className="material-symbols-outlined text-[14px]">volunteer_activism</span>
+              <span>SURPLUS RESCUE MARKETPLACE</span>
+            </div>
+            <h1 className="font-display-lg text-3xl font-extrabold text-[#1C2421] tracking-tight">Rescue Surplus Food</h1>
+            <p className="font-body-md text-base text-[#4A5550] mt-1">
+              Give surplus food a second purpose instead of sending it to waste. Connect commercial kitchens with accredited NGOs.
             </p>
           </div>
 
           <div className="flex items-center gap-3 shrink-0">
             <button
               onClick={() => navigate('/add-food-record')}
-              className="inline-flex items-center gap-2 h-10 px-4 rounded-xl bg-[#1B4D3E] hover:bg-[#155E3D] text-white text-xs sm:text-sm font-bold shadow-xs transition-colors"
+              className="inline-flex items-center gap-2 h-10 px-5 rounded-xl bg-[#1B4D3E] hover:bg-[#155E3D] text-white font-label-lg font-bold shadow-xs transition-colors"
             >
               <span className="material-symbols-outlined text-[18px]">add</span>
-              <span>+ List Surplus Food</span>
+              <span>+ Post Surplus Batch</span>
             </button>
           </div>
         </div>
 
-        {/* Search & Filter Toolbar */}
-        <div className="flex flex-col gap-3 bg-white p-4 rounded-2xl shadow-xs border border-[#E6E2D8]">
-          <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
-            {/* Search Bar */}
-            <div className="relative flex-1">
-              <span className="material-symbols-outlined absolute left-3 top-2.5 text-[#78857E] text-[18px]">search</span>
-              <input
-                type="text"
-                placeholder="Search food by name, restaurant, or location..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full h-10 pl-9 pr-4 bg-[#FAF8F5] rounded-xl text-xs text-[#1C2421] placeholder:text-[#78857E] focus:outline-none focus:ring-1 focus:ring-[#1B4D3E] border border-[#E6E2D8]"
-              />
-              {searchQuery && (
-                <button
-                  onClick={() => setSearchQuery('')}
-                  className="absolute right-3 top-2.5 text-xs text-[#78857E] hover:text-[#1C2421]"
-                >
-                  Clear
-                </button>
-              )}
-            </div>
+        {/* Workflow Tabs */}
+        <div className="flex items-center gap-2 bg-[#F4F1E8] p-1.5 rounded-2xl overflow-x-auto border border-[#E6E2D8]">
+          <button className="px-4 py-2 rounded-xl bg-white text-[#1C2421] shadow-xs font-label-md font-bold whitespace-nowrap">
+            Marketplace Listings ({surplusListings.length})
+          </button>
+          <button onClick={() => navigate('/incoming-requests')} className="px-4 py-2 rounded-xl text-[#4A5550] hover:text-[#1C2421] font-label-md font-medium transition-colors whitespace-nowrap flex items-center gap-2">
+            <span>Incoming Claims (Donors)</span>
+            {activeRequestsCount > 0 && (
+              <span className="px-2 py-0.5 rounded-full bg-[#D97706] text-white font-label-sm font-bold text-xs">{activeRequestsCount}</span>
+            )}
+          </button>
+          <button onClick={() => navigate('/my-requests')} className="px-4 py-2 rounded-xl text-[#4A5550] hover:text-[#1C2421] font-label-md font-medium transition-colors whitespace-nowrap">
+            My Requests (NGOs)
+          </button>
+          <button onClick={() => navigate('/handover/REQ-2026-001')} className="px-4 py-2 rounded-xl text-[#4A5550] hover:text-[#1C2421] font-label-md font-medium transition-colors whitespace-nowrap">
+            Handover Studio
+          </button>
+        </div>
 
-            {/* Availability Filter Toggle */}
-            <div className="inline-flex rounded-xl p-1 bg-[#FAF8F5] border border-[#E6E2D8] self-start sm:self-auto shrink-0">
-              {['All', 'Available', 'Claimed'].map((avail) => (
-                <button
-                  key={avail}
-                  onClick={() => setSelectedAvailability(avail)}
-                  className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
-                    selectedAvailability === avail
-                      ? 'bg-white text-[#1B4D3E] shadow-xs'
-                      : 'text-[#4A5550] hover:text-[#1C2421]'
-                  }`}
-                >
-                  {avail === 'Available' ? 'Available Now' : avail === 'Claimed' ? 'Claimed' : 'All Statuses'}
-                </button>
-              ))}
-            </div>
+        {/* 3 Summary KPI Cards */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+          <div className="p-6 rounded-2xl bg-white shadow-xs border border-[#E6E2D8] flex flex-col justify-between card-hover">
+            <span className="font-label-sm text-xs text-[#4A5550] uppercase font-bold tracking-wider">Available Surplus</span>
+            <span className="text-3xl font-black text-[#1B4D3E] my-2">{totalSurplusAvailableKg.toFixed(1)} kg</span>
+            <span className="text-xs text-[#15803D] font-bold flex items-center gap-1">
+              <span className="material-symbols-outlined text-[14px]">verified</span> 100% HACCP Food Grade Safe
+            </span>
           </div>
 
-          {/* Category Filter Pills */}
-          <div className="flex items-center gap-2 overflow-x-auto pt-1 pb-0.5">
-            <span className="text-[11px] font-bold text-[#78857E] uppercase tracking-wider shrink-0 mr-1">Category:</span>
+          <div className="p-6 rounded-2xl bg-white shadow-xs border border-[#E6E2D8] flex flex-col justify-between card-hover">
+            <span className="font-label-sm text-xs text-[#4A5550] uppercase font-bold tracking-wider">Estimated Rescue Meals</span>
+            <span className="text-3xl font-black text-[#D97706] my-2">~{Math.round(totalSurplusAvailableKg * 2.4)} Meals</span>
+            <span className="text-xs text-[#4A5550]">Calculated @ 0.42 kg/portion</span>
+          </div>
+
+          <div className="p-6 rounded-2xl bg-white shadow-xs border border-[#E6E2D8] flex flex-col justify-between card-hover">
+            <span className="font-label-sm text-xs text-[#4A5550] uppercase font-bold tracking-wider">Active NGO Claims</span>
+            <span className="text-3xl font-black text-[#0284C7] my-2">{activeRequestsCount} Claims</span>
+            <span className="text-xs text-[#0284C7] font-bold">Verified Cold Chain Handoff</span>
+          </div>
+        </div>
+
+        {/* Search & Category Filter Bar */}
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 bg-white p-4 rounded-2xl shadow-xs border border-[#E6E2D8]">
+          <div className="relative flex-1">
+            <span className="material-symbols-outlined absolute left-3 top-2.5 text-[#4A5550] text-[18px]">search</span>
+            <input
+              type="text"
+              placeholder="Search surplus food items, providers..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="w-full h-10 pl-10 pr-4 bg-[#FAF8F5] rounded-xl font-body-sm text-xs text-[#1C2421] placeholder:text-[#4A5550] focus:outline-none focus:ring-1 focus:ring-[#1B4D3E] border border-[#E6E2D8]"
+            />
+          </div>
+
+          <div className="flex flex-wrap items-center gap-2">
             {categories.map((cat) => (
               <button
                 key={cat}
                 onClick={() => setSelectedCategory(cat)}
-                className={`px-3 py-1 rounded-xl text-xs font-bold transition-all whitespace-nowrap ${
+                className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all ${
                   selectedCategory === cat
                     ? 'bg-[#1B4D3E] text-white shadow-xs'
                     : 'bg-[#FAF8F5] text-[#4A5550] hover:text-[#1C2421] border border-[#E6E2D8]'
@@ -189,249 +184,139 @@ export default function SurplusFood() {
           </div>
         </div>
 
-        {/* Clean Food Cards Grid */}
+        {/* Visually Attractive Food Listing Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {isLoading && (
+            <div className="col-span-full p-8 rounded-2xl bg-white border border-[#E6E2D8] text-center text-sm text-[#4A5550]">
+              Loading surplus listings...
+            </div>
+          )}
           {filteredListings.map((item) => {
             const itemImg = foodImageMap[item.category] || defaultFoodImg;
-            const isAvailable = item.status === 'Available';
-
             return (
-              <div
-                key={item.id}
-                className="bg-white rounded-2xl shadow-xs border border-[#E6E2D8] overflow-hidden flex flex-col justify-between group hover:border-[#1B4D3E] transition-all card-hover"
-              >
+              <div key={item.id} className="bg-white rounded-2xl shadow-xs border border-[#E6E2D8] overflow-hidden flex flex-col justify-between group hover:border-[#1B4D3E] transition-all card-hover">
                 {/* Food Image Banner */}
                 <div className="relative h-44 w-full overflow-hidden bg-gray-100">
-                  <img
-                    src={itemImg}
-                    alt={item.title}
-                    className="w-full h-full object-cover group-hover:scale-102 transition-transform duration-300"
+                  <img 
+                    src={itemImg} 
+                    alt={item.title} 
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                   />
-                  <div className="absolute top-3 left-3 bg-white/95 backdrop-blur-xs px-2.5 py-1 rounded-full text-[11px] font-bold text-[#1C2421] shadow-xs border border-white">
-                    {item.category}
+                  <div className="absolute top-3 left-3 bg-white/90 backdrop-blur-md px-2.5 py-0.5 rounded-full text-[11px] font-bold text-[#1C2421] shadow-xs">
+                    ID: {item.id}
                   </div>
                   <div className="absolute top-3 right-3">
-                    <span className={`px-2.5 py-1 rounded-full text-xs font-bold border shadow-xs ${statusBadge(item.status)}`}>
+                    <span className={`px-3 py-1 rounded-full text-xs font-bold border shadow-xs ${statusBgMap[item.status] || 'bg-gray-100'}`}>
                       {item.status}
                     </span>
                   </div>
                 </div>
 
-                {/* Card Body */}
+                {/* Card Content */}
                 <div className="p-5 flex flex-col gap-3 flex-1 justify-between">
                   <div className="flex flex-col gap-1">
-                    <h3 className="text-base font-bold text-[#1C2421] leading-snug">{item.title}</h3>
-                    <p className="text-xs text-[#4A5550] flex items-center gap-1.5 mt-0.5">
-                      <span className="material-symbols-outlined text-[15px] text-[#1B4D3E]">storefront</span>
-                      <span className="font-semibold">{item.provider}</span>
-                    </p>
-                    <p className="text-[11px] text-[#78857E] flex items-center gap-1.5">
-                      <span className="material-symbols-outlined text-[15px] text-[#0284C7]">location_on</span>
-                      <span>{item.pickupAddress || 'Central Kitchen Dock #2'}</span>
+                    <span className="text-[11px] uppercase tracking-wider font-extrabold text-[#D97706]">{item.category}</span>
+                    <h3 className="font-headline-sm text-lg font-bold text-[#1C2421] leading-snug">{item.title}</h3>
+                    <p className="font-body-sm text-xs text-[#4A5550] flex items-center gap-1">
+                      <span className="material-symbols-outlined text-[14px]">storefront</span>
+                      {item.provider}
                     </p>
                   </div>
 
-                  {/* Quantity & Portions Highlight */}
                   <div className="grid grid-cols-2 gap-2 p-3 rounded-xl bg-[#FAF8F5] border border-[#E6E2D8] my-1">
                     <div>
-                      <span className="text-[10px] text-[#78857E] uppercase font-bold block">Available Quantity</span>
+                      <span className="text-[10px] text-[#4A5550] uppercase font-bold block">Available Weight</span>
                       <span className="text-base font-extrabold text-[#1B4D3E]">{item.quantityKg} kg</span>
                     </div>
                     <div>
-                      <span className="text-[10px] text-[#78857E] uppercase font-bold block">Estimated Portions</span>
-                      <span className="text-base font-extrabold text-[#1C2421]">~{item.servings} meals</span>
+                      <span className="text-[10px] text-[#4A5550] uppercase font-bold block">Est. Portions</span>
+                      <span className="text-base font-extrabold text-[#1C2421]">~{item.servings} Meals</span>
                     </div>
                   </div>
 
-                  {/* Freshness & Pickup Deadline */}
-                  <div className="flex flex-col gap-1 text-xs pt-1 border-t border-[#E6E2D8]/60">
-                    <div className="flex items-center justify-between text-[11px]">
-                      <span className="text-[#4A5550] flex items-center gap-1">
-                        <span className="material-symbols-outlined text-[14px] text-[#10B981]">schedule</span>
-                        Freshness: {item.prepTime || 'Prepared Today'}
-                      </span>
-                    </div>
-                    <div className="flex items-center justify-between text-[11px]">
-                      <span className="text-[#92400E] font-bold flex items-center gap-1">
-                        <span className="material-symbols-outlined text-[14px]">timer</span>
-                        Pickup Deadline: {item.expiryWindow ? `Within ${item.expiryWindow}` : 'Today by 4:00 PM'}
-                      </span>
-                    </div>
+                  <div className="flex flex-wrap items-center justify-between text-xs text-[#4A5550] pt-1">
+                    <span className="flex items-center gap-1">
+                      <span className="material-symbols-outlined text-[14px] text-[#D97706]">schedule</span>
+                      Safety ETA: 3h Window
+                    </span>
+                    <span className="flex items-center gap-1">
+                      <span className="material-symbols-outlined text-[14px] text-[#0284C7]">location_on</span>
+                      Dock #2
+                    </span>
                   </div>
                 </div>
 
                 {/* Card Actions */}
-                <div className="p-4 bg-[#FAF8F5] border-t border-[#E6E2D8] flex items-center justify-between gap-2">
+                <div className="p-4 bg-[#FAF8F5] border-t border-[#E6E2D8] flex items-center justify-between">
                   <button
-                    onClick={() => navigate(`/trace/${item.recordId || 'DT-F-0001'}`)}
+                    onClick={() => navigate(`/trace/${item.recordId}`)}
                     className="text-[#4A5550] hover:text-[#1B4D3E] transition-colors flex items-center gap-1 text-xs font-bold"
                   >
                     <span className="material-symbols-outlined text-[16px]">account_tree</span>
-                    <span>Track</span>
+                    <span>Trace</span>
                   </button>
 
-                  <div className="flex items-center gap-2">
-                    <button
-                      onClick={() => navigate(`/surplus-food/${item.id}`)}
-                      className="px-3 py-1.5 rounded-xl text-xs font-bold text-[#4A5550] hover:text-[#1C2421] bg-white border border-[#E6E2D8]"
-                    >
-                      Details
-                    </button>
-
-                    {isAvailable ? (
-                      <button
-                        onClick={() => handleOpenRequest(item)}
-                        className="px-4 py-1.5 rounded-xl bg-[#1B4D3E] hover:bg-[#155E3D] text-white text-xs font-bold shadow-xs transition-colors"
-                      >
-                        Request Food
-                      </button>
-                    ) : (
-                      <span className="px-3 py-1.5 rounded-xl bg-gray-100 text-gray-500 text-xs font-semibold">
-                        {item.status}
-                      </span>
-                    )}
-                  </div>
+                  <button
+                    onClick={() => navigate(`/surplus-food/${item.id}`)}
+                    className="px-4 py-2 rounded-xl bg-[#1B4D3E] hover:bg-[#155E3D] text-white font-label-md text-xs font-bold transition-all shadow-xs"
+                  >
+                    View Details & Claim
+                  </button>
                 </div>
               </div>
             );
           })}
 
-          {filteredListings.length === 0 && (
+          {!isLoading && !loadError && filteredListings.length === 0 && surplusListings.length === 0 && (
             <div className="col-span-full p-12 rounded-2xl bg-white border border-dashed border-[#E6E2D8] text-center flex flex-col items-center gap-3">
-              <div className="w-14 h-14 rounded-full bg-[#ECFDF5] text-[#1B4D3E] flex items-center justify-center">
-                <span className="material-symbols-outlined text-[32px]">restaurant</span>
+              <p className="font-headline-sm text-lg font-bold text-[#1C2421]">No surplus listings yet.</p>
+              <p className="font-body-sm text-xs text-[#4A5550]">Add a food record with surplus to publish the batch here.</p>
+              <button onClick={() => navigate('/add-food-record')} className="px-4 py-2 bg-[#1B4D3E] text-white text-xs font-bold rounded-xl mt-2">
+                Add Food Record
+              </button>
+            </div>
+          )}
+
+          {!isLoading && !loadError && filteredListings.length === 0 && surplusListings.length > 0 && (
+            <div className="col-span-full p-12 rounded-2xl bg-white border border-dashed border-[#E6E2D8] text-center flex flex-col items-center gap-3">
+              <div className="w-16 h-16 rounded-full bg-[#FEF3C7] text-[#D97706] flex items-center justify-center">
+                <span className="material-symbols-outlined text-[36px]">storefront</span>
               </div>
-              <p className="text-base font-bold text-[#1C2421]">No food listings found</p>
-              <p className="text-xs text-[#4A5550] max-w-sm">
-                No items match your selected search or category filters. Try resetting filters or post a new surplus batch.
-              </p>
-              <button
-                onClick={() => {
-                  setSearchQuery('');
-                  setSelectedCategory('All');
-                  setSelectedAvailability('All');
-                }}
-                className="px-4 py-2 bg-[#1B4D3E] text-white text-xs font-bold rounded-xl mt-2"
-              >
-                Reset Filters
+              <p className="font-headline-sm text-lg font-bold text-[#1C2421]">Ready to rescue surplus food?</p>
+              <p className="font-body-sm text-xs text-[#4A5550]">No listings match your search criteria. Post a new surplus batch or clear search filters.</p>
+              <button onClick={() => { setSearchQuery(''); setSelectedCategory('All'); }} className="px-4 py-2 bg-[#1B4D3E] text-white text-xs font-bold rounded-xl mt-2">
+                Clear Filters
               </button>
             </div>
           )}
         </div>
 
-        {/* Quick Food Request Modal */}
-        {requestModalItem && (
-          <div className="fixed inset-0 bg-[#1C2421]/50 backdrop-blur-xs z-50 flex items-center justify-center p-4">
-            <div className="bg-white rounded-2xl shadow-xl border border-[#E6E2D8] max-w-md w-full p-6 flex flex-col gap-4 animate-in fade-in">
-              <div className="flex items-center justify-between pb-3 border-b border-[#E6E2D8]">
-                <div className="flex items-center gap-2">
-                  <div className="w-8 h-8 rounded-lg bg-[#ECFDF5] text-[#065F46] flex items-center justify-center">
-                    <span className="material-symbols-outlined text-[18px]">volunteer_activism</span>
-                  </div>
-                  <div>
-                    <h3 className="text-base font-bold text-[#1C2421]">Request Surplus Food</h3>
-                    <p className="text-[11px] text-[#4A5550]">Submit a claim to the food donor</p>
-                  </div>
-                </div>
-                <button
-                  onClick={() => setRequestModalItem(null)}
-                  className="text-[#78857E] hover:text-[#1C2421]"
-                >
-                  <span className="material-symbols-outlined text-[20px]">close</span>
-                </button>
-              </div>
-
-              {requestSuccess ? (
-                <div className="p-6 text-center flex flex-col items-center gap-3">
-                  <div className="w-12 h-12 rounded-full bg-[#ECFDF5] text-[#10B981] flex items-center justify-center">
-                    <span className="material-symbols-outlined text-[28px]">check_circle</span>
-                  </div>
-                  <h4 className="text-base font-bold text-[#1C2421]">Request Submitted!</h4>
-                  <p className="text-xs text-[#4A5550]">
-                    Redirecting to your requests tracker...
-                  </p>
-                </div>
-              ) : (
-                <form onSubmit={handleConfirmRequest} className="flex flex-col gap-3 text-xs">
-                  {/* Item Summary */}
-                  <div className="p-3 rounded-xl bg-[#FAF8F5] border border-[#E6E2D8]">
-                    <span className="font-bold text-[#1C2421] block text-sm">{requestModalItem.title}</span>
-                    <span className="text-[#4A5550] block mt-0.5">
-                      Offered by: <strong>{requestModalItem.provider}</strong> ({requestModalItem.quantityKg} kg • ~{requestModalItem.servings} meals)
-                    </span>
-                  </div>
-
-                  {/* NGO Name */}
-                  <div>
-                    <label className="block font-bold text-[#1C2421] mb-1">Requesting Organization / NGO</label>
-                    <input
-                      type="text"
-                      value={ngoName}
-                      onChange={(e) => setNgoName(e.target.value)}
-                      required
-                      className="w-full h-9 px-3 rounded-xl bg-[#FAF8F5] border border-[#E6E2D8] text-xs text-[#1C2421] focus:outline-none focus:ring-1 focus:ring-[#1B4D3E]"
-                    />
-                  </div>
-
-                  {/* Portions Needed */}
-                  <div>
-                    <label className="block font-bold text-[#1C2421] mb-1">Meals / Portions Needed</label>
-                    <input
-                      type="number"
-                      value={requestedPortions}
-                      onChange={(e) => setRequestedPortions(e.target.value)}
-                      max={requestModalItem.servings}
-                      min="1"
-                      required
-                      className="w-full h-9 px-3 rounded-xl bg-[#FAF8F5] border border-[#E6E2D8] text-xs text-[#1C2421] focus:outline-none focus:ring-1 focus:ring-[#1B4D3E]"
-                    />
-                  </div>
-
-                  {/* Purpose */}
-                  <div>
-                    <label className="block font-bold text-[#1C2421] mb-1">Distribution Purpose</label>
-                    <input
-                      type="text"
-                      value={purpose}
-                      onChange={(e) => setPurpose(e.target.value)}
-                      required
-                      className="w-full h-9 px-3 rounded-xl bg-[#FAF8F5] border border-[#E6E2D8] text-xs text-[#1C2421] focus:outline-none focus:ring-1 focus:ring-[#1B4D3E]"
-                    />
-                  </div>
-
-                  {/* Pickup Window */}
-                  <div>
-                    <label className="block font-bold text-[#1C2421] mb-1">Proposed Pickup Window</label>
-                    <input
-                      type="text"
-                      value={pickupWindow}
-                      onChange={(e) => setPickupWindow(e.target.value)}
-                      required
-                      className="w-full h-9 px-3 rounded-xl bg-[#FAF8F5] border border-[#E6E2D8] text-xs text-[#1C2421] focus:outline-none focus:ring-1 focus:ring-[#1B4D3E]"
-                    />
-                  </div>
-
-                  {/* Action Buttons */}
-                  <div className="flex items-center justify-end gap-2 pt-3 border-t border-[#E6E2D8]">
-                    <button
-                      type="button"
-                      onClick={() => setRequestModalItem(null)}
-                      className="px-4 py-2 rounded-xl text-xs font-bold text-[#4A5550] hover:text-[#1C2421]"
-                    >
-                      Cancel
-                    </button>
-                    <button
-                      type="submit"
-                      className="px-5 py-2 rounded-xl bg-[#1B4D3E] hover:bg-[#155E3D] text-white text-xs font-bold shadow-xs transition-colors"
-                    >
-                      Submit Food Request
-                    </button>
-                  </div>
-                </form>
-              )}
+        {/* Section 7: Verified Rescue Partners */}
+        <div className="p-8 rounded-2xl bg-white border border-[#E6E2D8] shadow-xs flex flex-col gap-6 mt-4">
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-2 border-b border-[#E6E2D8] pb-4">
+            <div>
+              <h3 className="font-headline-sm text-xl font-bold text-[#1C2421]">Verified Rescue Partners</h3>
+              <p className="font-body-sm text-xs text-[#4A5550]">NGOs and shelters receiving surplus food from the DigiTrace Network</p>
             </div>
+            <span className="text-xs font-bold text-[#15803D] bg-[#DCFCE7] px-3 py-1 rounded-full">
+              HACCP Chain Accredited
+            </span>
           </div>
-        )}
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {partnerNgos.map((ngo, idx) => (
+              <div key={idx} className="p-4 rounded-xl bg-[#FAF8F5] border border-[#E6E2D8] flex items-center gap-3">
+                <div className="w-10 h-10 rounded-xl bg-[#1B4D3E] text-white flex items-center justify-center font-bold text-base shrink-0">
+                  {ngo.name.charAt(0)}
+                </div>
+                <div className="flex flex-col min-w-0">
+                  <span className="font-bold text-sm text-[#1C2421] truncate">{ngo.name}</span>
+                  <span className="text-xs text-[#4A5550]">{ngo.location} • {ngo.meals}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
 
       </div>
     </AppLayout>

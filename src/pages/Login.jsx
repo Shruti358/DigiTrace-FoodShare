@@ -1,22 +1,31 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Logo from '../components/Logo';
+import { useAuth } from '../context/AuthContext';
 
 export default function Login() {
   const navigate = useNavigate();
+  const location = useLocation();
+  const { login } = useAuth();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [uiState, setUiState] = useState('default'); // default, error, loading, success
+  const [errorMessage, setErrorMessage] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setUiState('loading');
-    setTimeout(() => {
+    setErrorMessage('');
+
+    try {
+      await login({ email: email.trim(), password });
       setUiState('success');
-      setTimeout(() => {
-        navigate('/dashboard');
-      }, 600);
-    }, 500);
+      const returnTo = location.state?.from;
+      navigate(returnTo ? `${returnTo.pathname}${returnTo.search || ''}` : '/dashboard', { replace: true });
+    } catch (error) {
+      setUiState('error');
+      setErrorMessage(error.message || 'Unable to sign in. Please try again.');
+    }
   };
 
   return (
@@ -51,9 +60,9 @@ export default function Login() {
             </div>
 
             {uiState === 'error' && (
-              <div className="p-3 rounded-xl bg-[#FEE2E2] text-[#DC2626] text-xs font-bold flex items-center gap-2">
+              <div role="alert" className="p-3 rounded-xl bg-[#FEE2E2] text-[#DC2626] text-xs font-bold flex items-center gap-2">
                 <span className="material-symbols-outlined text-[18px]">error</span>
-                <span>Invalid credentials. Please verify your email and password.</span>
+                <span>{errorMessage}</span>
               </div>
             )}
 
@@ -70,6 +79,7 @@ export default function Login() {
                 <input
                   type="email"
                   required
+                  autoComplete="email"
                   placeholder="shruti@pacificrim-dining.org"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
@@ -87,6 +97,7 @@ export default function Login() {
                 <input
                   type="password"
                   required
+                  autoComplete="current-password"
                   placeholder="••••••••••••"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}

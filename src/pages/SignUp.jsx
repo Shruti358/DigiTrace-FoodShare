@@ -1,21 +1,50 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Logo from '../components/Logo';
+import { useAuth } from '../context/AuthContext';
 
 export default function SignUp() {
   const navigate = useNavigate();
+  const location = useLocation();
+  const { register } = useAuth();
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [role, setRole] = useState('donor');
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setSubmitted(true);
-    setTimeout(() => {
-      navigate('/dashboard');
-    }, 600);
+    setErrorMessage('');
+
+    if (role === 'auditor') {
+      setErrorMessage('ESG Environmental Auditor accounts are not supported by the authentication API yet.');
+      return;
+    }
+
+    if (!/(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]).{8,}/.test(password)) {
+      setErrorMessage('Use at least 8 characters with uppercase, lowercase, number, and symbol characters.');
+      return;
+    }
+
+    setIsSubmitting(true);
+    try {
+      await register({
+        name: fullName.trim(),
+        email: email.trim(),
+        password,
+        role: role === 'ngo' ? 'NGO' : 'FOOD_PROVIDER',
+      });
+      setSubmitted(true);
+      const returnTo = location.state?.from;
+      navigate(returnTo ? `${returnTo.pathname}${returnTo.search || ''}` : '/dashboard', { replace: true });
+    } catch (error) {
+      setErrorMessage(error.message || 'Unable to create your account. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -49,12 +78,20 @@ export default function SignUp() {
             </div>
           )}
 
+          {errorMessage && (
+            <div role="alert" className="p-3 rounded-xl bg-[#FEE2E2] text-[#DC2626] text-xs font-bold flex items-center gap-2">
+              <span className="material-symbols-outlined text-[18px]">error</span>
+              <span>{errorMessage}</span>
+            </div>
+          )}
+
           <form onSubmit={handleSubmit} className="flex flex-col gap-4 text-xs">
             <div>
               <label className="block font-bold text-[#1C2421] mb-1">Full Name</label>
               <input
                 type="text"
                 required
+                autoComplete="name"
                 placeholder="Shruti Sharma"
                 value={fullName}
                 onChange={(e) => setFullName(e.target.value)}
@@ -67,6 +104,7 @@ export default function SignUp() {
               <input
                 type="email"
                 required
+                autoComplete="email"
                 placeholder="shruti@pacificrim-dining.org"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
@@ -92,6 +130,8 @@ export default function SignUp() {
               <input
                 type="password"
                 required
+                autoComplete="new-password"
+                minLength={8}
                 placeholder="••••••••••••"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
@@ -99,8 +139,8 @@ export default function SignUp() {
               />
             </div>
 
-            <button type="submit" className="w-full py-3 rounded-xl bg-[#1B4D3E] hover:bg-[#155E3D] text-white font-bold text-xs shadow-xs mt-2">
-              Complete Registration
+            <button type="submit" disabled={isSubmitting} className="w-full py-3 rounded-xl bg-[#1B4D3E] hover:bg-[#155E3D] text-white font-bold text-xs shadow-xs mt-2 disabled:opacity-60 disabled:cursor-not-allowed">
+              {isSubmitting ? 'Creating Account...' : 'Complete Registration'}
             </button>
           </form>
 

@@ -2,321 +2,355 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import AppLayout from '../components/AppLayout';
 import { useFoodRecords } from '../context/FoodRecordsContext';
+import { foodRecordsApi, surplusApi } from '../services/api';
 
 export default function AddFoodRecord() {
   const navigate = useNavigate();
   const { addNewFoodRecord } = useFoodRecords();
 
+  // Form Field State
   const todayStr = new Date().toISOString().split('T')[0];
   const [date, setDate] = useState(todayStr);
   const [mealType, setMealType] = useState('Lunch');
-  const [foodCategory, setFoodCategory] = useState('Proteins');
-  const [itemName, setItemName] = useState('Herb-Roasted Lemon Chicken');
-  const [surplusKg, setSurplusKg] = useState('18.5');
-  const [prepTime, setPrepTime] = useState('09:45 AM');
-  const [pickupDeadline, setPickupDeadline] = useState('Today by 3:30 PM');
-  const [pickupLocation, setPickupLocation] = useState('Loading Dock #2, North Bay');
-  const [storageType, setStorageType] = useState('Chilled (Food-Grade Containers)');
-  const [dietaryTags, setDietaryTags] = useState('Gluten-Free, Halal-Compliant');
-  const [notes, setNotes] = useState('Intact cooked chicken batch with roasted root vegetables, sealed in stainless containers.');
+  const [foodCategory, setFoodCategory] = useState('Rice');
+  const [itemName, setItemName] = useState('Steamed Basmati Rice #B-201');
+  const [foodPrepared, setFoodPrepared] = useState('100.0');
+  const [foodConsumed, setFoodConsumed] = useState('72.0');
+  const [surplus, setSurplus] = useState('18.0');
+  const [waste, setWaste] = useState('10.0');
+  const [wasteType, setWasteType] = useState('Organic');
+  const [wasteReason, setWasteReason] = useState('Overproduction');
+  const [handlingStream, setHandlingStream] = useState('compost');
+  const [kitchenNotes, setKitchenNotes] = useState('Lunch traffic on target; excess yield auto-routed to surplus staging.');
 
+  // Feedback State
   const [errors, setErrors] = useState({});
   const [savedSuccess, setSavedSuccess] = useState(false);
+  const [newlyCreatedId, setNewlyCreatedId] = useState('');
+  const [isSaving, setIsSaving] = useState(false);
+  const [saveError, setSaveError] = useState('');
+  const [listingError, setListingError] = useState('');
+  const [savedRecord, setSavedRecord] = useState(null);
+  const [isPostingListing, setIsPostingListing] = useState(false);
+
+  // Numerical Parsing
+  const preparedNum = parseFloat(foodPrepared) || 0;
+  const consumedNum = parseFloat(foodConsumed) || 0;
+  const surplusNum = parseFloat(surplus) || 0;
+  const wasteNum = parseFloat(waste) || 0;
+
+  // Live Calculations
+  const calculatedRemaining = preparedNum - consumedNum;
+  const totalAllocated = surplusNum + wasteNum;
+  const deltaUnaccounted = calculatedRemaining - totalAllocated;
+  const isBalanced = Math.abs(deltaUnaccounted) < 0.01;
+
+  // Percentage Calculations for Summary Bar
+  const pctConsumed = preparedNum > 0 ? Math.round((consumedNum / preparedNum) * 100) : 0;
+  const pctSurplus = preparedNum > 0 ? Math.round((surplusNum / preparedNum) * 100) : 0;
+  const pctWaste = preparedNum > 0 ? Math.round((wasteNum / preparedNum) * 100) : 0;
 
   // Quick Presets
   const handleApplyPreset = (type) => {
     setErrors({});
     if (type === 'lunch') {
-      setFoodCategory('Proteins');
-      setItemName('Herb-Roasted Lemon Chicken & Veggies');
+      setFoodCategory('Rice');
+      setItemName('Steamed Basmati Rice #B-201');
       setMealType('Lunch');
-      setSurplusKg('18.5');
-      setStorageType('Chilled (Food-Grade Containers)');
-      setDietaryTags('Gluten-Free, Halal-Compliant');
-      setNotes('High quality roasted chicken portions prepared for lunch service.');
-    } else if (type === 'bakery') {
+      setFoodPrepared('100.0');
+      setFoodConsumed('72.0');
+      setSurplus('18.0');
+      setWaste('10.0');
+    } else if (type === 'banquet') {
+      setFoodCategory('Proteins');
+      setItemName('Executive Banquet Poultry & Fish');
+      setMealType('Event');
+      setFoodPrepared('250.0');
+      setFoodConsumed('180.0');
+      setSurplus('50.0');
+      setWaste('20.0');
+    } else if (type === 'breakfast') {
       setFoodCategory('Bakery');
-      setItemName('Fresh Brioche Breads & Artisan Baguettes');
+      setItemName('Morning Pastry & Baguette Setup');
       setMealType('Breakfast');
-      setSurplusKg('12.0');
-      setStorageType('Ambient Bakery Packaging');
-      setDietaryTags('Vegetarian');
-      setNotes('Freshly baked morning artisan bread batch.');
-    } else if (type === 'buffet') {
-      setFoodCategory('Grains');
-      setItemName('Brown Rice & Steamed Quinoa Grain Bowls');
-      setMealType('Dinner');
-      setSurplusKg('15.0');
-      setStorageType('Chilled (Sealed GN Pans)');
-      setDietaryTags('Vegan, Gluten-Free');
-      setNotes('Unserved buffet grain preparation in thermal containers.');
+      setFoodPrepared('60.0');
+      setFoodConsumed('48.0');
+      setSurplus('10.0');
+      setWaste('2.0');
     }
   };
 
+  // Form Validation Logic
   const validateForm = () => {
     const errs = {};
-    if (!itemName.trim()) errs.itemName = 'Food item name is required.';
-    const num = parseFloat(surplusKg);
-    if (isNaN(num) || num <= 0) errs.surplusKg = 'Surplus quantity must be a positive number.';
-    if (!pickupDeadline.trim()) errs.pickupDeadline = 'Pickup deadline is required to ensure food safety.';
+
+    if (!date) errs.date = 'Audit date is required.';
+    if (!itemName.trim()) errs.itemName = 'Item description or batch serial is required.';
+    for (const [field, value, label] of [
+      ['foodPrepared', foodPrepared, 'Prepared'],
+      ['foodConsumed', foodConsumed, 'Consumed'],
+      ['surplus', surplus, 'Surplus'],
+      ['waste', waste, 'Waste'],
+    ]) {
+      if (value.trim() === '' || !Number.isFinite(Number(value)) || Number(value) < 0) {
+        errs[field] = `${label} quantity must be a finite non-negative number.`;
+      }
+    }
+    if (consumedNum > preparedNum) errs.consumedExceeds = `Food consumed (${consumedNum} kg) cannot exceed prepared amount (${preparedNum} kg).`;
+
+    if (!errs.foodPrepared && !errs.foodConsumed && !errs.surplus && !errs.waste && consumedNum <= preparedNum) {
+      if (totalAllocated > calculatedRemaining + 0.01) {
+        errs.reconciliation = `Surplus (${surplusNum} kg) + Waste (${wasteNum} kg) = ${totalAllocated} kg, which exceeds remaining unconsumed food (${calculatedRemaining.toFixed(1)} kg).`;
+      }
+    }
+
     setErrors(errs);
     return Object.keys(errs).length === 0;
   };
 
-  const handleSubmit = (e) => {
+  const postSurplusListing = async (recordId) => {
+    setListingError('');
+    setIsPostingListing(true);
+    try {
+      await surplusApi.create({ recordId });
+      navigate('/food-records');
+    } catch (error) {
+      setListingError(error.message || 'Food record was saved, but its surplus listing could not be posted.');
+    } finally {
+      setIsPostingListing(false);
+    }
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setSaveError('');
     if (!validateForm()) return;
 
-    const numKg = parseFloat(surplusKg) || 10;
-    // Call context to add food record and surplus listing
-    addNewFoodRecord({
+    setIsSaving(true);
+    const recordInput = {
       date,
       mealType,
       foodCategory,
-      itemName,
-      foodPrepared: (numKg * 2.5).toFixed(1),
-      foodConsumed: (numKg * 1.5).toFixed(1),
-      surplus: numKg,
-      waste: 0,
-      station: pickupLocation
-    });
+      itemName: itemName.trim(),
+      foodPrepared: preparedNum,
+      foodConsumed: consumedNum,
+      surplus: surplusNum,
+      waste: wasteNum,
+      wasteType,
+      wasteReason,
+      handlingStream,
+      kitchenNotes,
+    };
 
-    setSavedSuccess(true);
-    setTimeout(() => {
-      navigate('/surplus-food');
-    }, 900);
+    try {
+      const response = await foodRecordsApi.create(recordInput);
+      const createdRecord = response.data.record;
+      addNewFoodRecord({ ...recordInput, recordId: createdRecord.recordId, time: createdRecord.time, station: createdRecord.station });
+      setNewlyCreatedId(createdRecord.recordId);
+      setSavedRecord(createdRecord);
+      setSavedSuccess(true);
+      if (createdRecord.surplus > 0) {
+        await postSurplusListing(createdRecord.recordId);
+      } else {
+        setTimeout(() => navigate('/food-records'), 700);
+      }
+    } catch (error) {
+      setSaveError(error.message || 'Unable to save this food record. Please try again.');
+    } finally {
+      setIsSaving(false);
+    }
   };
 
-  const portionsCount = Math.round((parseFloat(surplusKg) || 0) * 2.4);
-
   return (
-    <AppLayout pageTitle="Donate Surplus Food" breadcrumbs={[{ label: 'My Donations', path: '/food-records' }, { label: 'Donate Surplus Food' }]}>
-      <div className="flex flex-col gap-6 sm:gap-8 max-w-4xl mx-auto w-full">
+    <AppLayout pageTitle="Add Food Record" breadcrumbs={[{ label: 'Food Records', path: '/food-records' }, { label: 'New Record' }]}>
+      <div className="flex flex-col gap-8">
         
-        {/* Header */}
-        <div className="flex flex-col gap-1 pb-4 border-b border-[#E6E2D8]">
-          <h1 className="text-2xl sm:text-3xl font-extrabold text-[#1C2421] tracking-tight">
-            Donate Surplus Food
-          </h1>
-          <p className="text-xs sm:text-sm text-[#4A5550]">
-            List excess prepared meals or ingredients on the DigiTrace network for immediate rescue by local non-profit partners.
-          </p>
-        </div>
-
-        {/* Quick Presets Bar */}
-        <div className="flex items-center justify-between p-3.5 bg-white rounded-2xl border border-[#E6E2D8] shadow-xs">
-          <span className="text-xs font-bold text-[#4A5550]">Quick Sample Presets:</span>
-          <div className="flex items-center gap-2">
-            <button
-              type="button"
-              onClick={() => handleApplyPreset('lunch')}
-              className="px-3 py-1 rounded-xl text-xs font-bold bg-[#FAF8F5] text-[#1B4D3E] border border-[#E6E2D8] hover:bg-[#E6E2D8]"
-            >
-              Roasted Chicken
-            </button>
-            <button
-              type="button"
-              onClick={() => handleApplyPreset('bakery')}
-              className="px-3 py-1 rounded-xl text-xs font-bold bg-[#FAF8F5] text-[#1B4D3E] border border-[#E6E2D8] hover:bg-[#E6E2D8]"
-            >
-              Artisan Breads
-            </button>
-            <button
-              type="button"
-              onClick={() => handleApplyPreset('buffet')}
-              className="px-3 py-1 rounded-xl text-xs font-bold bg-[#FAF8F5] text-[#1B4D3E] border border-[#E6E2D8] hover:bg-[#E6E2D8]"
-            >
-              Grain Bowls
-            </button>
-          </div>
-        </div>
-
-        {/* Success Banner */}
+        {/* Toast Notification */}
         {savedSuccess && (
-          <div className="p-4 rounded-2xl bg-[#ECFDF5] text-[#065F46] border border-[#A7F3D0] flex items-center gap-3">
-            <span className="material-symbols-outlined text-[24px] text-[#10B981]">check_circle</span>
-            <div>
-              <p className="font-bold text-sm">Surplus Food Successfully Listed!</p>
-              <p className="text-xs">Publishing batch to the rescue directory and redirecting...</p>
+          <div className="fixed top-20 right-4 sm:right-8 z-50 flex items-center gap-3 p-4 rounded-2xl bg-white shadow-xl border-l-4 border-[#1B4D3E]">
+            <span className="material-symbols-outlined text-[#1B4D3E] text-[24px]">check_circle</span>
+            <div className="flex flex-col">
+              <span className="font-bold text-sm text-[#1C2421]">Record Ledger Stored!</span>
+              <span className="text-xs text-[#4A5550]">Audit Batch #{newlyCreatedId} committed. Redirecting...</span>
             </div>
           </div>
         )}
 
-        {/* Form Container */}
-        <form onSubmit={handleSubmit} className="bg-white p-6 sm:p-8 rounded-2xl shadow-xs border border-[#E6E2D8] flex flex-col gap-6">
-          {/* Section 1: Item Details */}
-          <div className="flex flex-col gap-4">
-            <h2 className="text-base font-bold text-[#1C2421] pb-2 border-b border-[#E6E2D8]">
-              1. Food Batch Information
-            </h2>
+        {saveError && (
+          <div role="alert" className="p-4 rounded-xl bg-[#FEE2E2] text-[#DC2626] text-xs font-bold border border-red-200">
+            {saveError}
+          </div>
+        )}
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+        {listingError && (
+          <div role="alert" className="p-4 rounded-xl bg-[#FEF3C7] text-[#92400E] text-xs font-bold border border-[#FDE68A] flex flex-wrap items-center justify-between gap-3">
+            <span>{listingError} The food record itself is already saved.</span>
+            <div className="flex gap-2">
+              <button type="button" disabled={isPostingListing} onClick={() => postSurplusListing(savedRecord.recordId)} className="px-3 py-1.5 rounded-lg bg-white border border-[#FDE68A] disabled:opacity-60">
+                {isPostingListing ? 'Retrying...' : 'Retry Listing'}
+              </button>
+              <button type="button" onClick={() => navigate('/food-records')} className="px-3 py-1.5 rounded-lg bg-white border border-[#FDE68A]">
+                Continue
+              </button>
+            </div>
+          </div>
+        )}
+
+        {/* Top Header Bar */}
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-4 border-b border-[#E6E2D8]">
+          <div>
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#E2EFE7] text-[#1B4D3E] text-xs font-bold mb-2">
+              <span className="material-symbols-outlined text-[14px]">tune</span>
+              <span>STANDARD AUDIT PROTOCOL</span>
+            </div>
+            <h1 className="font-display-lg text-3xl font-extrabold text-[#1C2421] tracking-tight">Add Food Record</h1>
+            <p className="font-body-md text-base text-[#4A5550] mt-1">
+              Log prepared food, patron consumption, surplus yield, and waste discards.
+            </p>
+          </div>
+
+          <div className="flex items-center gap-2">
+            <span className="text-xs font-bold text-[#4A5550]">Presets:</span>
+            <button onClick={() => handleApplyPreset('lunch')} type="button" className="px-3 py-1.5 rounded-xl bg-white hover:bg-[#FAF8F5] text-[#1C2421] border border-[#E6E2D8] text-xs font-bold">
+              Lunch Rush
+            </button>
+            <button onClick={() => handleApplyPreset('banquet')} type="button" className="px-3 py-1.5 rounded-xl bg-white hover:bg-[#FAF8F5] text-[#1C2421] border border-[#E6E2D8] text-xs font-bold">
+              Banquet
+            </button>
+          </div>
+        </div>
+
+        {/* Main Form Layout */}
+        <form onSubmit={handleSubmit} className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          
+          <div className="lg:col-span-8 bg-white p-6 rounded-2xl shadow-xs border border-[#E6E2D8] flex flex-col gap-6">
+            <h2 className="font-bold text-lg text-[#1C2421] border-b border-[#E6E2D8] pb-3">Basic Information</h2>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label className="block font-bold text-[#1C2421] mb-1">Food Item Name *</label>
+                <label className="block text-xs font-bold text-[#1C2421] mb-1">Audit Date</label>
                 <input
-                  type="text"
-                  value={itemName}
-                  onChange={(e) => setItemName(e.target.value)}
-                  placeholder="e.g. Herb-Roasted Lemon Chicken"
-                  className="w-full h-10 px-3 rounded-xl bg-[#FAF8F5] border border-[#E6E2D8] text-[#1C2421] text-xs focus:outline-none focus:ring-1 focus:ring-[#1B4D3E]"
+                  type="date"
+                  value={date}
+                  onChange={(e) => setDate(e.target.value)}
+                  className="w-full h-10 px-3 rounded-xl bg-[#FAF8F5] border border-[#E6E2D8] text-xs text-[#1C2421]"
                 />
-                {errors.itemName && <span className="text-[#DC2626] text-[11px] font-bold mt-1 block">{errors.itemName}</span>}
               </div>
 
               <div>
-                <label className="block font-bold text-[#1C2421] mb-1">Food Category</label>
+                <label className="block text-xs font-bold text-[#1C2421] mb-1">Food Category</label>
                 <select
                   value={foodCategory}
                   onChange={(e) => setFoodCategory(e.target.value)}
-                  className="w-full h-10 px-3 rounded-xl bg-[#FAF8F5] border border-[#E6E2D8] text-[#1C2421] text-xs font-semibold focus:outline-none"
+                  className="w-full h-10 px-3 rounded-xl bg-[#FAF8F5] border border-[#E6E2D8] text-xs text-[#1C2421]"
                 >
-                  <option value="Proteins">Cooked Proteins & Poultry</option>
-                  <option value="Bakery">Bakery & Breads</option>
-                  <option value="Grains">Grains & Rice</option>
-                  <option value="Salad">Salad & Fresh Produce</option>
-                  <option value="Dairy">Dairy & Prepared Chilled</option>
+                  <option value="Rice">Grains & Rice</option>
+                  <option value="Vegetables">Fresh Produce</option>
+                  <option value="Bakery">Bakery & Pastry</option>
+                  <option value="Proteins">Proteins</option>
+                  <option value="Dairy">Dairy</option>
                 </select>
               </div>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
-              <div>
-                <label className="block font-bold text-[#1C2421] mb-1">Surplus Quantity (kg) *</label>
-                <input
-                  type="number"
-                  step="0.5"
-                  value={surplusKg}
-                  onChange={(e) => setSurplusKg(e.target.value)}
-                  className="w-full h-10 px-3 rounded-xl bg-[#FAF8F5] border border-[#E6E2D8] text-[#1C2421] text-xs font-bold focus:outline-none focus:ring-1 focus:ring-[#1B4D3E]"
-                />
-                {errors.surplusKg && <span className="text-[#DC2626] text-[11px] font-bold mt-1 block">{errors.surplusKg}</span>}
-              </div>
-
-              <div>
-                <label className="block font-bold text-[#1C2421] mb-1">Estimated Portions</label>
-                <div className="h-10 px-3 rounded-xl bg-[#ECFDF5] border border-[#A7F3D0] flex items-center text-[#065F46] font-bold text-xs">
-                  ~{portionsCount} Meals (0.42 kg/portion)
-                </div>
-              </div>
-
-              <div>
-                <label className="block font-bold text-[#1C2421] mb-1">Meal Prep Type</label>
-                <select
-                  value={mealType}
-                  onChange={(e) => setMealType(e.target.value)}
-                  className="w-full h-10 px-3 rounded-xl bg-[#FAF8F5] border border-[#E6E2D8] text-[#1C2421] text-xs focus:outline-none"
-                >
-                  <option value="Breakfast">Breakfast Service</option>
-                  <option value="Lunch">Lunch Service</option>
-                  <option value="Dinner">Dinner Service</option>
-                  <option value="Event">Event / Banquet</option>
-                </select>
-              </div>
-            </div>
-          </div>
-
-          {/* Section 2: Safety & Pickup Details */}
-          <div className="flex flex-col gap-4 pt-2">
-            <h2 className="text-base font-bold text-[#1C2421] pb-2 border-b border-[#E6E2D8]">
-              2. Freshness, Safety & Pickup Logistics
-            </h2>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
-              <div>
-                <label className="block font-bold text-[#1C2421] mb-1">Preparation Date & Time</label>
-                <div className="flex gap-2">
-                  <input
-                    type="date"
-                    value={date}
-                    onChange={(e) => setDate(e.target.value)}
-                    className="w-1/2 h-10 px-3 rounded-xl bg-[#FAF8F5] border border-[#E6E2D8] text-xs"
-                  />
-                  <input
-                    type="text"
-                    value={prepTime}
-                    onChange={(e) => setPrepTime(e.target.value)}
-                    placeholder="e.g. 09:45 AM"
-                    className="w-1/2 h-10 px-3 rounded-xl bg-[#FAF8F5] border border-[#E6E2D8] text-xs"
-                  />
-                </div>
-              </div>
-
-              <div>
-                <label className="block font-bold text-[#1C2421] mb-1">Pickup Deadline Window *</label>
-                <input
-                  type="text"
-                  value={pickupDeadline}
-                  onChange={(e) => setPickupDeadline(e.target.value)}
-                  placeholder="e.g. Today by 3:30 PM (Within 3h)"
-                  className="w-full h-10 px-3 rounded-xl bg-[#FFFBEB] border border-[#FDE68A] text-[#92400E] font-bold text-xs"
-                />
-                {errors.pickupDeadline && <span className="text-[#DC2626] text-[11px] font-bold mt-1 block">{errors.pickupDeadline}</span>}
-              </div>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
-              <div>
-                <label className="block font-bold text-[#1C2421] mb-1">Pickup Location & Instructions</label>
-                <input
-                  type="text"
-                  value={pickupLocation}
-                  onChange={(e) => setPickupLocation(e.target.value)}
-                  placeholder="e.g. Loading Dock #2, North Service Bay"
-                  className="w-full h-10 px-3 rounded-xl bg-[#FAF8F5] border border-[#E6E2D8] text-xs"
-                />
-              </div>
-
-              <div>
-                <label className="block font-bold text-[#1C2421] mb-1">Packaging Condition</label>
-                <input
-                  type="text"
-                  value={storageType}
-                  onChange={(e) => setStorageType(e.target.value)}
-                  placeholder="e.g. Chilled (Food-Grade Sealed Containers)"
-                  className="w-full h-10 px-3 rounded-xl bg-[#FAF8F5] border border-[#E6E2D8] text-xs"
-                />
-              </div>
-            </div>
-
-            <div className="text-xs">
-              <label className="block font-bold text-[#1C2421] mb-1">Dietary & Allergen Tags</label>
+            <div>
+              <label className="block text-xs font-bold text-[#1C2421] mb-1">Item Description / Serial</label>
               <input
                 type="text"
-                value={dietaryTags}
-                onChange={(e) => setDietaryTags(e.target.value)}
-                placeholder="e.g. Dairy-Free, Gluten-Free, Halal-Compliant, Vegetarian"
-                className="w-full h-10 px-3 rounded-xl bg-[#FAF8F5] border border-[#E6E2D8] text-xs"
+                value={itemName}
+                onChange={(e) => setItemName(e.target.value)}
+                className="w-full h-10 px-3 rounded-xl bg-[#FAF8F5] border border-[#E6E2D8] text-xs text-[#1C2421]"
               />
             </div>
 
-            <div className="text-xs">
-              <label className="block font-bold text-[#1C2421] mb-1">Handling & Quality Notes</label>
-              <textarea
-                rows={2}
-                value={notes}
-                onChange={(e) => setNotes(e.target.value)}
-                placeholder="Add any specific instructions for recipient NGOs or couriers..."
-                className="w-full p-3 rounded-xl bg-[#FAF8F5] border border-[#E6E2D8] text-xs"
-              />
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-2">
+              <div>
+                <label className="block text-xs font-bold text-[#1C2421] mb-1">Prepared (kg)</label>
+                <input
+                  type="number"
+                  min="0"
+                  step="any"
+                  required
+                  value={foodPrepared}
+                  onChange={(e) => setFoodPrepared(e.target.value)}
+                  className="w-full h-10 px-3 rounded-xl bg-[#FAF8F5] border border-[#E6E2D8] text-xs font-bold text-[#1C2421]"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-bold text-[#15803D] mb-1">Consumed (kg)</label>
+                <input
+                  type="number"
+                  min="0"
+                  step="any"
+                  required
+                  value={foodConsumed}
+                  onChange={(e) => setFoodConsumed(e.target.value)}
+                  className="w-full h-10 px-3 rounded-xl bg-[#FAF8F5] border border-[#E6E2D8] text-xs font-bold text-[#15803D]"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-bold text-[#D97706] mb-1">Surplus (kg)</label>
+                <input
+                  type="number"
+                  min="0"
+                  step="any"
+                  required
+                  value={surplus}
+                  onChange={(e) => setSurplus(e.target.value)}
+                  className="w-full h-10 px-3 rounded-xl bg-[#FAF8F5] border border-[#E6E2D8] text-xs font-bold text-[#D97706]"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-bold text-[#DC2626] mb-1">Waste (kg)</label>
+                <input
+                  type="number"
+                  min="0"
+                  step="any"
+                  required
+                  value={waste}
+                  onChange={(e) => setWaste(e.target.value)}
+                  className="w-full h-10 px-3 rounded-xl bg-[#FAF8F5] border border-[#E6E2D8] text-xs font-bold text-[#DC2626]"
+                />
+              </div>
+            </div>
+
+            <div className="pt-4 border-t border-[#E6E2D8] flex items-center justify-end gap-3">
+              <button type="button" onClick={() => navigate('/food-records')} className="px-4 py-2.5 rounded-xl bg-gray-100 text-xs font-bold text-[#1C2421]">
+                Cancel
+              </button>
+              <button type="submit" disabled={isSaving || Boolean(savedRecord)} className="px-6 py-2.5 rounded-xl bg-[#1B4D3E] text-white text-xs font-bold hover:bg-[#155E3D] shadow-xs disabled:opacity-60 disabled:cursor-not-allowed">
+                {isSaving ? 'Saving Record...' : savedRecord ? 'Record Saved' : 'Commit Entry to Ledger'}
+              </button>
             </div>
           </div>
 
-          {/* Action Buttons */}
-          <div className="flex items-center justify-end gap-3 pt-4 border-t border-[#E6E2D8]">
-            <button
-              type="button"
-              onClick={() => navigate('/surplus-food')}
-              className="px-5 py-2.5 rounded-xl text-xs font-bold text-[#4A5550] hover:text-[#1C2421]"
-            >
-              Cancel
-            </button>
-            <button
-              type="submit"
-              className="px-6 py-2.5 rounded-xl bg-[#1B4D3E] hover:bg-[#155E3D] text-white text-xs font-bold shadow-xs transition-colors"
-            >
-              Publish to Rescue Marketplace
-            </button>
+          {/* Right Summary Card */}
+          <div className="lg:col-span-4 bg-white p-6 rounded-2xl shadow-xs border border-[#E6E2D8] flex flex-col gap-4">
+            <h3 className="font-bold text-base text-[#1C2421] border-b border-[#E6E2D8] pb-3">Mass Balance Audit</h3>
+            
+            <div className="flex flex-col gap-3 text-xs">
+              <div className="flex justify-between">
+                <span>Consumed Yield:</span>
+                <strong className="text-[#15803D]">{pctConsumed}% ({consumedNum} kg)</strong>
+              </div>
+              <div className="flex justify-between">
+                <span>Surplus Rescue:</span>
+                <strong className="text-[#D97706]">{pctSurplus}% ({surplusNum} kg)</strong>
+              </div>
+              <div className="flex justify-between">
+                <span>Organic Waste:</span>
+                <strong className="text-[#DC2626]">{pctWaste}% ({wasteNum} kg)</strong>
+              </div>
+            </div>
+
+            <div className={`p-4 rounded-xl text-xs font-bold border ${isBalanced ? 'bg-[#DCFCE7] text-[#15803D] border-[#A7F3D0]' : 'bg-[#FEE2E2] text-[#DC2626] border-red-300'}`}>
+              {isBalanced ? '✓ Balanced Entry Ready for Sign-off' : `⚠ Reconciliation Delta: ${deltaUnaccounted.toFixed(1)} kg`}
+            </div>
           </div>
+
         </form>
 
       </div>

@@ -2,12 +2,9 @@ import React, { useState } from 'react';
 import AppLayout from '../components/AppLayout';
 
 export default function Settings() {
-  const [orgName, setOrgName] = useState('Pacific Rim Culinary Center & Banquets');
-  const [pickupBay, setPickupBay] = useState('Loading Dock #2, North Service Bay');
-  const [leadTime, setLeadTime] = useState('3 Hours');
-  const [emailAlerts, setEmailAlerts] = useState(true);
-  const [pickupReminders, setPickupReminders] = useState(true);
-  const [expirationAlerts, setExpirationAlerts] = useState(true);
+  const [scaleIp, setScaleIp] = useState('192.168.1.104');
+  const [autoTare, setAutoTare] = useState(true);
+  const [auditMode, setAuditMode] = useState('ISO-14001');
   const [saved, setSaved] = useState(false);
 
   const handleSave = (e) => {
@@ -18,128 +15,95 @@ export default function Settings() {
 
   return (
     <AppLayout pageTitle="Settings" breadcrumbs={[{ label: 'Settings' }]}>
-      <div className="flex flex-col gap-6 sm:gap-8 max-w-4xl mx-auto w-full">
-        
-        {/* Header */}
+      <div className="flex flex-col gap-8">
         <div className="flex flex-col gap-1 pb-4 border-b border-[#E6E2D8]">
-          <h1 className="text-2xl sm:text-3xl font-extrabold text-[#1C2421] tracking-tight">
-            Platform Preferences & Settings
-          </h1>
-          <p className="text-xs sm:text-sm text-[#4A5550]">
-            Configure donation defaults, pickup instructions, and notification alerts for incoming NGO claims.
+          <h1 className="font-display-lg text-3xl font-extrabold text-[#1C2421] tracking-tight">System & Telemetry Settings</h1>
+          <p className="font-body-md text-base text-[#4A5550]">
+            Configure connected scale hardware, telemetry network parameters, and regulatory compliance presets.
           </p>
         </div>
 
         {saved && (
-          <div className="p-4 rounded-2xl bg-[#ECFDF5] text-[#065F46] border border-[#A7F3D0] flex items-center gap-2 text-xs font-bold shadow-xs">
-            <span className="material-symbols-outlined text-[20px] text-[#10B981]">check_circle</span>
-            <span>Settings updated successfully.</span>
+          <div className="p-4 rounded-2xl bg-[#DCFCE7] text-[#15803D] font-bold text-xs shadow-xs flex items-center gap-2 border border-[#A7F3D0]">
+            <span className="material-symbols-outlined text-[20px]">check_circle</span>
+            <span>System configuration updated successfully.</span>
           </div>
         )}
 
-        <form onSubmit={handleSave} className="bg-white p-6 sm:p-8 rounded-2xl shadow-xs border border-[#E6E2D8] flex flex-col gap-6">
-          {/* Section 1: Facility Defaults */}
-          <div className="flex flex-col gap-4">
-            <h2 className="text-base font-bold text-[#1C2421] pb-2 border-b border-[#E6E2D8]">
-              Donation & Facility Defaults
-            </h2>
-
+        <form onSubmit={handleSave} className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          <div className="lg:col-span-8 bg-white p-6 rounded-2xl shadow-xs border border-[#E6E2D8] flex flex-col gap-6">
+            <h2 className="font-bold text-lg text-[#1C2421] border-b border-[#E6E2D8] pb-3">IoT Scale Telemetry Configuration</h2>
+            
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
               <div>
-                <label className="block font-bold text-[#1C2421] mb-1">Organization Display Name</label>
+                <label className="block font-bold text-[#1C2421] mb-1">Connected Scale Station</label>
                 <input
                   type="text"
-                  value={orgName}
-                  onChange={(e) => setOrgName(e.target.value)}
-                  className="w-full h-10 px-3 rounded-xl bg-[#FAF8F5] border border-[#E6E2D8] text-xs text-[#1C2421] focus:outline-none focus:ring-1 focus:ring-[#1B4D3E]"
+                  value="Scale Station #STN-04 (Line Alpha)"
+                  disabled
+                  className="w-full h-10 px-3 rounded-xl bg-[#FAF8F5] text-[#1C2421] opacity-70 cursor-not-allowed border border-[#E6E2D8]"
                 />
               </div>
-
               <div>
-                <label className="block font-bold text-[#1C2421] mb-1">Default Pickup Location</label>
+                <label className="block font-bold text-[#1C2421] mb-1">Scale IP Address / Serial</label>
                 <input
                   type="text"
-                  value={pickupBay}
-                  onChange={(e) => setPickupBay(e.target.value)}
-                  className="w-full h-10 px-3 rounded-xl bg-[#FAF8F5] border border-[#E6E2D8] text-xs text-[#1C2421] focus:outline-none focus:ring-1 focus:ring-[#1B4D3E]"
+                  value={scaleIp}
+                  onChange={(e) => setScaleIp(e.target.value)}
+                  className="w-full h-10 px-3 rounded-xl bg-[#FAF8F5] text-[#1C2421] border border-[#E6E2D8]"
                 />
               </div>
             </div>
 
-            <div className="text-xs">
-              <label className="block font-bold text-[#1C2421] mb-1">Default Pickup Window Duration</label>
+            <div className="flex items-center justify-between p-4 rounded-xl bg-[#FAF8F5] border border-[#E6E2D8]">
+              <div>
+                <span className="font-bold text-xs text-[#1C2421] block">Automatic Container Tare</span>
+                <span className="text-[11px] text-[#4A5550]">Deduct standard 0.45kg bin weight automatically on weigh-in</span>
+              </div>
+              <input
+                type="checkbox"
+                checked={autoTare}
+                onChange={(e) => setAutoTare(e.target.checked)}
+                className="w-5 h-5 rounded text-[#1B4D3E] focus:ring-[#1B4D3E] cursor-pointer"
+              />
+            </div>
+
+            <div>
+              <label className="block text-xs font-bold text-[#1C2421] mb-1">Compliance Audit Protocol</label>
               <select
-                value={leadTime}
-                onChange={(e) => setLeadTime(e.target.value)}
-                className="w-full sm:w-1/2 h-10 px-3 rounded-xl bg-[#FAF8F5] border border-[#E6E2D8] text-xs text-[#1C2421] font-semibold focus:outline-none"
+                value={auditMode}
+                onChange={(e) => setAuditMode(e.target.value)}
+                className="w-full h-10 px-3 rounded-xl bg-[#FAF8F5] text-[#1C2421] text-xs font-bold border border-[#E6E2D8]"
               >
-                <option value="2 Hours">2 Hours Lead Time</option>
-                <option value="3 Hours">3 Hours Lead Time (Standard)</option>
-                <option value="4 Hours">4 Hours Lead Time</option>
-                <option value="Same Day">Same Day Evening Window</option>
+                <option value="ISO-14001">ISO 14001 Environmental Management</option>
+                <option value="SB-1383">California SB 1383 Organic Waste Mandate</option>
+                <option value="EPA-Scope3">EPA Scope 3 Methane Diversion Standard</option>
               </select>
             </div>
-          </div>
 
-          {/* Section 2: Notifications */}
-          <div className="flex flex-col gap-4 pt-2">
-            <h2 className="text-base font-bold text-[#1C2421] pb-2 border-b border-[#E6E2D8]">
-              Rescue Network Notifications
-            </h2>
-
-            <div className="flex flex-col gap-3 text-xs">
-              <label className="flex items-center justify-between p-3.5 rounded-xl bg-[#FAF8F5] border border-[#E6E2D8] cursor-pointer hover:bg-[#FAF8F5]/80">
-                <div>
-                  <span className="font-bold text-[#1C2421] block">New NGO Claim Alerts</span>
-                  <span className="text-[11px] text-[#4A5550]">Notify immediately when an NGO requests a surplus food batch</span>
-                </div>
-                <input
-                  type="checkbox"
-                  checked={emailAlerts}
-                  onChange={(e) => setEmailAlerts(e.target.checked)}
-                  className="w-5 h-5 rounded text-[#1B4D3E] focus:ring-[#1B4D3E] cursor-pointer"
-                />
-              </label>
-
-              <label className="flex items-center justify-between p-3.5 rounded-xl bg-[#FAF8F5] border border-[#E6E2D8] cursor-pointer hover:bg-[#FAF8F5]/80">
-                <div>
-                  <span className="font-bold text-[#1C2421] block">Pickup Arrival Reminders</span>
-                  <span className="text-[11px] text-[#4A5550]">Alert 30 minutes before courier or volunteer arrival window</span>
-                </div>
-                <input
-                  type="checkbox"
-                  checked={pickupReminders}
-                  onChange={(e) => setPickupReminders(e.target.checked)}
-                  className="w-5 h-5 rounded text-[#1B4D3E] focus:ring-[#1B4D3E] cursor-pointer"
-                />
-              </label>
-
-              <label className="flex items-center justify-between p-3.5 rounded-xl bg-[#FAF8F5] border border-[#E6E2D8] cursor-pointer hover:bg-[#FAF8F5]/80">
-                <div>
-                  <span className="font-bold text-[#1C2421] block">Freshness Deadline Warnings</span>
-                  <span className="text-[11px] text-[#4A5550]">Send reminder 1 hour before safety holding window expires</span>
-                </div>
-                <input
-                  type="checkbox"
-                  checked={expirationAlerts}
-                  onChange={(e) => setExpirationAlerts(e.target.checked)}
-                  className="w-5 h-5 rounded text-[#1B4D3E] focus:ring-[#1B4D3E] cursor-pointer"
-                />
-              </label>
-            </div>
-          </div>
-
-          {/* Action */}
-          <div className="flex items-center justify-end pt-4 border-t border-[#E6E2D8]">
-            <button
-              type="submit"
-              className="px-6 py-2.5 rounded-xl bg-[#1B4D3E] hover:bg-[#155E3D] text-white text-xs font-bold shadow-xs transition-colors"
-            >
-              Save Preferences
+            <button type="submit" className="px-6 py-2.5 rounded-xl bg-[#1B4D3E] text-white text-xs font-bold hover:bg-[#155E3D] shadow-xs self-start">
+              Save System Settings
             </button>
           </div>
-        </form>
 
+          <div className="lg:col-span-4 bg-white p-6 rounded-2xl shadow-xs border border-[#E6E2D8] flex flex-col gap-4">
+            <h3 className="font-bold text-base text-[#1C2421] border-b border-[#E6E2D8] pb-3">System Status</h3>
+            <div className="flex flex-col gap-2 text-xs text-[#4A5550]">
+              <div className="flex justify-between py-1 border-b border-[#E6E2D8]">
+                <span>DigiTrace Version:</span>
+                <strong className="text-[#1C2421] font-mono">v4.2.0-STITCH</strong>
+              </div>
+              <div className="flex justify-between py-1 border-b border-[#E6E2D8]">
+                <span>Scale Connection:</span>
+                <strong className="text-[#15803D]">Connected (12ms)</strong>
+              </div>
+              <div className="flex justify-between py-1">
+                <span>Local Buffer Status:</span>
+                <strong className="text-[#1C2421]">Synced (0 pending)</strong>
+              </div>
+            </div>
+          </div>
+        </form>
       </div>
     </AppLayout>
   );

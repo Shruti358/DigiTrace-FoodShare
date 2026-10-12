@@ -38,7 +38,7 @@ export default function SurplusHandoverDistribution() {
     { num: 4, title: '4. Picked Up', sub: 'Courier Loading Bay', icon: 'local_shipping' },
     { num: 5, title: '5. Received', sub: 'NGO Intake Dock #1', icon: 'inventory_2' },
     { num: 6, title: '6. Distributed', sub: 'Meal Service Log', icon: 'restaurant' },
-    { num: 7, title: '7. Delivered', sub: 'Distribution Receipt', icon: 'verified_user' }
+    { num: 7, title: '7. Audit Sealed', sub: 'EPA SB 1383 Ledger', icon: 'verified_user' }
   ];
 
   return (

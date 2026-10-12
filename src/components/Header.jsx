@@ -1,14 +1,17 @@
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 
-export default function Header({ pageTitle = "DigiTrace", breadcrumbs = [], setMobileOpen }) {
-  const navigate = useNavigate();
+export default function Header({ pageTitle = "Operational Floor", breadcrumbs = [], setMobileOpen }) {
+  const { user } = useAuth();
+  const nameParts = user?.name?.trim().split(/\s+/) || [];
+  const userLabel = nameParts.length > 1 ? `${nameParts[0]} ${nameParts[1][0]}.` : nameParts[0] || 'DigiTrace User';
 
   return (
-    <header className="fixed top-0 left-0 md:left-64 right-0 h-16 bg-white/95 backdrop-blur-md shadow-[0_1px_8px_rgba(0,0,0,0.03)] z-40 flex items-center justify-between px-5 md:px-8 border-b border-[#E6E2D8]">
-      <div className="flex items-center gap-4">
+    <header className="fixed top-0 left-0 md:left-64 right-0 h-16 bg-surface-container-lowest/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-40 flex items-center justify-between px-space-lg">
+      <div className="flex items-center gap-space-md">
         <button
-          className="md:hidden p-1.5 text-[#4A5550] hover:text-[#1C2421] rounded-lg hover:bg-[#FAF8F5]"
+          className="md:hidden p-space-xs text-on-surface-variant hover:text-on-surface"
           onClick={() => setMobileOpen && setMobileOpen(true)}
           aria-label="Open Navigation Menu"
         >
@@ -16,68 +19,64 @@ export default function Header({ pageTitle = "DigiTrace", breadcrumbs = [], setM
         </button>
 
         {/* Breadcrumbs */}
-        <nav className="hidden sm:flex items-center gap-2 text-xs text-[#4A5550] font-medium">
-          <Link to="/dashboard" className="hover:text-[#1B4D3E] transition-colors font-semibold">
-            DigiTrace
+        <nav className="hidden sm:flex items-center gap-space-xs font-label-md text-label-md text-on-surface-variant">
+          <Link to="/dashboard" className="hover:text-on-surface transition-colors cursor-pointer">
+            Operational Floor
           </Link>
           {breadcrumbs.map((crumb, idx) => (
             <React.Fragment key={idx}>
-              <span className="material-symbols-outlined text-[13px] text-[#A3B18A]">chevron_right</span>
+              <span className="material-symbols-outlined text-[14px]">chevron_right</span>
               {crumb.path ? (
-                <Link to={crumb.path} className="hover:text-[#1B4D3E] transition-colors">
+                <Link to={crumb.path} className="hover:text-on-surface transition-colors">
                   {crumb.label}
                 </Link>
               ) : (
-                <span className="text-[#1C2421] font-bold">{crumb.label}</span>
+                <span className="text-on-surface font-label-lg text-label-lg font-medium">{crumb.label}</span>
               )}
             </React.Fragment>
           ))}
           {breadcrumbs.length === 0 && (
             <>
-              <span className="material-symbols-outlined text-[13px] text-[#A3B18A]">chevron_right</span>
-              <span className="text-[#1C2421] font-bold">{pageTitle}</span>
+              <span className="material-symbols-outlined text-[14px]">chevron_right</span>
+              <span className="text-on-surface font-label-lg text-label-lg font-medium">{pageTitle}</span>
             </>
           )}
         </nav>
 
-        {/* Platform Status Chip */}
-        <div className="hidden lg:inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#ECFDF5] text-[#065F46] text-xs font-bold border border-[#A7F3D0]">
-          <span className="w-2 h-2 rounded-full bg-[#10B981]"></span>
-          <span>Rescue Network Active</span>
+        {/* Live Scale Banner Chip */}
+        <div className="inline-flex items-center gap-space-xs px-space-sm py-space-xs rounded-full bg-surface-container-low text-primary font-label-sm text-label-sm">
+          <span className="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+          <span>Live Scale Ingestion</span>
         </div>
       </div>
 
-      <div className="flex items-center gap-4">
+      <div className="flex items-center gap-space-md">
         {/* Search */}
-        <div className="relative hidden md:flex items-center">
-          <span className="material-symbols-outlined absolute left-3 text-[#78857E] text-[18px]">search</span>
+        <div className="relative hidden lg:flex items-center">
+          <span className="material-symbols-outlined absolute left-space-sm text-on-surface-variant text-[18px]">search</span>
           <input
-            className="h-9 pl-9 pr-4 rounded-xl bg-[#FAF8F5] text-[#1C2421] placeholder:text-[#78857E] text-xs border border-[#E6E2D8] focus:outline-none focus:ring-1 focus:ring-[#1B4D3E] focus:border-[#1B4D3E] w-56 lg:w-72"
-            placeholder="Search surplus food, requests, tracking IDs..."
+            className="h-9 pl-9 pr-14 rounded-lg bg-surface-container-low text-on-surface placeholder:text-on-surface-variant font-body-sm text-body-sm focus:outline-none focus:ring-1 focus:ring-primary w-64"
+            placeholder="Search food lots, audits, logs..."
             type="text"
-            onKeyDown={(e) => {
-              if (e.key === 'Enter' && e.target.value.trim()) {
-                navigate(`/surplus-food?q=${encodeURIComponent(e.target.value.trim())}`);
-              }
-            }}
           />
+          <kbd className="absolute right-space-sm px-1.5 py-0.5 rounded bg-surface-container-highest text-on-surface-variant font-label-sm text-label-sm">⌘K</kbd>
         </div>
 
-        {/* Direct Action Link */}
-        <Link
-          to="/surplus-food"
-          className="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-[#FAF8F5] hover:bg-[#F4F1E8] text-[#1B4D3E] border border-[#E6E2D8] text-xs font-bold transition-colors"
+        {/* Notifications */}
+        <button
+          className="relative p-space-xs text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low rounded-lg transition-colors"
+          title="Notifications"
         >
-          <span className="material-symbols-outlined text-[16px]">search</span>
-          <span>Find Food</span>
-        </Link>
+          <span className="material-symbols-outlined text-[22px]">notifications</span>
+          <span className="absolute top-1 right-1 w-2 h-2 rounded-full bg-error ring-2 ring-surface-container-lowest"></span>
+        </button>
 
         {/* User Profile Direct Link */}
-        <Link to="/profile" className="flex items-center gap-2 pl-1 hover:opacity-85 transition-opacity">
-          <div className="w-8 h-8 rounded-full bg-[#1B4D3E] flex items-center justify-center text-white font-bold">
-            <span className="material-symbols-outlined text-[18px]">person</span>
+        <Link to="/profile" className="flex items-center gap-space-sm pl-space-xs hover:opacity-80 transition-opacity">
+          <div className="w-8 h-8 rounded-full bg-primary flex items-center justify-center">
+            <span className="material-symbols-outlined text-on-primary text-[18px]">person</span>
           </div>
-          <span className="hidden xl:block text-xs text-[#1C2421] font-bold">Shruti S.</span>
+          <span className="hidden xl:block font-label-md text-label-md text-on-surface font-medium">{userLabel}</span>
         </Link>
       </div>
     </header>
